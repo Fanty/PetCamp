@@ -56,7 +56,7 @@
     imageLinks=[[NSMutableString alloc] init];
 
     
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
+    //self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
 
     tableView=[[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     tableView.scrollEnabled=NO;

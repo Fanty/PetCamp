@@ -128,6 +128,9 @@
         [cell nickName:model.petUser.nickname];
         [cell content:model.desc];
         [cell like:model.laudCount comment:model.command_count];
+        [cell createDate:model.createdate];
+        //[cell images:[NSArray arrayWithObjects:model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl, nil]];
+
         return cell;
     }
     

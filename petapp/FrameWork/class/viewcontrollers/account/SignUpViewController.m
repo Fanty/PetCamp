@@ -79,7 +79,7 @@ typedef enum{
     frame.size.height-=44.0f;
     self.view.frame=frame;
     
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
+   // self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
     
     UIImage* headImage=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"signup_header.png"];
 

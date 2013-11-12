@@ -33,7 +33,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
+    //self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
     textView=[[UITextView alloc] initWithFrame:self.view.bounds];
     
     textView.returnKeyType = UIReturnKeyDefault; //just as an example

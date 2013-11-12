@@ -59,7 +59,7 @@
     imageLinks=[[NSMutableString alloc] init];
 
     
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
+    //self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
 
     
     if([Utils isIPad])

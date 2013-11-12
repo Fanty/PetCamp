@@ -17,6 +17,7 @@
 #import "PetUser.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "MyMainViewController.h"
 
 #define CHECK_LOGIN_TAG   333
 
@@ -47,7 +48,7 @@
     [imageView release];
 
     
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
+    //self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
 
 }
 
@@ -79,6 +80,15 @@
     contactNav.view.tag=CHECK_LOGIN_TAG;
     [contactViewController release];
     
+    
+    MyMainViewController* myMainViewController=[[MyMainViewController alloc] init];
+    
+    PetNewsNavigationController* myMainNav=[[PetNewsNavigationController alloc] initWithRootViewController:myMainViewController];
+    myMainNav.view.tag=CHECK_LOGIN_TAG;
+    [myMainViewController release];
+
+    
+    
     SettingMainViewController* settingViewController=[[SettingMainViewController alloc] init];
     
     PetNewsNavigationController* settingNav=[[PetNewsNavigationController alloc] initWithRootViewController:settingViewController];
@@ -86,11 +96,12 @@
     [settingViewController release];
     
 
-    [self setViewControllers:[NSArray arrayWithObjects:petNewsNav,marketNav,contactNav,settingNav,nil]];
+    [self setViewControllers:[NSArray arrayWithObjects:petNewsNav,marketNav,contactNav,myMainNav,settingNav,nil]];
     
     [petNewsNav release];
     [marketNav release];
     [contactNav release];
+    [myMainNav release];
     [settingNav release];
 }
 

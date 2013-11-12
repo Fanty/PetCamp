@@ -144,8 +144,9 @@
             [cell headUrl:model.petUser.imageHeadUrl];
             [cell nickName:model.petUser.nickname];
             [cell content:model.desc];
+            [cell createDate:model.createdate];
             [cell like:model.laudCount comment:model.command_count];
-            
+            //[cell images:[NSArray arrayWithObjects:model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl, nil]];
             return cell;
         }
     }

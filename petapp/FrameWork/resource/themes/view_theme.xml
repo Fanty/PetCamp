@@ -23,6 +23,9 @@
     <theme key="choiceTitle" textColor="blackColor" fontSize="14" fontBold="1" />
     <theme key="choiceShopTitle" textColor="whiteColor" fontSize="12" />
     <theme key="choicePirceTitle" textColor="whiteColor" fontSize="18" />
+    <theme key="new_petcell_title" textColor="blackColor" fontSize="15.0f" />
+    <theme key="new_petcell_date" textColor="grayColor" fontSize="10.0f" />
+    <theme key="new_petcell_desc" textColor="blackColor" fontSize="14.0f" />
 
     <theme key="petnewsdetail_name" textColor="blackColor" fontSize="18.0f" />
     <theme key="petnewsdetail_title" textColor="blackColor" fontSize="18.0f" />
