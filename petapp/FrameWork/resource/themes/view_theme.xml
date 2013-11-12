@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ textColor;
+ highlightColor;
+ disabledColor;
+ backgroundColor;
+ fontSize;
+ fontBold;
+ fontName;
+ 
+ <theme key="leftmenu_title1" fontSize="16.0f" textColor="whiteColor" />
+
+ -->
+<themes>
+    <theme key="more_theme" textColor="blackColor" fontName="HelveticaNeue-Bold" highlightColor="whiteColor" fontSize="13.0f" />
+    <theme key="pulltoRefresh_title" textColor="blackColor" fontSize="14.0f" fontBold="1" />
+    <theme key="pulltoRefresh_date" textColor="blackColor" fontSize="13.0f"  />
+    <theme key="tabhead_title" textColor="#b4b4b4" fontSize="17.0f" />
+    <theme key="tabhead_title2" textColor="blackColor" fontSize="17.0f" />
+    <theme key="petcell_title" textColor="blackColor" fontSize="17.0f" />
+    <theme key="petcell_desc" textColor="blackColor" fontSize="16.0f" />
+    <theme key="petcell_smalltip" textColor="grayColor" fontSize="13.0f" />
+    <theme key="choiceTitle" textColor="blackColor" fontSize="14" fontBold="1" />
+    <theme key="choiceShopTitle" textColor="whiteColor" fontSize="12" />
+    <theme key="choicePirceTitle" textColor="whiteColor" fontSize="18" />
+
+    <theme key="petnewsdetail_name" textColor="blackColor" fontSize="18.0f" />
+    <theme key="petnewsdetail_title" textColor="blackColor" fontSize="18.0f" />
+    <theme key="petnewsdetail_content" textColor="blackColor" fontSize="15.0f" />
+    <theme key="command_name" textColor="blackColor" fontName="Arial" fontSize="13.0f" />
+    <theme key="command_date" textColor="blackColor" fontName="Arial" fontSize="13.0f" />
+    <theme key="command_content" textColor="blackColor" fontName="Arial" fontSize="12.0f" fontBold="1" />
+    <theme key="command_detail_label" textColor="blackColor" fontName="Arial" fontSize="15.0f" fontBold="1" />
+    <theme key="textview_placeholder" textColor="#cccccc" fontName="HelveticaNeue" fontSize="15.0f" />
+    <theme key="contactdetail_name" textColor="#cccccc" fontName="HelveticaNeue" fontSize="18.0f" />
+    <theme key="contactdetail_tip" textColor="#cccccc" fontName="HelveticaNeue" fontSize="14.0f" />
+    <theme key="setting_name" textColor="whiteColor" fontSize="17.0f" />
+    <theme key="checkBox_title" textColor="blackColor" fontSize="16" />
+    <theme key="profile_title" textColor="blackColor" fontSize="20.0f" />
+    <theme key="profile_desc" textColor="grayColor" fontSize="13.0f" />
+    <theme key="activaty_join" textColor="whiteColor" fontSize="11.0f" />
+    <theme key="noLael" textColor="grayColor" fontSize="23.0f" />
+    <theme key="textinput_title" textColor="#666666" highlightColor="blackColor" fontSize="17.0f" />
+    <theme key="textinput_value" textColor="blackColor" fontSize="17.0f" />
+    <theme key="logo_type" textColor="whiteColor" fontSize="11.0f" />
+    <theme key="reNoLabelClick" textColor="blackColor" fontSize="19.0f" />
+    <theme key="weibo_tip_label" textColor="blackColor" fontSize="17.0f" />
+</themes>

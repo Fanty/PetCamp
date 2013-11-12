@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E439B2E8-DA49-4EA5-9FD0-84C32F69048A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PetNews</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BADA68D5-0976-4C54-A944-FBDE78B61ECC</key>
+		<string>http://www.svnchina.com/svn/petapp2</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PetNews.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BADA68D5-0976-4C54-A944-FBDE78B61ECC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>BADA68D5-0976-4C54-A944-FBDE78B61ECC</key>
+		<string>http://www.svnchina.com/svn/petapp2</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://www.svnchina.com/svn/petapp2/PetNews.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BADA68D5-0976-4C54-A944-FBDE78B61ECC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BADA68D5-0976-4C54-A944-FBDE78B61ECC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>petapp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
