@@ -10,8 +10,11 @@
 @class TextInputView;
 @class AsyncTask;
 @class MBProgressHUD;
+@class GTGZScrollView;
 @interface SignUpViewController : BaseViewController{
 
+    GTGZScrollView* scrollView;
+    
     TextInputView* nicknameField;
     TextInputView* phoneField;
     TextInputView* passwordField;
@@ -20,6 +23,7 @@
     TextInputView* sexField;
     TextInputView* personDescField;
 
+    UIImageView* areaBGView;
     TextInputView* provinceField;
     TextInputView* cityField;
     TextInputView* areaField;

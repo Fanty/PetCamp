@@ -35,4 +35,8 @@
 
 -(void)updateTitleColor:(NSString*)value;
 
+-(void)textFieldDisabled;
+
+-(void)showArrow;
+
 @end

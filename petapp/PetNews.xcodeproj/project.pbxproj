@@ -1060,6 +1060,10 @@
 		399520E218215A6F00B2B8BD /* v_line_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 399520DA18215A6F00B2B8BD /* v_line_white@2x.png */; };
 		399BE5BD17CF3A340081A83E /* UploadImageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 399BE5BC17CF3A340081A83E /* UploadImageParser.m */; };
 		399BE5C017CF4A6A0081A83E /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 399BE5BF17CF4A6A0081A83E /* SettingMainViewController.m */; };
+		39A2FFB21833C4700052E4F9 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A2FFB11833C4700052E4F9 /* board.png */; };
+		39A2FFB31833C4700052E4F9 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A2FFB11833C4700052E4F9 /* board.png */; };
+		39A2FFB51833C4800052E4F9 /* iPad_board.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A2FFB41833C4800052E4F9 /* iPad_board.png */; };
+		39A2FFB61833C4800052E4F9 /* iPad_board.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A2FFB41833C4800052E4F9 /* iPad_board.png */; };
 		39BBF3D117D2D32200F2CB07 /* TextInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BBF3D017D2D32200F2CB07 /* TextInputView.m */; };
 		39E050DF17EFC2E600BCF7F8 /* ImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E050DE17EFC2E600BCF7F8 /* ImageViewer.m */; };
 		39E050E017EFC2E600BCF7F8 /* ImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E050DE17EFC2E600BCF7F8 /* ImageViewer.m */; };
@@ -1818,6 +1822,8 @@
 		399BE5BC17CF3A340081A83E /* UploadImageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageParser.m; sourceTree = "<group>"; };
 		399BE5BE17CF4A690081A83E /* SettingMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingMainViewController.h; sourceTree = "<group>"; };
 		399BE5BF17CF4A6A0081A83E /* SettingMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingMainViewController.m; sourceTree = "<group>"; };
+		39A2FFB11833C4700052E4F9 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		39A2FFB41833C4800052E4F9 /* iPad_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad_board.png; path = FrameWork/resource/images/ipad/signup/iPad_board.png; sourceTree = SOURCE_ROOT; };
 		39BBF3CF17D2D32200F2CB07 /* TextInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputView.h; sourceTree = "<group>"; };
 		39BBF3D017D2D32200F2CB07 /* TextInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputView.m; sourceTree = "<group>"; };
 		39E050DD17EFC2E600BCF7F8 /* ImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewer.h; sourceTree = "<group>"; };
@@ -3374,7 +3380,9 @@
 		39564531180E1E9D001B1396 /* signup */ = {
 			isa = PBXGroup;
 			children = (
+				39A2FFB41833C4800052E4F9 /* iPad_board.png */,
 				39564532180E1E9D001B1396 /* down_arrow.png */,
+				39A2FFB11833C4700052E4F9 /* board.png */,
 				39564533180E1E9D001B1396 /* down_arrow@2x.png */,
 				39564534180E1E9D001B1396 /* petlogo.png */,
 				39564535180E1E9D001B1396 /* petlogo@2x.png */,
@@ -3714,6 +3722,7 @@
 				395646A5180E1E9D001B1396 /* pet_woman.png in Resources */,
 				3956464B180E1E9D001B1396 /* iPad_tab_bg.png in Resources */,
 				39E11FE91810515300C0A585 /* icon_114.png in Resources */,
+				39A2FFB21833C4700052E4F9 /* board.png in Resources */,
 				3956456D180E1E9D001B1396 /* iPad_add.png in Resources */,
 				3910A28617B15A8B002EC669 /* composeAthover@2x.png in Resources */,
 				3956463F180E1E9D001B1396 /* iPad_express.png in Resources */,
@@ -3786,6 +3795,7 @@
 				3956460D180E1E9D001B1396 /* iPad_login_sinaBlog@2x.png in Resources */,
 				395646FB180E1E9D001B1396 /* login_bg.png in Resources */,
 				39564769180E1E9D001B1396 /* comment_panel.png in Resources */,
+				39A2FFB51833C4800052E4F9 /* iPad_board.png in Resources */,
 				395646CF180E1E9D001B1396 /* header_title.png in Resources */,
 				39564705180E1E9D001B1396 /* login_qq@2x.png in Resources */,
 				3910A29117B15A8B002EC669 /* composehuatiinput.png in Resources */,
@@ -4082,6 +4092,7 @@
 				395646A6180E1E9D001B1396 /* pet_woman.png in Resources */,
 				3956464C180E1E9D001B1396 /* iPad_tab_bg.png in Resources */,
 				39E11FEA1810515300C0A585 /* icon_114.png in Resources */,
+				39A2FFB31833C4700052E4F9 /* board.png in Resources */,
 				3956456E180E1E9D001B1396 /* iPad_add.png in Resources */,
 				39568EA417E89F4900B3F1AA /* composeAthover@2x.png in Resources */,
 				39564640180E1E9D001B1396 /* iPad_express.png in Resources */,
@@ -4154,6 +4165,7 @@
 				3956460E180E1E9D001B1396 /* iPad_login_sinaBlog@2x.png in Resources */,
 				395646FC180E1E9D001B1396 /* login_bg.png in Resources */,
 				3956476A180E1E9D001B1396 /* comment_panel.png in Resources */,
+				39A2FFB61833C4800052E4F9 /* iPad_board.png in Resources */,
 				395646D0180E1E9D001B1396 /* header_title.png in Resources */,
 				39564706180E1E9D001B1396 /* login_qq@2x.png in Resources */,
 				39568EAF17E89F4900B3F1AA /* composehuatiinput.png in Resources */,

@@ -23,6 +23,7 @@
 #import "ImageDownloadedView.h"
 #import "DataCenter.h"
 #import "Utils.h"
+#import "GTGZScroller.h"
 
 typedef enum{
     SignUpViewControllerSelectedNone=0,
@@ -33,7 +34,7 @@ typedef enum{
     SignUpViewControllerSelectedTypePetType,
     SignUpViewControllerSelectedTypePetSex
 }SignUpViewControllerSelectedType;
-@interface PersonalInfoViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UIPopoverControllerDelegate>
+@interface PersonalInfoViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UIPopoverControllerDelegate,UIScrollViewDelegate,GTGZTouchScrollerDelegate>
 -(void)showPicker:(int)index;
 -(void)hidePicker;
 -(void)imageClick;
@@ -75,13 +76,18 @@ typedef enum{
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    CGRect frame=self.view.frame;
-    frame.size.height-=44.0f;
-    self.view.frame=frame;
+    scrollView=[[GTGZScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView.showsHorizontalScrollIndicator=NO;
+    scrollView.showsVerticalScrollIndicator=NO;
+    scrollView.touchDelegate=self;
+    scrollView.delegate=self;
+    [self.view addSubview:scrollView];
+    [scrollView release];
+
     
     //self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
     
-	// Do any additional setup after loading the view.
+
     
     PetUser* user = [DataCenter sharedInstance].user;
     
@@ -128,147 +134,183 @@ typedef enum{
         selectedPetType=2;
     
     
+    float offset=([Utils isIPad]?30.0f:10.0f);
+    float leftoffset=([Utils isIPad]?130.0f:30.0f);
+    float w=self.view.frame.size.width-leftoffset*2.0f;
+    float h=([Utils isIPad]?80.0f:44.0f);
+    float minoffset=([Utils isIPad]?7.0f:2.0f);
+    
     UIImage* headImage=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"signup_header.png"];
-    
-    float spacing = 5.0f;
-    float orginX = 10.0f;
-    float w = self.view.frame.size.width - headImage.size.width*1.25;
-    if([Utils isIPad]){
-        spacing = 18;
-        orginX = 90;
-        w = headImage.size.width*2.0f;
-    }
-    
-    float h = (headImage.size.height - spacing*2)/3;
-    
-    nicknameField=[[TextInputView alloc] initWithTitle:lang(@"userName") field:@""];
-    nicknameField.frame=CGRectMake(orginX, ([Utils isIPad]?50.0f:20.0f), w, h);
-    [nicknameField delegate:self];
-    [nicknameField content:user.nickname];
-    [nicknameField returnKeyType:UIReturnKeyNext];
-    [self.view addSubview:nicknameField];
-    [nicknameField release];
-    
-    emailField=[[TextInputView alloc] initWithTitle:lang(@"email") field:@""];
-    [emailField delegate:self];
-    [emailField content:user.bind_email];
-    emailField.frame=CGRectMake(orginX, CGRectGetMaxY(nicknameField.frame)+spacing, w, h);
-    [emailField returnKeyType:UIReturnKeyNext];
-    
-    [self.view addSubview:emailField];
-    [emailField release];
-    
 
+    
     ImageDownloadedView* imageView = [[ImageDownloadedView alloc] initWithFrame:CGRectZero];
     imageView.defaultLoadingfile=@"signup_header.png";
     [imageView setUrl:user.imageHeadUrl];
     CGRect rect=headerImageView.frame;
     rect.size=headImage.size;
-    rect.origin.x=CGRectGetMaxX(emailField.frame)+spacing;
-    rect.origin.y=([Utils isIPad]?50.0f:20.0f);
+    rect.origin.x=(self.view.frame.size.width-rect.size.width)*0.5f;
+    rect.origin.y=offset;
     imageView.frame=rect;
-    [self.view addSubview:imageView];
+    [scrollView addSubview:imageView];
     [imageView release];
     
     headerImageView=[UIButton buttonWithType:UIButtonTypeCustom];
     //[headerImageView setImage:headImage forState:UIControlStateNormal];
-  //  [headerImageView setImage:<#(UIImage *)#> forState:<#(UIControlState)#>]
+    //  [headerImageView setImage:<#(UIImage *)#> forState:<#(UIControlState)#>]
     headerImageView.frame=imageView.frame;
-    [self.view addSubview:headerImageView];
+    [scrollView addSubview:headerImageView];
     [headerImageView addTarget:self action:@selector(imageClick) forControlEvents:UIControlEventTouchUpInside];
+
+
     
-    sexField=[[TextInputView alloc] initWithTitle:lang(@"user_sex") value:@""];
-    sexField.frame=CGRectMake(orginX, CGRectGetMaxY(emailField.frame)+spacing, headerImageView.frame.size.width, h);
-    [sexField content:(user.sex?lang(@"man"):lang(@"woman"))];
-    [self.view addSubview:sexField];
-    [sexField release];
-    [sexField addTarget:self action:@selector(sexClick) forControlEvents:UIControlEventTouchUpInside];
+    nicknameField=[[TextInputView alloc] initWithTitle:lang(@"userName") field:@""];
+    nicknameField.frame=CGRectMake(leftoffset, CGRectGetMaxY(headerImageView.frame)+offset, w, h);
+    [nicknameField delegate:self];
+    [nicknameField content:user.nickname];
+    [nicknameField returnKeyType:UIReturnKeyNext];
+    [scrollView addSubview:nicknameField];
+    [nicknameField release];
     
+    emailField=[[TextInputView alloc] initWithTitle:lang(@"email") field:@""];
+    [emailField delegate:self];
+    emailField.frame=CGRectMake(leftoffset, CGRectGetMaxY(nicknameField.frame)+minoffset, w, h);
+    [emailField content:user.bind_email];
+    [emailField returnKeyType:UIReturnKeyNext];
+    
+    [scrollView addSubview:emailField];
+    [emailField release];
+    
+
     
     personDescField=[[TextInputView alloc] initWithTitle:lang(@"inputpersondes") field:@""];
-    [personDescField content:user.person_desc];
     [personDescField delegate:self];
     [personDescField returnKeyType:UIReturnKeyDone];
     
-    personDescField.frame=CGRectMake(orginX, CGRectGetMaxY(sexField.frame)+spacing, CGRectGetMaxX(headerImageView.frame)-orginX, h);
-    [self.view addSubview:personDescField];
+    personDescField.frame=CGRectMake(leftoffset, CGRectGetMaxY(emailField.frame)+minoffset, w, h);
+
+    [personDescField content:user.person_desc];
+    [scrollView addSubview:personDescField];
     [personDescField release];
     
-    w = (CGRectGetMaxX(headerImageView.frame)-orginX-2)/3;
+    
+    
+    sexField=[[TextInputView alloc] initWithTitle:lang(@"user_sex") field:@""];
+    [sexField textFieldDisabled];
+    [sexField showArrow];
+    sexField.frame=CGRectMake(leftoffset, CGRectGetMaxY(personDescField.frame)+minoffset, w, h);
+    [sexField content:(user.sex?lang(@"man"):lang(@"woman"))];
+    [scrollView addSubview:sexField];
+    [sexField release];
+    [sexField addTarget:self action:@selector(sexClick) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    float minW = w/3;
+    
+    UIImage* img=[[GTGZThemeManager sharedInstance] imageByTheme:@"board.png"];
+    img=[img stretchableImageWithLeftCapWidth:img.size.width*0.5f topCapHeight:img.size.height*0.5f];
+    
+    areaBGView=[[UIImageView alloc] initWithImage:img];
+    areaBGView.frame=CGRectMake(leftoffset, CGRectGetMaxY(sexField.frame)+offset, w, h);
+    areaBGView.userInteractionEnabled=YES;
+    [scrollView addSubview:areaBGView];
+    [areaBGView release];
+
     
     AreaModel* provinceModel=selectedProvince>-1?[areaArray objectAtIndex:selectedProvince]:nil;
     
     provinceField=[[TextInputView alloc] initWithTitle:lang(@"province") value:provinceModel.name];
-    provinceField.frame=CGRectMake(orginX, CGRectGetMaxY(personDescField.frame)+15.0f, w, h);
+    provinceField.frame=CGRectMake(0.0f, 0.0f, minW, h);
     [provinceField content:user.province];
-    [self.view addSubview:provinceField];
+    [areaBGView addSubview:provinceField];
     [provinceField release];
     [provinceField addTarget:self action:@selector(provinceClick) forControlEvents:UIControlEventTouchUpInside];
     
+    UIView* lineView=[[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(provinceField.frame), 4.0f, 2.0f, h-8.0f)];
+    lineView.backgroundColor=[UIColor grayColor];
+    lineView.alpha=0.5f;
+    [areaBGView addSubview:lineView];
+    [lineView release];
+
     
     AreaModel* cityModel=selectedCity>-1?[provinceModel.list objectAtIndex:selectedCity]:nil;
     cityField=[[TextInputView alloc] initWithTitle:lang(@"city") value:cityModel.name];
-    cityField.frame=CGRectMake(CGRectGetMaxX(provinceField.frame)+1.0f, CGRectGetMaxY(personDescField.frame)+15.0f, w, h);
+    cityField.frame=CGRectMake(CGRectGetMaxX(provinceField.frame), 0.0f, minW, h);
     [cityField content:user.city];
-    [self.view addSubview:cityField];
+    [areaBGView addSubview:cityField];
     [cityField release];
     [cityField addTarget:self action:@selector(cityClick) forControlEvents:UIControlEventTouchUpInside];
     
+    lineView=[[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(cityField.frame), 4.0f, 2.0f, h-8.0f)];
+    lineView.backgroundColor=[UIColor grayColor];
+    lineView.alpha=0.5f;
+    [areaBGView addSubview:lineView];
+    [lineView release];
+
+    
     AreaModel* areaModel=selectedArea>-1?[cityModel.list objectAtIndex:selectedArea]:nil;
     areaField=[[TextInputView alloc] initWithTitle:lang(@"area") value:areaModel.name];
+    areaField.frame=CGRectMake(CGRectGetMaxX(cityField.frame), 0.0f, minW, h);
     [areaField content:user.area];
-    areaField.frame=CGRectMake(CGRectGetMaxX(cityField.frame)+1.0f, CGRectGetMaxY(personDescField.frame)+15.0f, w, h);
-    [self.view addSubview:areaField];
+    [areaBGView addSubview:areaField];
     [areaField release];
     [areaField addTarget:self action:@selector(areaClick) forControlEvents:UIControlEventTouchUpInside];
     
     
-    petTypeField=[[TextInputView alloc] initWithTitle:lang(@"pet_type") value:@""];
-    petTypeField.frame=CGRectMake(orginX, CGRectGetMaxY(provinceField.frame)+spacing, (CGRectGetMaxX(headerImageView.frame)-orginX-1)/2, h);
+    petTypeField=[[TextInputView alloc] initWithTitle:lang(@"pet_type") field:@""];
+    [petTypeField textFieldDisabled];
+    [petTypeField showArrow];
+    petTypeField.frame=CGRectMake(leftoffset, CGRectGetMaxY(areaBGView.frame)+offset, w, h);
     if(user.petType==2)
         [petTypeField content:lang(@"love_other")];
     else
         [petTypeField content:(user.petType==0?lang(@"love_dog"):lang(@"love_cat"))];
-    [self.view addSubview:petTypeField];
+    [scrollView addSubview:petTypeField];
     [petTypeField release];
     [petTypeField addTarget:self action:@selector(petTypeClick) forControlEvents:UIControlEventTouchUpInside];
     
     
-    petSexField=[[TextInputView alloc] initWithTitle:lang(@"pet_sex") value:@""];
-    petSexField.frame=CGRectMake(CGRectGetMaxX(petTypeField.frame)+1.0f, CGRectGetMaxY(provinceField.frame)+spacing, (CGRectGetMaxX(headerImageView.frame)-orginX-1)/2, h);
+    petSexField=[[TextInputView alloc] initWithTitle:lang(@"pet_sex") field:@""];
+    [petSexField textFieldDisabled];
+    [petSexField showArrow];
+    petSexField.frame=CGRectMake(leftoffset, CGRectGetMaxY(petTypeField.frame)+minoffset, w, h);
     [petSexField content:(user.pet_sex==1?lang(@"man"):lang(@"woman"))];
-    [self.view addSubview:petSexField];
+    [scrollView addSubview:petSexField];
     [petSexField release];
     [petSexField addTarget:self action:@selector(petSexClick) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIImage* img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"registerbutton.png"];
+    img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"registerbutton.png"];
     confirmButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [confirmButton setBackgroundImage:img forState:UIControlStateNormal];
     [confirmButton setTitle:lang(@"confirm") forState:UIControlStateNormal];
     rect=confirmButton.frame;
-    rect.origin.x=orginX;
-    rect.origin.y=CGRectGetMaxY(petSexField.frame)+25.0f;
-    rect.size=img.size;
-    rect.size.width=CGRectGetMaxX(headerImageView.frame)-orginX;
+    rect.origin.x=leftoffset;
+    rect.origin.y=CGRectGetMaxY(petSexField.frame)+offset;
+    rect.size.width=w;
+    rect.size.height=img.size.height;
     confirmButton.frame=rect;
+    
+    /*
     if([Utils isIPad]){
         [confirmButton.titleLabel setFont:[UIFont systemFontOfSize:35.0f]];
     }
+     */
     
-    [self.view addSubview:confirmButton];
+    [scrollView addSubview:confirmButton];
     [confirmButton addTarget:self action:@selector(confirmClick) forControlEvents:UIControlEventTouchUpInside];
     
     
     
     logoView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"petlogo.png"]];
     rect=logoView.frame;
-    rect.origin.y=self.view.frame.size.height-([Utils isIPad]?265:104.0f);
+    rect.origin.y=CGRectGetMaxY(confirmButton.frame)+offset*2.0f;
     rect.origin.x=(self.view.frame.size.width-rect.size.width)*0.5f;
     logoView.frame=rect;
-    [self.view addSubview:logoView];
+    [scrollView addSubview:logoView];
     [logoView release];
-    
+
+    scrollView.contentSize=CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(logoView.frame)+30.0f);
+
     
     pickerBgView=[[UIView alloc] initWithFrame:self.view.bounds];
     pickerBgView.backgroundColor=[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.6f];
@@ -313,22 +355,6 @@ typedef enum{
 
 -(BOOL)canBackNav{
     return (task==nil);
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [nicknameField resignFirstResponder];
-    [emailField resignFirstResponder];
-    [personDescField resignFirstResponder];
-    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        CGRect rect=self.view.frame;
-        rect.origin.y=0.0f;
-        self.view.frame=rect;
-    } completion:^(BOOL finish){
-        
-    }];
-    
-    
-    [self hidePicker];
 }
 
 -(void)showPicker:(int)index{
@@ -820,6 +846,40 @@ typedef enum{
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self backClick];
+}
+
+
+#pragma mark  touchscroller delegate
+
+- (void)tableView:(UIScrollView *)tableView
+     touchesBegan:(NSSet *)touches
+        withEvent:(UIEvent *)event{
+    
+    [self touchesBegan:touches withEvent:event];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [nicknameField resignFirstResponder];
+    [emailField resignFirstResponder];
+    [personDescField resignFirstResponder];
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        CGRect rect=self.view.frame;
+        rect.origin.y=0.0f;
+        self.view.frame=rect;
+    } completion:^(BOOL finish){
+        
+    }];
+    
+    
+    [self hidePicker];
+    
+}
+
+#pragma mark scrollview delegate
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self touchesBegan:nil withEvent:nil];
+    
 }
 
 

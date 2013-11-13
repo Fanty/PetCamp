@@ -17,8 +17,12 @@
     self=[self init];
     if(self){
         self.userInteractionEnabled=YES;
-        self.backgroundColor=[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.7f];
         
+        UIImage* img=[[GTGZThemeManager sharedInstance] imageByTheme:@"board.png"];
+        img=[img stretchableImageWithLeftCapWidth:img.size.width*0.5f topCapHeight:img.size.height*0.5f];
+        [self setBackgroundImage:img forState:UIControlStateNormal];
+        [self setBackgroundImage:img forState:UIControlStateHighlighted];
+
         titleLabel=[[UILabel alloc] init];
         titleLabel.text=title;
         titleLabel.numberOfLines=1;
@@ -29,7 +33,7 @@
         textField=[[UITextField alloc] init];
         textField.text=field;
         if([Utils isIPad]){
-            [textField setFont:[UIFont systemFontOfSize:33.0f]];
+            [textField setFont:[UIFont systemFontOfSize:30.0f]];
         }
         textField.borderStyle=UITextBorderStyleNone;
         [self addSubview:textField];
@@ -42,8 +46,6 @@
     self=[self init];
     if(self){
         self.userInteractionEnabled=YES;
-        self.backgroundColor=[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.7f];
-
         titleLabel=[[UILabel alloc] init];
         
         titleLabel.text=title;
@@ -93,6 +95,14 @@
     textField.secureTextEntry = secureText;
 }
 
+-(void)showArrow{
+    if(arrowView==nil){
+        arrowView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"down_arrow.png"]];
+        [self addSubview:arrowView];
+        [arrowView release];
+    }
+}
+
 -(void)layoutSubviews{
     [super layoutSubviews];
     if(textField!=nil){
@@ -105,10 +115,18 @@
         rect=textField.frame;
         
         rect.size.height=self.frame.size.height - 2;
-        rect.origin.y=self.frame.size.height-rect.size.height+4.0f;
+        rect.origin.y=self.frame.size.height-rect.size.height+([Utils isIPad]?18.0f:8.0f);
         rect.origin.x=CGRectGetMaxX(titleLabel.frame);
         rect.size.width=self.frame.size.width-rect.origin.x;
         textField.frame=rect;
+        
+        if(arrowView!=nil){
+            arrowView.hidden=([textField.text length]>0);
+            CGRect rect=arrowView.frame;
+            rect.origin.x=(self.frame.size.width-rect.size.width)*0.5f;
+            rect.origin.y=(self.frame.size.height-rect.size.height)*0.5f;
+            arrowView.frame=rect;
+        }
     }
     else{
         CGRect rect=arrowView.frame;
@@ -155,6 +173,10 @@
         titleLabel.highlighted=YES;
     else
         titleLabel.highlighted=NO;
+}
+
+-(void)textFieldDisabled{
+    textField.enabled=NO;
 }
 
 @end

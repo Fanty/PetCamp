@@ -6,18 +6,23 @@
 //  Copyright (c) 2013年 fanty. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "NavContentViewController.h"
 @class TextInputView;
 @class AsyncTask;
 @class MBProgressHUD;
-@interface PersonalInfoViewController : BaseViewController{
+@class GTGZScrollView;
+@interface PersonalInfoViewController : NavContentViewController{
+
+    GTGZScrollView* scrollView;
 
     TextInputView* nicknameField;
     TextInputView* emailField;
     UIButton* headerImageView;
     TextInputView* sexField;
     TextInputView* personDescField;
-    
+
+    UIImageView* areaBGView;
+
     TextInputView* provinceField;
     TextInputView* cityField;
     TextInputView* areaField;
