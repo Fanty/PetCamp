@@ -12,4 +12,5 @@
 +(NSString*) localDBSqlite;
 +(NSString*) resourceDBSqlite;
 +(NSString*) countryPath;
++(NSString*) cacheUpdateTimeFile;
 @end

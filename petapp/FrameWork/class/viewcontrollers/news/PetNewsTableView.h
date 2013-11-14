@@ -12,7 +12,7 @@
 @class iCarousel;
 @class ImageViewer;
 
-@class BaseViewController;
+@class PetNewsViewController;
 
 @interface PetNewsTableView : PullTableView{
     ImageViewer* carouselBanner;
@@ -23,7 +23,7 @@
     int pageOffset;
 }
 
-@property(assign,nonatomic) BaseViewController* parentViewController;
+@property(assign,nonatomic) PetNewsViewController* parentViewController;
 
 -(void)clear;
 -(void)updateBanner;

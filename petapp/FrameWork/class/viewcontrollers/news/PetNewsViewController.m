@@ -18,6 +18,7 @@
 #import "NearByViewController.h"
 #import "PetNewsNavigationController.h"
 #import "PetNewsEditViewController.h"
+#import "DataCenter.h"
 
 @interface PetNewsViewController ()<HeadTabViewDelegte>
 -(void)initTabBar;
@@ -47,7 +48,12 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initTabBar];
+    [self initTableView:2];
+    [self initTableView:1];
+
     [self initTableView:0];
+    
+    [self updateIcon];
 }
 
 -(void)willShowViewController{
@@ -55,6 +61,9 @@
     imageView.contentMode=UIViewContentModeScaleAspectFit;
     self.navigationItem.titleView = imageView;
     [imageView release];
+    
+    [self updateIcon];
+
 }
 
 
@@ -80,6 +89,17 @@
 
 -(void)tabDidSelected:(HeadTabView*)tabView index:(int)index{
     [self initTableView:index];
+    if(index==0){
+        [DataCenter sharedInstance].showUpdatePetNews=NO;
+    }
+    else if(index==1){
+        [DataCenter sharedInstance].showUpdateMarket=NO;
+    }
+    else if(index==2){
+        [DataCenter sharedInstance].showUpdateActivaty=NO;
+    }
+    [self updateIcon];
+    [[DataCenter sharedInstance] save];
 }
 
 
@@ -90,6 +110,16 @@
     [headTab setTabNameArray:[NSArray arrayWithObjects:lang(@"petnews"),lang(@"daily_specials"),lang(@"active") ,nil]];
     [self.view addSubview:headTab];
     [headTab release];    
+}
+
+-(void)updateIcon{
+    DataCenter* dataCenter=[DataCenter sharedInstance];
+    [headTab showNewTip:dataCenter.showUpdatePetNews index:0];
+    [headTab showNewTip:dataCenter.showUpdateMarket index:1];
+    [headTab showNewTip:dataCenter.showUpdateActivaty index:2];
+    
+
+    
 }
 
 -(void)initTableView:(int)tab{

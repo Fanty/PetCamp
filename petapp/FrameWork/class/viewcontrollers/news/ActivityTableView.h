@@ -10,7 +10,7 @@
 
 @class AsyncTask;
 @class ImageViewer;
-@class BaseViewController;
+@class PetNewsViewController;
 
 @interface ActivityTableView : PullTableView{
     
@@ -23,7 +23,7 @@
 
 }
 
-@property(assign,nonatomic) BaseViewController* parentViewController;
+@property(assign,nonatomic) PetNewsViewController* parentViewController;
 
 -(void)clear;
 -(void)updateBanner;

@@ -23,7 +23,7 @@
 #import "DataCenter.h"
 #import "NoCell.h"
 #import "ContactDetailViewController.h"
-#import "BaseViewController.h"
+#import "PetNewsViewController.h"
 #import "Utils.h"
 #define   BANNER_HEIGHT   120.0f
 #define   IPAD_BANNER_HEIGHT  326.0f
@@ -159,6 +159,8 @@
         [self.pullToRefreshView triggerRefresh:YES];
     }
     else{
+        
+                
         ActivatyModel* model=[list objectAtIndex:[indexPath row]-1];
         
         ActivityDetailViewController* controller=[[ActivityDetailViewController alloc] init];
@@ -280,6 +282,21 @@
             else{
                 [self createLoadMoreFooter];
             }
+
+            DataCenter* dataCenter=[DataCenter sharedInstance];
+
+            if(!loadMore && [list count]>0 && !dataCenter.showUpdateActivaty){
+                ActivatyModel* model=[list objectAtIndex:0];
+                NSString* compareId=model.aid;
+                if(![compareId isEqualToString:dataCenter.lastestUpdateActivatyId]){
+                    dataCenter.lastestUpdateActivatyId=compareId;
+                    dataCenter.showUpdateActivaty=YES;
+                }
+                [parentViewController updateIcon];
+                [dataCenter save];
+
+            }
+
         }
         task=nil;
         [self reloadData];

@@ -29,6 +29,16 @@
     return [[NSBundle mainBundle] pathForResource:@"country" ofType:@"xml"];
 }
 
++(NSString*) cacheUpdateTimeFile{
+    NSString* root=[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* databasePath=[root stringByAppendingPathComponent:@"dbs"];
+    NSFileManager* fileManager=[NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:databasePath]){
+        [fileManager createDirectoryAtPath:databasePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return [databasePath stringByAppendingPathComponent:@"cut.tmp"];
+
+}
 
 
 @end

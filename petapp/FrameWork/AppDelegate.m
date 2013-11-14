@@ -93,7 +93,6 @@
     [GTGZImageDownloadedManager sharedInstance].saveImagePath=imageRoot;
 
 
-    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
  //   if([Utils isIPad])

@@ -10,7 +10,7 @@
 
 @class AsyncTask;
 @class ImageViewer;
-@class BaseViewController;
+@class PetNewsViewController;
 
 @interface DailyPicksTableView : PullTableView{
     
@@ -20,7 +20,7 @@
     AsyncTask* task;
 
 }
-@property(assign,nonatomic) BaseViewController* parentViewController;
+@property(assign,nonatomic) PetNewsViewController* parentViewController;
 
 -(void)clear;
 -(void)updateBanner;

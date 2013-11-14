@@ -12,12 +12,12 @@
 #import "PetNewsViewController.h"
 #import "MarketViewController.h"
 #import "ContactViewController.h"
-#import "SettingMainViewController.h"
+#import "SettingInfoMainViewController.h"
 #import "DataCenter.h"
 #import "PetUser.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "MyMainViewController.h"
+#import "PersonDynamicViewController.h"
 
 #define CHECK_LOGIN_TAG   333
 
@@ -81,15 +81,15 @@
     [contactViewController release];
     
     
-    MyMainViewController* myMainViewController=[[MyMainViewController alloc] init];
+    PersonDynamicViewController* personDynamicViewController=[[PersonDynamicViewController alloc] init];
     
-    PetNewsNavigationController* myMainNav=[[PetNewsNavigationController alloc] initWithRootViewController:myMainViewController];
+    PetNewsNavigationController* myMainNav=[[PetNewsNavigationController alloc] initWithRootViewController:personDynamicViewController];
     myMainNav.view.tag=CHECK_LOGIN_TAG;
-    [myMainViewController release];
+    [personDynamicViewController release];
 
     
     
-    SettingMainViewController* settingViewController=[[SettingMainViewController alloc] init];
+    SettingInfoMainViewController* settingViewController=[[SettingInfoMainViewController alloc] init];
     
     PetNewsNavigationController* settingNav=[[PetNewsNavigationController alloc] initWithRootViewController:settingViewController];
     settingNav.view.tag=CHECK_LOGIN_TAG;

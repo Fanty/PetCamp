@@ -24,6 +24,9 @@
 #import "NoCell.h"
 #import "BaseViewController.h"
 #import "ContactDetailViewController.h"
+#import "DataCenter.h"
+#import "PetNewsViewController.h"
+
 #import "Utils.h"
 #define   BANNER_HEIGHT   120.0f
 #define   IPAD_BANNER_HEIGHT  326.0f
@@ -159,6 +162,7 @@
     }
     else{
         [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
         PetNewsModel* model=[list objectAtIndex:[indexPath row]-1];
         
         PetNewsDetailViewController* controller=[[PetNewsDetailViewController alloc] init];
@@ -274,6 +278,19 @@
             }
             else{
                 [self createLoadMoreFooter];
+            }
+            
+            DataCenter* dataCenter=[DataCenter sharedInstance];
+
+            if(!loadMore && [list count]>0 && !dataCenter.showUpdatePetNews){
+                PetNewsModel* model=[list objectAtIndex:0];
+                NSString* compareId=model.pid;
+                if(![compareId isEqualToString:dataCenter.lastestUpdatePetNewsId]){
+                    dataCenter.lastestUpdatePetNewsId=compareId;
+                    dataCenter.showUpdatePetNews=YES;
+                }
+                [parentViewController updateIcon];
+                [dataCenter save];
             }
         }
         task=nil;

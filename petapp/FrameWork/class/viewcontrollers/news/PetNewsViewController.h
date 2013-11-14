@@ -25,4 +25,6 @@
     
 }
 
+-(void)updateIcon;
+
 @end

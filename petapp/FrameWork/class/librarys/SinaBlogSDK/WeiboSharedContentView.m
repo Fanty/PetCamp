@@ -98,6 +98,15 @@
     textView.text=content;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
+
+
 -(void)show{
     
     CGRect rect=self.frame;

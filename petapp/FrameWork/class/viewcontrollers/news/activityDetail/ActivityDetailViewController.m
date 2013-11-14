@@ -54,7 +54,13 @@
 - (void)viewDidLoad{
     offset=0;
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor clearColor];
+    
+    DataCenter* dataCenter=[DataCenter sharedInstance];
+    if(dataCenter.showUpdateActivaty){
+        dataCenter.showUpdateActivaty=NO;
+        [dataCenter save];
+    }
+
     
     [self initLoading];
     [self loadDetailData];

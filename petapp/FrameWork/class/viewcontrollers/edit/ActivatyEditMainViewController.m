@@ -72,7 +72,7 @@
     
     float offset=([Utils isIPad]?30.0f:0.0f);
     
-    imageUploaded=[[ImageUploaded alloc] initWithFrame:CGRectMake(offset, ([Utils isIPad]?300.0f:150.0f), self.view.frame.size.width-offset*2.0f, 0)];
+    imageUploaded=[[ImageUploaded alloc] initWithFrame:CGRectMake(offset, ([Utils isIPad]?300.0f:190.0f), self.view.frame.size.width-offset*2.0f, 0)];
     imageUploaded.parentViewController=self;
     [self.view addSubview:imageUploaded];
     [imageUploaded release];

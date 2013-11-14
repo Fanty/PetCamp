@@ -44,11 +44,20 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor whiteColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
 
 -(void)dealloc{
     self.svSnewNViewController=nil;

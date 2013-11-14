@@ -59,6 +59,7 @@
         
         labelList=[[NSMutableArray alloc] initWithCapacity:2];
         lineList=[[NSMutableArray alloc] initWithCapacity:2];
+        iconList=[[NSMutableArray alloc] initWithCapacity:2];
     }
     return self;
 }
@@ -66,6 +67,7 @@
 -(void)dealloc{
     [labelList release];
     [lineList release];
+    [iconList release];
     [super dealloc];
 }
 
@@ -90,8 +92,11 @@
 -(void)setTabNameArray:(NSArray*)array{
     [labelList makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [lineList makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [iconList makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
     [labelList removeAllObjects];
     [lineList removeAllObjects];
+    [iconList removeAllObjects];
     
     float left=0.0f;
     float width=self.frame.size.width/[array count];
@@ -131,6 +136,16 @@
             [lineView release];
         }
         
+        UIImageView* iconView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"newtip.png"]];
+        iconView.hidden=YES;
+        CGRect rect=iconView.frame;
+        rect.origin.x=left+width-rect.size.width*1.5f;
+        rect.origin.y=rect.size.height*0.5f;
+        iconView.frame=rect;
+        [self addSubview:iconView];
+        [iconList addObject:iconView];
+        [iconView release];
+        
         left+=width;
         
         index++;
@@ -150,6 +165,12 @@
     rect.origin.x=(index*width)+(width-rect.size.width)*0.5f;
     selectedImageView.frame=rect;
 }
+
+-(void)showNewTip:(BOOL)show index:(int)index{
+    UIImageView* iconView=[iconList objectAtIndex:index];
+    iconView.hidden=(!show);
+}
+
 
 -(void)btnTabClick:(UIButton*)button{
     

@@ -73,6 +73,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
+
 #pragma mark navigationcontroller delegate
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{

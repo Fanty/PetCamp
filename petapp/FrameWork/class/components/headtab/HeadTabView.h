@@ -20,7 +20,7 @@
     UIImageView* selectedImageView;
     NSMutableArray* labelList;
     NSMutableArray* lineList;
-    
+    NSMutableArray* iconList;
     UIImageView* vlineView1;
     UIImageView* vlineView2;
 }
@@ -29,5 +29,7 @@
 -(void)setTabNameArray:(NSArray*)array;
 
 -(void)showHighlight:(BOOL)value;
+
+-(void)showNewTip:(BOOL)show index:(int)index;
 
 @end

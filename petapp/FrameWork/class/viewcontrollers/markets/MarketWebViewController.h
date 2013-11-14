@@ -13,6 +13,7 @@
     UIActivityIndicatorView* loadingView;
 }
 
+@property(nonatomic,assign) BOOL updateIcon;
 @property(nonatomic,retain) NSString* url;
 
 @end

@@ -32,8 +32,10 @@
 - (id)init{
     self = [super init];
     if (self) {
-        self.title=lang(@"person_activaty");
-        [self backNavBar];
+        self.title=lang(@"my");
+        // Custom initialization
+        self.tabBarItem=[[[UITabBarItem alloc] initWithTitle:lang(@"person_activaty") image:[[GTGZThemeManager sharedInstance] imageByTheme:@"tab_my.png"] tag:0] autorelease];
+        
     }
     return self;
 }

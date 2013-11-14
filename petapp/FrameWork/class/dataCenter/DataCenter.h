@@ -21,4 +21,17 @@
 @property(nonatomic,retain) NSArray* marketBannerList;
 @property(nonatomic,retain) NSArray* activatyBannerList;
 
+
+@property(nonatomic,retain) NSString* lastestUpdatePetNewsId;
+
+@property(nonatomic,retain) NSString* lastestUpdateMarketId;
+
+@property(nonatomic,retain) NSString* lastestUpdateActivatyId;
+
+@property(nonatomic,assign) BOOL showUpdatePetNews;
+@property(nonatomic,assign) BOOL showUpdateMarket;
+@property(nonatomic,assign) BOOL showUpdateActivaty;
+
+
+-(void)save;
 @end

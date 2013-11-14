@@ -21,7 +21,7 @@
 #import "MarketManager.h"
 #import "AppDelegate.h"
 #import "AlertUtils.h"
-#import "BaseViewController.h"
+#import "PetNewsViewController.h"
 #import "Utils.h"
 #define   BANNER_HEIGHT   120.0f
 #define   IPAD_BANNER_HEIGHT  326.0f
@@ -124,6 +124,20 @@
             if([array count]>0){
                 [list removeAllObjects];
                 [list addObjectsFromArray:array];
+            }
+            
+            DataCenter* dataCenter=[DataCenter sharedInstance];
+
+            if([list count]>0 && !dataCenter.showUpdateMarket){
+                ChoiceModel* model=[list objectAtIndex:0];
+                NSString* compareId=model.mid;
+                DataCenter* dataCenter=[DataCenter sharedInstance];
+                if(![compareId isEqualToString:dataCenter.lastestUpdateMarketId]){
+                    dataCenter.lastestUpdateMarketId=compareId;
+                    dataCenter.showUpdateMarket=YES;
+                }
+                [parentViewController updateIcon];
+                [dataCenter save];
             }
         }
         task=nil;
@@ -282,8 +296,10 @@
 #pragma mark imageview delegate
 
 -(void)didImageViewerSelected:(ImageViewer*)imageViewer index:(int)index{
+        
     BannerModel* model=[imageViewer.list objectAtIndex:index];
     MarketWebViewController* controller=[[MarketWebViewController alloc] init];
+    controller.updateIcon=YES;
     controller.url=model.link;
     controller.title=lang(@"daily_specials");
     [self.parentViewController.navigationController pushViewController:controller animated:YES];

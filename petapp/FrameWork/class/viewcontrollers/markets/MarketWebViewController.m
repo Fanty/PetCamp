@@ -8,11 +8,12 @@
 
 #import "MarketWebViewController.h"
 #import "GTGZThemeManager.h"
-
+#import "DataCenter.h"
 @interface MarketWebViewController ()<UIWebViewDelegate>
 @end
 
 @implementation MarketWebViewController
+@synthesize updateIcon;
 @synthesize url;
 
 - (id)init{
@@ -28,6 +29,18 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if(self.updateIcon){
+        DataCenter* dataCenter=[DataCenter sharedInstance];
+        if(dataCenter.showUpdateMarket){
+            dataCenter.showUpdateMarket=NO;
+            [dataCenter save];
+        }
+    }
+    
+
+    
+    
     webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
     webView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
     | UIViewAutoresizingFlexibleTopMargin

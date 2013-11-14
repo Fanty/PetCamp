@@ -56,12 +56,16 @@
     [super viewDidLoad];
     
     offset=0;
-    self.view.backgroundColor=[UIColor clearColor];
     
     [self initLoading];
     [self loadDetailData];
 
-    
+    DataCenter* dataCenter=[DataCenter sharedInstance];
+    if(dataCenter.showUpdatePetNews){
+        dataCenter.showUpdatePetNews=NO;
+        [dataCenter save];
+    }
+
 
     
 }
