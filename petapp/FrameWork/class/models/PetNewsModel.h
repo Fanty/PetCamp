@@ -22,4 +22,6 @@
 @property(nonatomic,retain) NSDate* createdate;
 @property(nonatomic,retain) NSDate* updatedate;
 
+@property(nonatomic,retain) PetNewsModel* scr_post;
+
 @end

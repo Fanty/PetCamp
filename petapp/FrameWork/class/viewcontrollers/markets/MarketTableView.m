@@ -31,6 +31,7 @@
 
 @implementation MarketTableView
 
+@synthesize type_id;
 @synthesize parentViewController;
 
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
@@ -44,14 +45,17 @@
             DLog(@"refresh dataSource");
             [self loadData:NO];
         }];
-        [self.pullToRefreshView triggerRefresh:YES];
     }
     return self;
 }
 
+-(void)triggerRefresh{
+    [self.pullToRefreshView triggerRefresh:YES];
+
+}
 
 -(void)dealloc{
-
+    self.type_id=nil;
     [list release];
     [task cancel];
     [super dealloc];
@@ -82,7 +86,7 @@
         
     }
     
-    task=[[AppDelegate appDelegate].marketManager storeItemList:temp_pageOffset];
+    task=[[AppDelegate appDelegate].marketManager storeItemList:self.type_id offset:temp_pageOffset];
     [task setFinishBlock:^{
         [self.pullToRefreshView stopAnimating];
         self.loadMoreState=PullTableViewLoadMoreStateNone;
@@ -208,7 +212,7 @@
         view1.index=index;
         [view1 headUrl:model.imageUrl];
         [view1 title:model.title];
-        [view1 shopTitle:model.type];
+        [view1 shopTitle:model.sold_count];
         [view1 setPriceLabel:model.price];
         
         index++;
@@ -218,7 +222,7 @@
             view2.index=index;
             [view2 headUrl:model.imageUrl];
             [view2 title:model.title];
-            [view2 shopTitle:model.type];
+            [view2 shopTitle:model.sold_count];
             [view2 setPriceLabel:model.price];
             
         }

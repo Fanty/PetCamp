@@ -26,4 +26,6 @@
 
 @property(nonatomic,assign) id<EditerViewDelegate> delegate;
 
+-(void)showOnlyADButton;
+
 @end

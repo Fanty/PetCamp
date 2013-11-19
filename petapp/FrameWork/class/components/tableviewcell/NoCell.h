@@ -10,7 +10,11 @@
 
 @interface NoCell : UITableViewCell{
     UIImageView* lineView;
+    
+    UIActivityIndicatorView* loading;
 
 }
+
+-(void)showLoading:(BOOL)value;
 
 @end

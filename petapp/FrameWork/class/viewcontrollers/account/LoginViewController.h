@@ -31,6 +31,8 @@
     
     UITextField* currentField;
     
+    
+    
     SignUpViewController* signUpViewController;
     
     MBProgressHUD* hud;

@@ -14,6 +14,9 @@
 
 @property(nonatomic,retain) PetUser* user;
 
+@property(nonatomic,retain) NSArray* friendList;
+@property(nonatomic,retain) NSArray* groupList;
+
 @property(nonatomic,assign) float latitude;
 @property(nonatomic,assign) float longitude;
 
@@ -31,6 +34,7 @@
 @property(nonatomic,assign) BOOL showUpdatePetNews;
 @property(nonatomic,assign) BOOL showUpdateMarket;
 @property(nonatomic,assign) BOOL showUpdateActivaty;
+
 
 
 -(void)save;

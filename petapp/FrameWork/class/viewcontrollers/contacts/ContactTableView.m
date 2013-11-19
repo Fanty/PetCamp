@@ -7,8 +7,6 @@
 //
 
 #import "ContactTableView.h"
-#import "AsyncTask.h"
-#import "PullToRefresh.h"
 #import "ContactGroupCell.h"
 #import "PetUser.h"
 #import "ContactDetailViewController.h"
@@ -17,6 +15,7 @@
 #import "AlertUtils.h"
 #import "GTGZThemeManager.h"
 #import "NoCell.h"
+#import "DataCenter.h"
 
 NSInteger contactCustomSort(id obj1, id obj2,void* context){
     if([obj1 length]<1)
@@ -33,8 +32,8 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 };
 
 
-@interface ContactTableView()<GTGZTouchScrollerDelegate,UITableViewDataSource,UITableViewDelegate>
--(void)retryClick;
+@interface ContactTableView()<UITableViewDataSource,UITableViewDelegate>
+
 -(void)loadShowData;
 -(void)updateNotification;
 @end
@@ -48,18 +47,14 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
     if(self){
         self.dataSource=self;
         self.delegate=self;
-        self.touchDelegate=self;
         self.backgroundColor=[UIColor clearColor];
         self.separatorStyle=UITableViewCellSeparatorStyleNone;
-        [self addPullToRefreshWithActionHandler:^{
-            DLog(@"refresh dataSource");
-            [self loadData];
-        }];
-        [self.pullToRefreshView triggerRefresh:YES];
-        
         dicts=[[NSMutableDictionary alloc] initWithCapacity:2];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNotification) name:FriendUpdateNotification object:nil];
+        
+        [self loadData];
+
     }
     return self;
 }
@@ -69,7 +64,6 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
     [sortedKeys release];
     [dicts release];
     [showDicts release];
-    [task cancel];
     [super dealloc];
 }
 
@@ -116,7 +110,7 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([dicts count]<1 && task==nil){
+    if([[DataCenter sharedInstance].friendList count]<1){
         return 44.0f;
     }
     else{
@@ -125,11 +119,12 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 }
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([dicts count]<1 && task==nil){
+    if([[DataCenter sharedInstance].friendList count]<1){
         NoCell *cell = (NoCell*)[_tableView dequeueReusableCellWithIdentifier:@"nocell"];
         if(cell == nil){
             cell = [[[NoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nocell"] autorelease];
         }
+        [cell showLoading:[AppDelegate appDelegate].contactGroupManager.syncingFriend];
         return cell;
     }
     else{
@@ -159,8 +154,12 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 
 -(void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if([dicts count]<1 && task==nil){
-        [self.pullToRefreshView triggerRefresh:YES];
+    if([[DataCenter sharedInstance].friendList count]<1){
+        if(![AppDelegate appDelegate].contactGroupManager.syncingFriend){
+            NoCell *cell=(NoCell *)[_tableView cellForRowAtIndexPath:indexPath];
+            [cell showLoading:YES];
+            [[AppDelegate appDelegate].contactGroupManager sync];
+        }
     }
     else{
         NSArray* list=nil;
@@ -188,64 +187,36 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 
 
 -(void)updateNotification{
-    [self.pullToRefreshView triggerRefresh:YES];
 
-}
--(void)clear{
-    [task cancel];
-    task=nil;
-    [self releasePullToRefresh];
-}
-
--(void)retryClick{
-    [self.pullToRefreshView triggerRefresh:YES];
+    [self loadData];
 }
 
 -(void)loadData{
-    [task cancel];
 
-    NSDate* date = [NSDate date];
-    [self.pullToRefreshView setLastUpdatedDate:date];
+    NSArray* list=[DataCenter sharedInstance].friendList;
+    [dicts removeAllObjects];
+    [sortedKeys release];
+    sortedKeys=nil;
+    [showDicts removeAllObjects];
+    [showDicts release];
+    showDicts=nil;
+    for(PetUser* model in list){
+        NSMutableArray* array=nil;
+        for(NSString* key in [dicts allKeys]){
+            if([key isEqualToString:model.key]){
+                array=[dicts objectForKey:key];
+                break;
+            }
+        }
+        if(array==nil){
+            array=[[NSMutableArray alloc] initWithCapacity:3];
+            [dicts setObject:array forKey:model.key];
+            [array release];
+        }
+        [array addObject:model];
+    }
+    [self loadShowData];
     
-
-    task=[[AppDelegate appDelegate].contactGroupManager friendList:nil];
-    [task setFinishBlock:^{
-        [self.pullToRefreshView stopAnimating];
-
-        if([task result]==nil){
-            if(![task status]){
-                [AlertUtils showAlert:[task errorMessage] view:self];
-            }
-        }
-        else{
-            NSArray* list=[task result];
-            [dicts removeAllObjects];
-            [sortedKeys release];
-            sortedKeys=nil;
-            [showDicts removeAllObjects];
-            [showDicts release];
-            showDicts=nil;
-            for(PetUser* model in list){
-                NSMutableArray* array=nil;
-                for(NSString* key in [dicts allKeys]){
-                    if([key isEqualToString:model.key]){
-                        array=[dicts objectForKey:key];
-                        break;
-                    }
-                }
-                if(array==nil){
-                    array=[[NSMutableArray alloc] initWithCapacity:3];
-                    [dicts setObject:array forKey:model.key];
-                    [array release];
-                }
-                [array addObject:model];
-                
-            }
-            [self loadShowData];
-        }
-        task=nil;
-
-    }];
     
 }
 

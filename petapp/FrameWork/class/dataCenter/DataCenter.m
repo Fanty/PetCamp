@@ -16,6 +16,8 @@ static DataCenter* instance=nil;
 
 @synthesize user;
 
+@synthesize friendList;
+
 @synthesize latitude;
 @synthesize longitude;
 
@@ -51,6 +53,7 @@ static DataCenter* instance=nil;
 }
 
 - (void)dealloc{
+    self.friendList=nil;
     self.lastestUpdatePetNewsId=nil;
     self.lastestUpdateMarketId=nil;
     self.lastestUpdateActivatyId=nil;

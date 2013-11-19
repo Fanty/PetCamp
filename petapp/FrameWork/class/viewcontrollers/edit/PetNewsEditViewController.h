@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-@class ScrollTextView;
 @class EditerView;
 @class ImageUploaded;
 @class ImageDownloadedView;

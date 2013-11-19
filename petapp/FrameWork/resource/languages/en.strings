@@ -17,7 +17,7 @@
 "loadmore_loading"="加载中...";
 //header table pull down
 "activaty_count"="%d人参加";
-"contact"="联系人";
+"contact"="关注";
 "group"="群组";
 "command_count"="评论：%d";
 "back"="后退";
@@ -37,7 +37,7 @@
 "email"="电子邮件";
 "repassword"="确认密码";
 "autograph"="个性签名";
-"addFriend"="＋加好友";
+"addFriend"="＋加关注";
 "message"="留言";
 "qrcode_info"="二维码名片";
 "password_setting"="密码设置";
@@ -60,7 +60,7 @@
 "send"="发送";
 "contacts"="通讯录";
 "add"="添加";
-"add_firned"="添加好友";
+"add_firned"="添加关注";
 "add_group"="添加群组";
 "scan"="扫一扫";
 "create_group"="创建群组";
@@ -129,15 +129,15 @@
 "failClickCell"="点击重新加载！";
 "addGroup"="加入群组";
 "sendPet"="发宠闻";
-"adFriend"="加好友";
-"addfriendSuccess"="已成功添加为好友";
+"adFriend"="加关注";
+"addfriendSuccess"="已成功添加入关注";
 "write_message"="填写留言内容";
 "write_message_success"="发送留言成功";
 "scanUser"="扫描的用户";
 "pls_input_weibo"="请输入要绑定的微博帐号";
 "weibo_bind_success"="微博绑定成功";
 "doLikeSame"="你的鼓励好像已给过了，多谢支持";
-"addContactInGroup"="添加联系人";
+"addContactInGroup"="添加关注";
 "contactGroupIsSend"="你的请求已经发送";
 "addGroupSuccess"="添加成员成功";
 "confirmToDelete"="确定要删除你所发布的内容吗？";
@@ -145,3 +145,8 @@
 "serviceandsecure"="服务条款和隐私政策";
 "searchResult"="搜索结果";
 "my"="我";
+"forward"="转发";
+"forward_content"="转自%@ %@";
+"type"="分类";
+"fans"="粉丝";
+"clickfailed"="未能获取到数据，点击重新加载";

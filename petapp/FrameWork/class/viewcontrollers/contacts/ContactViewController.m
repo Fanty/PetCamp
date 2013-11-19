@@ -11,6 +11,7 @@
 #import "HeadTabView.h"
 #import "ContactTableView.h"
 #import "GroupTableView.h"
+#import "FansTableView.h"
 #import "PetNewsEditViewController.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
@@ -21,7 +22,6 @@
 -(void)initTabBar;
 -(void)initTableView:(int)tab;
 -(void)addPeronClick;
--(void)filterBlick;
 @end
 
 @implementation ContactViewController
@@ -76,7 +76,7 @@
 -(void)initTabBar{
     headTab=[[HeadTabView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(searchBar.frame), self.view.frame.size.width, 0.0f)];
     headTab.delegate=self;
-    [headTab setTabNameArray:[NSArray arrayWithObjects:lang(@"contact"),lang(@"group"),nil]];
+    [headTab setTabNameArray:[NSArray arrayWithObjects:lang(@"contact"),lang(@"fans"),lang(@"group"),nil]];
     [self.view addSubview:headTab];
     [headTab release];
 }
@@ -86,12 +86,18 @@
         searchBar.text=nil;
         [contactTableView searchText:@""];
     }
-    if(tab==1 && groupTableView.hidden){
+    if(tab==1 && fansTableView.hidden){
+        searchBar.text=nil;
+        [fansTableView search:@""];
+    }
+    if(tab==2 && groupTableView.hidden){
         searchBar.text=nil;
         [groupTableView search:@""];
     }
+    
     contactTableView.hidden=YES;
     groupTableView.hidden=YES;
+    fansTableView.hidden=YES;
     if(tab==0){
         if(contactTableView==nil){
             contactTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(headTab.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(headTab.frame)) style:UITableViewStylePlain];
@@ -102,6 +108,16 @@
         contactTableView.hidden=NO;
     }
     else if(tab==1){
+        if(fansTableView==nil){
+            fansTableView=[[FansTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(headTab.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(headTab.frame)) style:UITableViewStylePlain];
+            fansTableView.parentViewController=self;
+            [self.view addSubview:fansTableView];
+            [fansTableView release];
+            
+        }
+        fansTableView.hidden=NO;
+    }
+    else if(tab==2){
         if(groupTableView==nil){
             groupTableView=[[GroupTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(headTab.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(headTab.frame)) style:UITableViewStylePlain];
             groupTableView.parentViewController=self;
@@ -111,23 +127,6 @@
         }
         groupTableView.hidden=NO;
     }
-}
-
--(void)filterBlick{
-    
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [searchBar setShowsCancelButton:NO animated:YES];
-    [searchBar resignFirstResponder];
-
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        
-        fliterBg.alpha=0.0f;
-    } completion:^(BOOL finish){
-        [fliterBg removeFromSuperview];
-        fliterBg=nil;
-        [searchBar resignFirstResponder];
-
-    }];
 }
 
 -(void)addPeronClick{
@@ -142,35 +141,31 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)_searchBar{
     //  [searchBar setShowsCancelButton:YES animated:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [searchBar setShowsCancelButton:YES animated:YES];
-    if(fliterBg==nil){
-        fliterBg=[UIButton buttonWithType:UIButtonTypeCustom];
-        [fliterBg addTarget:self action:@selector(filterBlick) forControlEvents:UIControlEventTouchUpInside];
-        fliterBg.backgroundColor=[UIColor blackColor];
-        fliterBg.frame=CGRectMake(0.0f, CGRectGetMaxY(searchBar.frame), self.view.frame.size.width, self.view.frame.size.height);
-        [self.view addSubview:fliterBg];
-    }
-    fliterBg.alpha=0.0f;
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        
-        fliterBg.alpha=0.6f;
-    } completion:^(BOOL finish){
-    }];
 
     return YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [contactTableView searchText:searchText];
+    [fansTableView search:searchText];
     [groupTableView search:searchText];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar{
-    [self filterBlick];
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+    
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar{
-    [self filterBlick];
+    [searchBar setShowsCancelButton:NO animated:YES];
+    searchBar.text=nil;
+    [searchBar resignFirstResponder];
+    
+    [contactTableView searchText:nil];
+    [fansTableView search:nil];
+    [groupTableView search:nil];
+
 }
 
 

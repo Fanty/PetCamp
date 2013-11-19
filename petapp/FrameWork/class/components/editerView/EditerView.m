@@ -23,13 +23,14 @@
         self.userInteractionEnabled=YES;
         self.backgroundColor=[UIColor clearColor];
         float h=self.frame.size.height;
+        float offset=([Utils isIPad]?20.0f:0.0f);
 
         UIImage* img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"photo.png"];
         camerButton=[UIButton buttonWithType:UIButtonTypeCustom];
         [camerButton setImage:img forState:UIControlStateNormal];
         [camerButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         camerButton.tag=0;
-        camerButton.frame=CGRectMake([Utils isIPad]?10.0f:0.0f, 0.0f, img.size.width, h);
+        camerButton.frame=CGRectMake(offset, 0.0f, img.size.width, h);
         [self addSubview:camerButton];
         
         img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"picture.png"];
@@ -38,20 +39,21 @@
         [phoneButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
 
         phoneButton.tag=1;
-        phoneButton.frame=CGRectMake(CGRectGetMaxX(camerButton.frame), 0.0f, img.size.width, h);
+        phoneButton.frame=CGRectMake(CGRectGetMaxX(camerButton.frame)+offset, 0.0f, img.size.width, h);
         [self addSubview:phoneButton];
         
 
-        /*
+        
         img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"email.png"];
         adButton=[UIButton buttonWithType:UIButtonTypeCustom];
         [adButton setImage:img forState:UIControlStateNormal];
         [adButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
 
         adButton.tag=2;
-        adButton.frame=CGRectMake(CGRectGetMaxX(phoneButton.frame), 0.0f, img.size.width, h);
+        adButton.frame=CGRectMake(CGRectGetMaxX(phoneButton.frame)+offset, 0.0f, img.size.width, h);
         [self addSubview:adButton];
 
+        /*
         img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"express.png"];
         faceButton=[UIButton buttonWithType:UIButtonTypeCustom];
         [faceButton setImage:img forState:UIControlStateNormal];
@@ -69,6 +71,15 @@
 -(void)btnClick:(UIButton*)button{
     if([self.delegate respondsToSelector:@selector(editerClick:click:)])
         [self.delegate editerClick:self click:button.tag];
+}
+
+-(void)showOnlyADButton{
+    camerButton.hidden=YES;
+    phoneButton.hidden=YES;
+    
+    CGRect rect=adButton.frame;
+    rect.origin.x=camerButton.frame.origin.x;
+    adButton.frame=rect;
 }
 
 @end

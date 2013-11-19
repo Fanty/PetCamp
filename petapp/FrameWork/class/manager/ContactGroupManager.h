@@ -9,7 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "AsyncTask.h"
 
-@interface ContactGroupManager : NSObject
+@interface ContactGroupManager : NSObject{
+    
+    AsyncTask* friendAsyncTask;
+    AsyncTask* groupAsynTask;
+}
+
+
+@property(nonatomic,assign) BOOL syncingFriend;
+@property(nonatomic,assign) BOOL syncingGroup;
+
+-(void)sync;
 
 -(AsyncTask*)createGroup:(NSString*)groupName;
 
@@ -25,7 +35,8 @@
 
 -(AsyncTask*)nearUser:(float)longitude latitude:(float)latitude offset:(int)offset;
 
--(AsyncTask*)groupList;
+-(AsyncTask*)fansList;
+
 
 -(AsyncTask*)addGroupUser:(NSString*)group_id friend_id:(NSString*)friend_id;
 

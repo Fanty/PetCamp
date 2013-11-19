@@ -11,8 +11,11 @@
 
 @interface MarketManager : NSObject
 
--(AsyncTask*)storeItemList:(int)offset;
+-(AsyncTask*)storeItemList:(NSString*)type_id offset:(int)offset;
 
 -(AsyncTask*)addStoreItemPageview:(NSString*)mid;
+
+-(AsyncTask*)storeTypeList;
+
 
 @end

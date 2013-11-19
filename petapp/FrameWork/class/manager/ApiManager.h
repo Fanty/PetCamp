@@ -64,6 +64,10 @@
 
 +(NSURL*)groupList:(NSString*)token;
 
++(NSURL*)fansList:(NSString*)token;
+
+
+
 +(NSURL*)createGroup;
 
 +(NSURL*)addGroupUser;
@@ -76,7 +80,7 @@
 
 +(NSURL*)adBannerList:(NSString*)type;
 
-+(NSURL*)storeItemList:(int)offset;
++(NSURL*)storeItemList:(NSString*)type_id offset:(int)offset;
 
 +(NSURL*)searchGroup:(NSString*)keyword offset:(int)offset;
 
@@ -93,6 +97,10 @@
 +(NSURL*)privacyApi;
 
 +(NSURL*)addStoreItemPageview:(NSString*)mid;
+
++(NSURL*)storeTypeListApi;
+
++(NSURL*)forgetPasswordApi;
 
 
 @end

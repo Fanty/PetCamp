@@ -10,7 +10,7 @@
 #import "GTGZThemeManager.h"
 #import "PetNewsNavigationController.h"
 #import "PetNewsViewController.h"
-#import "MarketViewController.h"
+#import "MarketTypeListViewController.h"
 #import "ContactViewController.h"
 #import "SettingInfoMainViewController.h"
 #import "DataCenter.h"
@@ -68,7 +68,7 @@
     [petNewsViewController release];
 
     
-    MarketViewController* marketViewController=[[MarketViewController alloc] init];
+    MarketTypeListViewController* marketViewController=[[MarketTypeListViewController alloc] init];
     
     PetNewsNavigationController* marketNav=[[PetNewsNavigationController alloc] initWithRootViewController:marketViewController];
     [marketViewController release];

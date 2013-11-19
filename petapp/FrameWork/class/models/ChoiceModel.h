@@ -15,6 +15,7 @@
 @property(nonatomic,retain) NSString* type;
 @property(nonatomic,retain) NSString* imageUrl;
 @property(nonatomic,assign) float price;
+@property(nonatomic,retain) NSString* sold_count;
 @property(nonatomic,retain) NSString* link;
 @property(nonatomic,retain) NSDate* createdate;
 @end

@@ -236,6 +236,8 @@
                 [DataCenter sharedInstance].user=petUser;
                 
                 locationLoginTask=nil;
+                
+                [contactGroupManager sync];
             }
         }];
     }

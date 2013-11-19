@@ -28,6 +28,9 @@
 #import "HeadTabView.h"
 #import "WeiboEngine.h"
 #import "DataCenter.h"
+#import "PetNewsForwardEditViewController.h"
+#import "PetNewsNavigationController.h"
+#import "ForwarDetailView.h"
 
 @interface PetNewsDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,iCarouselDataSource,iCarouselDelegate,WriterViewDelegate,UIActionSheetDelegate,HeadTabViewDelegte,UIAlertViewDelegate>
 -(void)initHeader;
@@ -37,6 +40,7 @@
 -(void)menuClick;
 -(void)doLikeAction;
 -(void)doSendComment:(NSString*)content;
+-(void)redirectToDetailPage;
 @end
 
 @implementation PetNewsDetailViewController
@@ -77,9 +81,11 @@
     [headerDetail release];
     [bgViewCarousel release];
     [imagesCarousel release];
+    [forwardDetailView release];
     [petNewsModel release];
     [commands release];
     
+    forwardDetailView=nil;
     petNewsModel=nil;
     writerView=nil;
     headerDetail=nil;
@@ -95,6 +101,7 @@
     writerView=nil;
 
     [headerDetail release];
+    [forwardDetailView release];
     [bgViewCarousel release];
     [imagesCarousel release];
     [petNewsModel release];
@@ -118,14 +125,14 @@
     
     float size=self.view.frame.size.width-left*2.0f;
     
-    bgViewCarousel=[[UIView alloc] initWithFrame:CGRectMake(left, 0.0f, size, [petNewsModel.imageUrls count]>0?size:0.0f)];
+    bgViewCarousel=[[UIView alloc] initWithFrame:CGRectMake(left, CGRectGetMaxY(headerDetail.frame), size, [petNewsModel.imageUrls count]>0?size:0.0f)];
     bgViewCarousel.clipsToBounds=YES;
-  //  if([Utils isIPad]){
+    if([Utils isIPad]){
         bgViewCarousel.backgroundColor=[GTGZUtils colorConvertFromString:@"#BCBCBC"];
-  //  }
-  //  else{
-   //     bgViewCarousel.backgroundColor=[GTGZUtils colorConvertFromString:@"#282828"];
- //   }
+    }
+    else{
+        bgViewCarousel.backgroundColor=[GTGZUtils colorConvertFromString:@"#282828"];
+    }
     
     imagesCarousel=[[iCarousel alloc] initWithFrame:CGRectMake(left, left, size-left*2.0f, size-left*2.0f)];
     imagesCarousel.clipsToBounds=YES;
@@ -134,6 +141,13 @@
     imagesCarousel.bounces=NO;
     imagesCarousel.type=iCarouselTypeLinear;
     [bgViewCarousel addSubview:imagesCarousel];
+    
+    if(petNewsModel.scr_post!=nil){
+
+        forwardDetailView=[[ForwarDetailView alloc] initWithFrame:CGRectMake(left, CGRectGetMaxY(bgViewCarousel.frame)+20.0f, self.view.frame.size.width-left*2.0f, 0.0f)];
+        [forwardDetailView addTarget:self action:@selector(redirectToDetailPage) forControlEvents:UIControlEventTouchUpInside];
+        [forwardDetailView headerUrl:petNewsModel.scr_post.petUser.imageHeadUrl name:petNewsModel.scr_post.petUser.nickname content:petNewsModel.scr_post.desc];
+    }
     
 }
 
@@ -188,7 +202,7 @@
             [self.view addSubview:tableView];
             [tableView release];
             
-            [tabView setTabNameArray:[NSArray arrayWithObjects:lang(@"comment"),lang(@"share"),lang(@"like"), nil]];
+            [tabView setTabNameArray:[NSArray arrayWithObjects:lang(@"comment"),lang(@"forward"),lang(@"share"),lang(@"like"), nil]];
             
             rect=tabView.frame;
             rect.origin.y=self.view.frame.size.height-rect.size.height;
@@ -352,6 +366,13 @@
     }
 }
 
+-(void)redirectToDetailPage{
+    PetNewsDetailViewController* controller=[[PetNewsDetailViewController alloc] init];
+    controller.pid=petNewsModel.scr_post.pid;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 
 #pragma mark table delegate
 
@@ -380,16 +401,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [commands count]+2;
+    return [commands count]+1;
 }
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     [self initHeader];
     if([indexPath row]==0){
-        return headerDetail.frame.size.height;
-    }
-    else if([indexPath row]==1){
-        return bgViewCarousel.frame.size.height+20.0f;
+        if(forwardDetailView!=nil)
+            return CGRectGetMaxY(forwardDetailView.frame)+20.0f;
+        else
+            return CGRectGetMaxY(bgViewCarousel.frame)+20.0f;
     }
     else{
         return [CommandCell cellHeight];
@@ -405,18 +426,9 @@
             [self initHeader];
         }
         [cell addSubview:headerDetail];
-        
-        return cell;
-    }
-    else if([indexPath row]==1){
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"secondCell"];
-        if(cell == nil){
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"secondCell"] autorelease];
-            cell.selectionStyle=UITableViewCellSelectionStyleNone;
-            [self initHeader];
-        }
         [cell addSubview:bgViewCarousel];
-        
+        if(forwardDetailView!=nil)
+            [cell addSubview:forwardDetailView];
         return cell;
     }
     else{
@@ -427,7 +439,7 @@
 
         }
         
-        CommentModel* model=[commands objectAtIndex:[indexPath row]-2];
+        CommentModel* model=[commands objectAtIndex:[indexPath row]-1];
 
         [cell nickname:model.petUser.nickname headerImageUrl:model.petUser.imageHeadUrl content:model.content date:model.createdate];
         
@@ -536,11 +548,20 @@
         [writerView show];
 
     }
-    else if(index==1){
+    else if(index==1){    //转发
+        PetNewsForwardEditViewController* controller=[[PetNewsForwardEditViewController alloc] init];
+        controller.petNewsModel=petNewsModel;
+        PetNewsNavigationController* navController=[[PetNewsNavigationController alloc] initWithRootViewController:controller];
+        [controller release];
+        [[AppDelegate appDelegate].rootViewController presentModalViewController:navController animated:YES];
+        
+        [navController release];
+    }
+    else if(index==2){
         [WeiboEngine defaultWebboEngine].webboDelegate=nil;
         [[WeiboEngine defaultWebboEngine] share:petNewsModel.desc];
     }
-    else if(index==2){
+    else if(index==3){
         [self doLikeAction];
     }
 }

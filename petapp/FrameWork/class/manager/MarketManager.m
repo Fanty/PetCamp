@@ -11,13 +11,13 @@
 #import "HTTPRequest.h"
 #import "MarketParser.h"
 #import "ApiManager.h"
+#import "StoreTypeParser.h"
 
 @implementation MarketManager
 
-
--(AsyncTask*)storeItemList:(int)offset{
+-(AsyncTask*)storeItemList:(NSString*)type_id offset:(int)offset{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
-    task.request=[HTTPRequest requestWithURL:[ApiManager storeItemList:offset]];
+    task.request=[HTTPRequest requestWithURL:[ApiManager storeItemList:type_id offset:offset]];
     task.parser=[[[MarketParser alloc] init] autorelease];
     [task start];
 
@@ -31,6 +31,15 @@
     task.request.persistentConnectionTimeoutSeconds=5.0f;
     [task start];
     
+    return task;
+
+}
+
+-(AsyncTask*)storeTypeList{
+    AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
+    task.request=[HTTPRequest requestWithURL:[ApiManager storeTypeListApi]];
+    task.parser=[[[StoreTypeParser alloc] init] autorelease];
+    [task start];
     return task;
 
 }

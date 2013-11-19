@@ -6,15 +6,18 @@
 //  Copyright (c) 2013年 fanty. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "NavContentViewController.h"
 
 @class MarketTableView;
-@interface MarketViewController : BaseViewController{
+@interface MarketViewController : NavContentViewController{
 
     
     
     MarketTableView*  markerTableView;
 
 }
+
+@property(nonatomic,retain) NSString* type_id;
+
 
 @end

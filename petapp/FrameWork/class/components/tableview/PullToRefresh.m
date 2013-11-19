@@ -81,7 +81,7 @@ typedef NSUInteger PullToRefreshState;
     [_scrollView addSubview:self];
     
     // default styling values
-    self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+   // self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     
     self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 20, 150, (UI_USER_INTERFACE_IDIOM() ==  UIUserInterfaceIdiomPad)?30.0f:20.0f)] autorelease];
     titleLabel.text = lang(@"pull");
@@ -147,6 +147,7 @@ typedef NSUInteger PullToRefreshState;
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         activityIndicatorView.hidesWhenStopped = YES;
         [self addSubview:activityIndicatorView];
+        activityIndicatorView.color=[UIColor blackColor];
     }
     return activityIndicatorView;
 }

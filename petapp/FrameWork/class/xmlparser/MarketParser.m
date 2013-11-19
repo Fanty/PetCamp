@@ -31,6 +31,9 @@
                 else if([[_element name] isEqualToString:@"price"]){
                     model.price=[[_element stringValue] floatValue];
                 }
+                else if([[_element name] isEqualToString:@"sold_count"]){
+                    model.sold_count=[_element stringValue];
+                }
                 else if([[_element name] isEqualToString:@"link"]){
                     model.link=[_element stringValue];
                     

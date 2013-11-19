@@ -13,7 +13,7 @@
 
 -(AsyncTask*)petNewsList:(int)offset;
 
--(AsyncTask*)createPetNews:(NSString*)content images:(NSString*)images;
+-(AsyncTask*)createPetNews:(NSString*)content images:(NSString*)images src_post_id:(NSString*)scr_post_id;
 
 -(AsyncTask*)myPetNewsList;
 

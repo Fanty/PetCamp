@@ -8,7 +8,6 @@
 
 #import "PetNewsEditViewController.h"
 #import "GTGZThemeManager.h"
-#import "ScrollTextView.h"
 #import "EditerView.h"
 #import "AppDelegate.h"
 #import "PetUser.h"
@@ -21,6 +20,8 @@
 #import "MBProgressHUD.h"
 #import "SettingManager.h"
 #import "DataCenter.h"
+#import "PetNewsNavigationController.h"
+#import "WeiboAddViewController.h"
 #import "Utils.h"
 @interface PetNewsEditViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,EditerViewDelegate,UIPopoverControllerDelegate>
 
@@ -30,6 +31,7 @@
 -(void)goBack;
 -(void)send;
 -(void)keyboardWillShow:(NSNotification *)note;
+-(void)keyboardWillHide:(NSNotification *)note;
 -(void)uploadImage;
 -(void)createPetNews;
 
@@ -46,6 +48,11 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(keyboardWillShow:)
 													 name:UIKeyboardWillShowNotification
+												   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(keyboardWillHide:)
+													 name:UIKeyboardWillHideNotification
 												   object:nil];
     }
     return self;
@@ -96,7 +103,7 @@
     [editerView release];
 
     
-    fgView=[[UIView alloc] init];
+    fgView=[[UIView alloc] initWithFrame:self.view.bounds];
     
     fgView.userInteractionEnabled=NO;
     [self.view addSubview:fgView];
@@ -148,6 +155,7 @@
 
 -(void)send{
     if(task!=nil)return;
+    [textView resignFirstResponder];
     imageQueue=0;
     [task cancel];
     task=nil;
@@ -201,7 +209,7 @@
 
 -(void)createPetNews{
     [task cancel];
-    task=[[AppDelegate appDelegate].petNewsAndActivatyManager createPetNews:self.content images:imageLinks];
+    task=[[AppDelegate appDelegate].petNewsAndActivatyManager createPetNews:self.content images:imageLinks src_post_id:nil];
     [task setFinishBlock:^{
         [loadingHud hide:YES];
         loadingHud=nil;
@@ -224,8 +232,6 @@
 
 -(void) keyboardWillShow:(NSNotification *)note{
     // get keyboard size and loctaion
-    
-    
 	CGRect keyboardBounds;
     [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
     NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
@@ -235,29 +241,60 @@
     keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
     
     
-	CGRect containerFrame = editerView.frame;
+
+    
+    float newHeight=self.view.bounds.size.height-keyboardBounds.size.height;
+    
+    CGRect editerFrame=editerView.frame;
+    editerFrame.origin.y=newHeight-editerFrame.size.height;
+
+    
     CGRect uploadFrame=imageUploaded.frame;
+    uploadFrame.origin.y=editerFrame.origin.y-uploadFrame.size.height;
+    
     CGRect textViewFrame=textView.frame;
-    CGRect fgViewFrame=fgView.frame;
-    
-    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
-    
-    uploadFrame.origin.y=containerFrame.origin.y-uploadFrame.size.height-5.0f;
-    
+    textViewFrame.origin.y=10.0f;
     textViewFrame.size.height=uploadFrame.origin.y-15.0f;
-    fgViewFrame.size.width=self.view.frame.size.width;
-    fgViewFrame.size.height=CGRectGetMaxY(containerFrame);
+
+    
+
     
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:[duration doubleValue]];
     [UIView setAnimationCurve:[curve intValue]];
-	fgView.frame=fgViewFrame;
-	editerView.frame=containerFrame;
+	editerView.frame=editerFrame;
     imageUploaded.frame=uploadFrame;
     textView.frame=textViewFrame;
     
 	[UIView commitAnimations];
+}
+
+-(void)keyboardWillHide:(NSNotification *)note{
+    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+
+    CGRect editerFrame=editerView.frame;
+    editerFrame.origin.y=self.view.bounds.size.height-editerFrame.size.height;
+    
+    CGRect uploadFrame=imageUploaded.frame;
+    uploadFrame.origin.y=editerFrame.origin.y-uploadFrame.size.height;
+    
+    CGRect textViewFrame=textView.frame;
+    textViewFrame.origin.y=10.0f;
+    textViewFrame.size.height=uploadFrame.origin.y-15.0f;
+    
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+	editerView.frame=editerFrame;
+    imageUploaded.frame=uploadFrame;
+    textView.frame=textViewFrame;
+    
+	[UIView commitAnimations];
+
 }
 
 #pragma mark editer delegate
@@ -304,6 +341,14 @@
             [self presentModalViewController:picker animated:YES];
         }
         
+    }
+    else if(index==2){
+        WeiboAddViewController* controller=[[WeiboAddViewController alloc] init];
+        PetNewsNavigationController* navController=[[PetNewsNavigationController alloc] initWithRootViewController:controller];
+        [controller release];
+
+        [self presentModalViewController:navController animated:YES];
+        [navController release];
     }
 }
 

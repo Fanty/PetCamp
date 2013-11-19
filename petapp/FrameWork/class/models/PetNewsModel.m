@@ -19,6 +19,7 @@
 @synthesize laudCount;
 @synthesize createdate;
 @synthesize updatedate;
+@synthesize scr_post;
 -(void)dealloc{
     self.pid=nil;
     self.petUser=nil;
@@ -27,6 +28,7 @@
     self.imageUrls=nil;
     self.createdate=nil;
     self.updatedate=nil;
+    self.scr_post=nil;
     [super dealloc];
 }
 

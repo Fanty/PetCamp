@@ -17,6 +17,7 @@
 @synthesize imageUrl;
 @synthesize link;
 @synthesize price;
+@synthesize sold_count;
 @synthesize createdate;
 
 -(void)dealloc{
@@ -27,6 +28,7 @@
     self.imageUrl = nil;
     self.link=nil;
     self.createdate = nil;
+    self.sold_count=nil;
     [super dealloc];
 }
 

@@ -33,13 +33,15 @@
 
 }
 
--(AsyncTask*)createPetNews:(NSString*)content images:(NSString*)images{
+-(AsyncTask*)createPetNews:(NSString*)content images:(NSString*)images src_post_id:(NSString*)scr_post_id{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
     task.parser=[[[XmlParser alloc] init] autorelease];
     
     FormDataRequest* request=[FormDataRequest requestWithURL:[ApiManager createPetNews]];
     [request setPostValue:content forKey:@"content"];
     [request setPostValue:([images length]>0?images:@"") forKey:@"images"];
+    if([scr_post_id length]>0)
+        [request setPostValue:scr_post_id forKey:@"scr_post_id"];
     task.request=request;
     [task start];
 

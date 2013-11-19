@@ -45,6 +45,14 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    
+    if([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0f){
+        CGRect rect=self.view.frame;
+        rect.size.height-=20.0f;
+        self.view.frame=rect;
+    }
+    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{

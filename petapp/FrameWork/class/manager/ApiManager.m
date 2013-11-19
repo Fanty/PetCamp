@@ -12,8 +12,8 @@
 #define PREFIX   @"http://112.124.56.146"
 
 #else
-//#define PREFIX   @"http://petcamp.sinaapp.com"
-#define PREFIX   @"http://112.124.56.146"
+#define PREFIX   @"http://petcamp.sinaapp.com"
+//#define PREFIX   @"http://112.124.56.146"
 
 #endif
 
@@ -153,6 +153,11 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/groupList?token=%@",PREFIX,token]];
 }
 
++(NSURL*)fansList:(NSString*)token{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/groupList?token=%@",PREFIX,token]];
+}
+
+
 +(NSURL*)createGroup{
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/createGroup",PREFIX]];
 }
@@ -179,8 +184,11 @@
 
 }
 
-+(NSURL*)storeItemList:(int)offset{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/store/storeItemList?offset=%d&offsetcount=%d",PREFIX,offset*HTTP_PAGE_SIZE,HTTP_PAGE_SIZE]];
++(NSURL*)storeItemList:(NSString*)type_id offset:(int)offset{
+    if([type_id length]>0)
+        return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/store/storeItemList?type_id=%@&offset=%d&offsetcount=%d",PREFIX,type_id,offset*HTTP_PAGE_SIZE,HTTP_PAGE_SIZE]];
+    else
+        return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/store/storeItemList?offset=%d&offsetcount=%d",PREFIX,offset*HTTP_PAGE_SIZE,HTTP_PAGE_SIZE]];
 
 }
 
@@ -221,5 +229,16 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/store/addStoreItemPageview?id=%@",PREFIX,mid]];
 
 }
+
+
++(NSURL*)storeTypeListApi{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/store/typeList",PREFIX]];
+}
+
++(NSURL*)forgetPasswordApi{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@//api/user/sendForgotPasswordMail",PREFIX]];
+
+}
+
 
 @end

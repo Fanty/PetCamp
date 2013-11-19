@@ -8,23 +8,13 @@
 
 #import "PullTableView.h"
 
-@class AsyncTask;
-
-@interface ContactTableView : PullTableView{
+@interface ContactTableView : UITableView{
     NSArray *sortedKeys;
     NSMutableDictionary* dicts;
     NSMutableDictionary* showDicts;
-
-    AsyncTask* task;
-    
     NSString* searchText;
-
 }
 @property(assign,nonatomic) UIViewController* parentViewController;
-
--(void)clear;
-
--(void)loadData;
 
 -(void)searchText:(NSString*)value;
 @end

@@ -20,7 +20,8 @@
 #import "MBProgressHUD.h"
 #import "AccountManager.h"
 #import "AsyncTask.h"
-
+#import "ApiManager.h"
+#import "ContactGroupManager.h"
 
 #import "TCBlogUserInfoParser.h"
 #import "QQUserInfoParser.h"
@@ -40,6 +41,7 @@
 -(void)loginSocial:(NSString*)account type:(NSString*)type nickname:(NSString*)nickname image:(NSString*)image;
 
 -(void)backDisClick;
+-(void)redirecttoForgetPassword;
 @end
 
 @implementation LoginViewController
@@ -59,26 +61,32 @@
     
     CGRect rect=self.view.bounds;
     rect.origin.y-=44.0f;
-    UIImage* img = [[GTGZThemeManager sharedInstance] imageByTheme:@"login_bg.png"];
+    UIImage* img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"login_bg.png"];
     UIImageView* bgView = [[UIImageView alloc] initWithFrame:rect];
+    
     bgView.image = img;
     [self.view addSubview:bgView];
     [bgView release];
+    
+    //
 
-    img = [[GTGZThemeManager sharedInstance] imageByTheme:@"input_mobile.png"];
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"input_mobile.png"];
     UIImageView* userNameFieldBgView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - img.size.width)*0.5, ([Utils isIPad]?250.0f:100.0f), img.size.width, img.size.height)];
     userNameFieldBgView.image = img;
     userNameFieldBgView.userInteractionEnabled = YES;
     
-    float field_orginX = 45;
+    float field_orginX = 80.0f;
     float field_orginY = 8;
+    
+    float field_width=200.0f;
     if([Utils isIPad]){
-        field_orginX = field_orginX*3.5;
+        field_orginX = field_orginX*1.5;
         field_orginY = field_orginY*2;
+        field_width=350.0f;
     }
     
     
-    userNameField = [[UITextField alloc] initWithFrame:CGRectMake(field_orginX, field_orginY, userNameFieldBgView.frame.size.width - field_orginX - 10, userNameFieldBgView.frame.size.height - field_orginY*2)];
+    userNameField = [[UITextField alloc] initWithFrame:CGRectMake(field_orginX, field_orginY, field_width, userNameFieldBgView.frame.size.height - field_orginY*2)];
     userNameField.textColor = [UIColor whiteColor];
     userNameField.placeholder = lang(@"mobileNum");
     userNameField.delegate = self;
@@ -96,13 +104,13 @@
     
     
     
-    img = [[GTGZThemeManager sharedInstance] imageByTheme:@"input_psd.png"];
-    UIImageView* psdBgView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - img.size.width)*0.5, CGRectGetMaxY(userNameFieldBgView.frame)+2, img.size.width, img.size.height)];
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"input_psd.png"];
+    UIImageView* psdBgView = [[UIImageView alloc] initWithFrame:CGRectMake(userNameFieldBgView.frame.origin.x, CGRectGetMaxY(userNameFieldBgView.frame)+2, img.size.width, img.size.height)];
     psdBgView.image = img;
     psdBgView.userInteractionEnabled = YES;
     
     
-    psdField = [[UITextField alloc] initWithFrame:CGRectMake(field_orginX, field_orginY, psdBgView.frame.size.width - field_orginX - 10, userNameFieldBgView.frame.size.height - field_orginY*2)];
+    psdField = [[UITextField alloc] initWithFrame:CGRectMake(field_orginX, field_orginY, field_width*0.5f, userNameFieldBgView.frame.size.height - field_orginY*2)];
     psdField.textColor = [UIColor whiteColor];
     psdField.placeholder = lang(@"password");
     psdField.delegate = self;
@@ -118,10 +126,18 @@
     [psdBgView release];
     
     
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"input_foreget.png"];
+
+    UIButton* forgetButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [forgetButton setImage:img forState:UIControlStateNormal];
+    [forgetButton addTarget:self action:@selector(redirecttoForgetPassword) forControlEvents:UIControlEventTouchUpInside];
+    forgetButton.frame=CGRectMake(CGRectGetMaxX(userNameFieldBgView.frame)-img.size.width, psdBgView.frame.origin.y, img.size.width, img.size.height);
+    [self.view addSubview:forgetButton];
+    
     
     
     float orginY = CGRectGetMaxY(psdBgView.frame)+10;
-    img = [[GTGZThemeManager sharedInstance] imageByTheme:@"btn_login.png"];
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"btn_login.png"];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = 1001;
     [button addTarget:self action:@selector(redirectToRoot:) forControlEvents:UIControlEventTouchUpInside];
@@ -134,7 +150,7 @@
     
     
     float orginX= CGRectGetMaxX(button.frame)+5;
-    img = [[GTGZThemeManager sharedInstance] imageByTheme:@"btn_register.png"];
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"btn_register.png"];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = 1006;
     [button addTarget:self action:@selector(redirectToRoot:) forControlEvents:UIControlEventTouchUpInside];
@@ -147,37 +163,34 @@
     
     
     orginY = CGRectGetMaxY(button.frame)+37;
-    img = [[GTGZThemeManager sharedInstance] imageByTheme:@"login_sinaBlog.png"];
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"login_sinaBlog.png"];
     button=[UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = 1002;
     [button addTarget:self action:@selector(redirectToRoot:) forControlEvents:UIControlEventTouchUpInside];
     button.frame=CGRectMake((self.view.bounds.size.width - img.size.width)*0.5f, orginY,img.size.width, img.size.height);
     [button setImage:img forState:UIControlStateNormal];
-    [button setImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"login_sinaBlog_on.png"] forState:UIControlStateHighlighted];
     [self.view addSubview:button];
     
     
     
     orginY = CGRectGetMaxY(button.frame)+2;
-    img = [[GTGZThemeManager sharedInstance] imageByTheme:@"login_qqBlog.png"];
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"login_qqBlog.png"];
     button=[UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = 1003;
     [button addTarget:self action:@selector(redirectToRoot:) forControlEvents:UIControlEventTouchUpInside];
     button.frame=CGRectMake((self.view.bounds.size.width - img.size.width)*0.5f, orginY,img.size.width, img.size.height);
     [button setImage:img forState:UIControlStateNormal];
-    [button setImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"login_qqBlog_on.png"] forState:UIControlStateHighlighted];
     [self.view addSubview:button];
     
     
     
     orginY = CGRectGetMaxY(button.frame)+2;
-    img = [[GTGZThemeManager sharedInstance] imageByTheme:@"login_qq.png"];
+    img = [[GTGZThemeManager sharedInstance] imageResourceByTheme:@"login_qq.png"];
     button=[UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = 1004;
     [button addTarget:self action:@selector(redirectToRoot:) forControlEvents:UIControlEventTouchUpInside];
     button.frame=CGRectMake((self.view.bounds.size.width - img.size.width)*0.5f, orginY,img.size.width, img.size.height);
     [button setImage:img forState:UIControlStateNormal];
-    [button setImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"login_qq_on.png"] forState:UIControlStateHighlighted];
     [self.view addSubview:button];
     
     hud = [[MBProgressHUD alloc] initWithView:self.view];
@@ -206,6 +219,10 @@
 
 #pragma mark method
 
+
+-(void)redirecttoForgetPassword{
+    [[UIApplication sharedApplication] openURL:[ApiManager forgetPasswordApi]];
+}
 
 -(void)backDisClick{
     if([self.delegate respondsToSelector:@selector(didLoginCancel:)])
@@ -348,6 +365,7 @@
     
     [[AppDelegate appDelegate].accountManager saveAccount:[DataCenter sharedInstance].user];
 
+    [[AppDelegate appDelegate].contactGroupManager sync];
 
     if([self.delegate respondsToSelector:@selector(didLoginFinish:)])
         [self.delegate didLoginFinish:self];

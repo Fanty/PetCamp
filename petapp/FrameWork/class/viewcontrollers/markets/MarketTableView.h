@@ -17,7 +17,13 @@
     int pageOffset;
 
 }
+
+@property(nonatomic,retain) NSString* type_id;
+
 @property(assign,nonatomic) BaseViewController* parentViewController;
 
 -(void)clear;
+
+-(void)triggerRefresh;
+
 @end

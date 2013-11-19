@@ -14,6 +14,7 @@
 @class WriterView;
 @class AsyncTask;
 @class HeadTabView;
+@class ForwarDetailView;
 @interface PetNewsDetailViewController : NavContentViewController{
     UIActivityIndicatorView* loadingView;
     UIButton* noLabelButton;
@@ -21,6 +22,8 @@
     PetNewsDetailHeader* headerDetail;
     UIView* bgViewCarousel;
     iCarousel* imagesCarousel;
+    
+    ForwarDetailView* forwardDetailView;
     PullTableView* tableView;
     HeadTabView* tabView;
     NSMutableArray* commands;

@@ -104,7 +104,7 @@
     NSDate* date = [NSDate date];
     [self.pullToRefreshView setLastUpdatedDate:date];
     
-    task=[[AppDelegate appDelegate].marketManager storeItemList:0];
+    task=[[AppDelegate appDelegate].marketManager storeItemList:nil offset:0];
     [task setFinishBlock:^{
         [self.pullToRefreshView stopAnimating];
         self.loadMoreState=PullTableViewLoadMoreStateNone;
@@ -250,7 +250,7 @@
             view1.index=index;
             [view1 headUrl:model.imageUrl];
             [view1 title:model.title];
-            [view1 shopTitle:model.type];
+            [view1 shopTitle:model.sold_count];
             [view1 setPriceLabel:model.price];
             
             index++;
@@ -260,7 +260,7 @@
                 view2.index=index;
                 [view2 headUrl:model.imageUrl];
                 [view2 title:model.title];
-                [view2 shopTitle:model.type];
+                [view2 shopTitle:model.sold_count];
                 [view2 setPriceLabel:model.price];
 
             }

@@ -17,7 +17,51 @@
 #import "GroupInfoParser.h"
 #import "DataCenter.h"
 
+@interface ContactGroupManager()
+
+-(AsyncTask*)groupList;
+
+@end
+
 @implementation ContactGroupManager
+
+@synthesize syncingFriend;
+@synthesize syncingGroup;
+
+
+-(void)sync{
+    [friendAsyncTask cancel];
+    [groupAsynTask cancel];
+    
+    self.syncingFriend=YES;
+    self.syncingGroup=YES;
+    
+    friendAsyncTask=[self friendList:nil];
+    [friendAsyncTask setFinishBlock:^{
+    
+        self.syncingFriend=NO;
+        if(friendAsyncTask.result!=nil){
+            [DataCenter sharedInstance].friendList=friendAsyncTask.result;
+        }
+        friendAsyncTask=nil;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:FriendUpdateNotification object:nil];
+
+    }];
+    
+    groupAsynTask=[self groupList];
+    [groupAsynTask setFinishBlock:^{
+        self.syncingGroup=NO;
+
+        if(groupAsynTask.result!=nil){
+            [DataCenter sharedInstance].groupList=groupAsynTask.result;
+        }
+        groupAsynTask=nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:FriendUpdateNotification object:nil];
+
+    }];
+    
+}
 
 -(AsyncTask*)createGroup:(NSString*)groupName{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
@@ -111,6 +155,18 @@
     return task;
 
 }
+
+-(AsyncTask*)fansList{
+    AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
+    task.parser=[[[ContactParser alloc] init] autorelease];
+    
+    HTTPRequest* request=[HTTPRequest requestWithURL:[ApiManager fansList:[DataCenter sharedInstance].user.token]];
+    task.request=request;
+    [task start];
+    return task;
+    
+}
+
 
 -(AsyncTask*)addGroupUser:(NSString*)group_id friend_id:(NSString*)friend_id{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];

@@ -48,4 +48,9 @@
     <theme key="logo_type" textColor="whiteColor" fontSize="11.0f" />
     <theme key="reNoLabelClick" textColor="blackColor" fontSize="19.0f" />
     <theme key="weibo_tip_label" textColor="blackColor" fontSize="17.0f" />
+    <theme key="forward_name" textColor="contentView" fontSize="16.0f" />
+    <theme key="forward_content" textColor="contentView" fontSize="16.0f" />
+    <theme key="type_title" textColor="blackColor" fontSize="21.0f" />
+    <theme key="type_desc" textColor="blackColor" fontSize="17.0f" />
+    <theme key="WeiboAdd_title" textColor="blackColor" fontSize="22.0f" />
 </themes>

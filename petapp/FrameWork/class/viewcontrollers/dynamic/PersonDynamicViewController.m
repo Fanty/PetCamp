@@ -36,6 +36,8 @@
         // Custom initialization
         self.tabBarItem=[[[UITabBarItem alloc] initWithTitle:lang(@"person_activaty") image:[[GTGZThemeManager sharedInstance] imageByTheme:@"tab_my.png"] tag:0] autorelease];
         
+        [self backNavBar];
+
     }
     return self;
 }
