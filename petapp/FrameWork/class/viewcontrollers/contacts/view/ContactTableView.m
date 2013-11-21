@@ -41,6 +41,7 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 @implementation ContactTableView
 
 @synthesize parentViewController;
+@synthesize contactDelegate;
 
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     self=[super initWithFrame:frame style:style];
@@ -171,12 +172,18 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
         }
 
         PetUser* model=[list objectAtIndex:[indexPath row]];
-        
-        ContactDetailViewController* controller=[[ContactDetailViewController alloc] init];
-        controller.title=model.nickname;
-        controller.uid=model.uid;
-        [self.parentViewController.navigationController pushViewController:controller animated:YES];
-        [controller release];
+        if([self.contactDelegate respondsToSelector:@selector(contactTableViewDidSelect:user:)]){
+            [self.contactDelegate contactTableViewDidSelect:self user:model];
+        }
+        else{
+            
+            ContactDetailViewController* controller=[[ContactDetailViewController alloc] init];
+            controller.title=model.nickname;
+            controller.uid=model.uid;
+            [self.parentViewController.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+        }
 
     }
 }

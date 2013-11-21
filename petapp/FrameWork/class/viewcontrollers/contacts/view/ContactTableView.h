@@ -8,6 +8,14 @@
 
 #import "PullTableView.h"
 
+@class ContactTableView;
+@class PetUser;
+@protocol ContactTableViewDelegate <NSObject>
+
+-(void)contactTableViewDidSelect:(ContactTableView*)contactTableView user:(PetUser*)user;
+
+@end
+
 @interface ContactTableView : UITableView{
     NSArray *sortedKeys;
     NSMutableDictionary* dicts;
@@ -15,6 +23,6 @@
     NSString* searchText;
 }
 @property(assign,nonatomic) UIViewController* parentViewController;
-
+@property(nonatomic,assign) id<ContactTableViewDelegate> contactDelegate;
 -(void)searchText:(NSString*)value;
 @end

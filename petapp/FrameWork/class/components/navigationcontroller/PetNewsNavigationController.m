@@ -80,6 +80,9 @@
     return NO;
 }
 
+- (void)dealloc{
+    [super dealloc];
+}
 
 #pragma mark navigationcontroller delegate
 

@@ -151,4 +151,7 @@
 "type"="分类";
 "fans"="粉丝";
 "clickfailed"="未能获取到数据，点击重新加载";
+"groupName"="群名";
+"groupHost"="群主";
+"groupDescription"="群组介绍";
 

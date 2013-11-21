@@ -1,12 +1,12 @@
 //
-//  AddFriendSelectViewController.m
+//  RightNavContactViewController.m
 //  PetNews
 //
 //  Created by fanty on 13-8-22.
 //  Copyright (c) 2013年 fanty. All rights reserved.
 //
 
-#import "AddFriendSelectViewController.h"
+#import "RightNavContactViewController.h"
 #import "SearchFGViewController.h"
 #import "AppDelegate.h"
 #import "ContactGroupManager.h"
@@ -19,11 +19,11 @@
 #import "Utils.h"
 
 
-@interface AddFriendSelectViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,ZBarReaderDelegate>
+@interface RightNavContactViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,ZBarReaderDelegate>
 
 @end
 
-@implementation AddFriendSelectViewController
+@implementation RightNavContactViewController
 
 - (id)init{
     self = [super init];

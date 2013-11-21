@@ -8,13 +8,23 @@
 
 #import "BaseViewController.h"
 @class ContactTableView;
+@class WeiboAddViewController;
+
+@protocol WeiboAddViewControllerDelegate <NSObject>
+-(void)weiboAddViewController:(WeiboAddViewController*)viewController nickname:(NSString*)nickname;
+
+@end
 
 @interface WeiboAddViewController : BaseViewController{
     UISearchBar* searchBar;
     
+    UIButton* adButton;
     UILabel* adLabel;
     ContactTableView* contactTableView;
 
 }
+
+
+@property(assign,nonatomic) id<WeiboAddViewControllerDelegate> delegate;
 
 @end

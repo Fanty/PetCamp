@@ -23,7 +23,7 @@
 #import "PetNewsNavigationController.h"
 #import "WeiboAddViewController.h"
 #import "Utils.h"
-@interface PetNewsEditViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,EditerViewDelegate,UIPopoverControllerDelegate>
+@interface PetNewsEditViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,EditerViewDelegate,UIPopoverControllerDelegate,WeiboAddViewControllerDelegate>
 
 @property(nonatomic,retain) NSString* content;
 
@@ -297,6 +297,13 @@
 
 }
 
+
+#pragma mark weiboaddviewcontroller delegate
+
+-(void)weiboAddViewController:(WeiboAddViewController *)viewController nickname:(NSString *)nickname{
+    textView.text=[textView.text stringByReplacingCharactersInRange:textView.selectedRange withString:[NSString stringWithFormat:@" %@ ",nickname]];
+}
+
 #pragma mark editer delegate
 
 -(void)editerClick:(EditerView *)editerView click:(int)index{
@@ -344,6 +351,7 @@
     }
     else if(index==2){
         WeiboAddViewController* controller=[[WeiboAddViewController alloc] init];
+        controller.delegate=self;
         PetNewsNavigationController* navController=[[PetNewsNavigationController alloc] initWithRootViewController:controller];
         [controller release];
 

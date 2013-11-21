@@ -8,7 +8,7 @@
 
 #import "NavContentViewController.h"
 @class AsyncTask;
-@interface AddFriendSelectViewController : NavContentViewController{
+@interface RightNavContactViewController : NavContentViewController{
     AsyncTask* task;
 }
 

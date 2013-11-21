@@ -11,13 +11,17 @@
 #import "ContactTableView.h"
 #import "Utils.h"
 #import "GTGZUtils.h"
+#import "PetUser.h"
 
-@interface WeiboAddViewController ()<UISearchBarDelegate>
+@interface WeiboAddViewController ()<UISearchBarDelegate,ContactTableViewDelegate>
 -(void)backClick;
+-(void)selectedButtonClick;
 -(void)checkSearchText:(NSString*)searchText;
 @end
 
 @implementation WeiboAddViewController
+
+@synthesize delegate;
 
 - (id)init{
     self = [super init];
@@ -38,16 +42,26 @@
     [self.view addSubview:searchBar];
     [searchBar release];
     
-    if([Utils isIPad])
-        adLabel=[[UILabel alloc] initWithFrame:CGRectMake(35.0f, CGRectGetMaxY(searchBar.frame), self.view.frame.size.width-70.0f, 0.0f)];
-    else
-        adLabel=[[UILabel alloc] initWithFrame:CGRectMake(20.0f, CGRectGetMaxY(searchBar.frame), self.view.frame.size.width-40.0f, 0.0f)];
+    
+    adButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    
+    if([Utils isIPad]){
+        adButton.frame=CGRectMake(35.0f, CGRectGetMaxY(searchBar.frame), self.view.frame.size.width-70.0f, 0.0f);
+    }
+    else{
+        adButton.frame=CGRectMake(20.0f, CGRectGetMaxY(searchBar.frame), self.view.frame.size.width-40.0f, 0.0f);
+
+    }
+    adLabel=[[UILabel alloc] initWithFrame:adButton.bounds];
+
     [adLabel theme:@"WeiboAdd_title"];
-    [self.view addSubview:adLabel];
+    [adButton addTarget:self action:@selector(selectedButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [adButton addSubview:adLabel];
+    [self.view addSubview:adButton];
     [adLabel release];
     
-    contactTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(adLabel.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adLabel.frame)) style:UITableViewStylePlain];
-    //contactTableView.parentViewController=self;
+    contactTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(adButton.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adButton.frame)) style:UITableViewStylePlain];
+    contactTableView.contactDelegate=self;
     [self.view addSubview:contactTableView];
     [contactTableView release];
 
@@ -59,6 +73,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc{
+    
+    [super dealloc];
+}
 
 #pragma mark searchbar delegate
 
@@ -91,11 +109,31 @@
 
 }
 
+#pragma mark contacttableview delegate
+
+
+-(void)contactTableViewDidSelect:(ContactTableView *)contactTableView user:(PetUser *)user{
+    
+    if([self.delegate respondsToSelector:@selector(weiboAddViewController:nickname:)])
+        [self.delegate weiboAddViewController:self nickname:[NSString stringWithFormat:@"@%@",user.nickname]];
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 #pragma mark method
 
 -(void)backClick{
+    
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)selectedButtonClick{
+    if([self.delegate respondsToSelector:@selector(weiboAddViewController:nickname:)])
+        [self.delegate weiboAddViewController:self nickname:adLabel.text];
+    
+    [self dismissModalViewControllerAnimated:YES];
+
 }
 
 -(void)checkSearchText:(NSString*)searchText{
@@ -104,11 +142,13 @@
         if(adLabel.frame.size.height>0.0f){
             [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 
-                CGRect rect=adLabel.frame;
+                CGRect rect=adButton.frame;
                 rect.size.height=0.0f;
-                adLabel.frame=rect;
+                adButton.frame=rect;
                 
-                contactTableView.frame=CGRectMake(0.0f, CGRectGetMaxY(adLabel.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adLabel.frame));
+                adLabel.frame=adButton.bounds;
+                
+                contactTableView.frame=CGRectMake(0.0f, CGRectGetMaxY(adButton.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adButton.frame));
                 
             } completion:^(BOOL finish){
                 
@@ -118,18 +158,19 @@
     }
     else{
         adLabel.text=[NSString stringWithFormat:@"@%@",searchText];
-        
+
         if(adLabel.frame.size.height<1.0f){
             [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 
-                CGRect rect=adLabel.frame;
+                CGRect rect=adButton.frame;
                 if([Utils isIPad])
                     rect.size.height=60.0f;
                 else
                     rect.size.height=45.0f;
-                adLabel.frame=rect;
-                
-                contactTableView.frame=CGRectMake(0.0f, CGRectGetMaxY(adLabel.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adLabel.frame));
+                adButton.frame=rect;
+                adLabel.frame=adButton.bounds;
+
+                contactTableView.frame=CGRectMake(0.0f, CGRectGetMaxY(adButton.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adButton.frame));
                 
             } completion:^(BOOL finish){
                 

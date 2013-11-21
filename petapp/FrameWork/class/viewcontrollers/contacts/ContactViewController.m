@@ -15,7 +15,7 @@
 #import "PetNewsEditViewController.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
-#import "AddFriendSelectViewController.h"
+#import "RightNavContactViewController.h"
 #import "PetNewsNavigationController.h"
 @interface ContactViewController ()<HeadTabViewDelegte,UISearchBarDelegate>
 -(void)initSearchBar;
@@ -130,7 +130,7 @@
 }
 
 -(void)addPeronClick{
-    AddFriendSelectViewController* controller=[[AddFriendSelectViewController alloc] init];
+    RightNavContactViewController* controller=[[RightNavContactViewController alloc] init];
     
     [self.navigationController pushViewController:controller animated:YES];
     

@@ -33,6 +33,20 @@
 		3907B80817B394550000B695 /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3907B80717B394550000B695 /* ContactCell.m */; };
 		3908FA9817B4E267002E0C61 /* country.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3908FA9717B4E267002E0C61 /* country.xml */; };
 		3908FA9B17B4EB83002E0C61 /* GroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3908FA9A17B4EB83002E0C61 /* GroupModel.m */; };
+		3909B8D8183CEFAB001169B4 /* ContactByGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D1183CEFAB001169B4 /* ContactByGroupView.m */; };
+		3909B8D9183CEFAB001169B4 /* ContactByGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D1183CEFAB001169B4 /* ContactByGroupView.m */; };
+		3909B8DA183CEFAB001169B4 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D3183CEFAB001169B4 /* ContactTableView.m */; };
+		3909B8DB183CEFAB001169B4 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D3183CEFAB001169B4 /* ContactTableView.m */; };
+		3909B8DC183CEFAB001169B4 /* FansTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D5183CEFAB001169B4 /* FansTableView.m */; };
+		3909B8DD183CEFAB001169B4 /* FansTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D5183CEFAB001169B4 /* FansTableView.m */; };
+		3909B8DE183CEFAB001169B4 /* GroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D7183CEFAB001169B4 /* GroupTableView.m */; };
+		3909B8DF183CEFAB001169B4 /* GroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D7183CEFAB001169B4 /* GroupTableView.m */; };
+		3909B8E2183CEFCE001169B4 /* NearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8E1183CEFCE001169B4 /* NearByViewController.m */; };
+		3909B8E3183CEFCE001169B4 /* NearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8E1183CEFCE001169B4 /* NearByViewController.m */; };
+		3909B8E7183CF3BE001169B4 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8E6183CF3BE001169B4 /* CreateGroupViewController.m */; };
+		3909B8E8183CF3BE001169B4 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8E6183CF3BE001169B4 /* CreateGroupViewController.m */; };
+		3909B8EB183D0182001169B4 /* RightNavContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8EA183D0182001169B4 /* RightNavContactViewController.m */; };
+		3909B8EC183D0182001169B4 /* RightNavContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8EA183D0182001169B4 /* RightNavContactViewController.m */; };
 		3910A18B17B12CCD002EC669 /* ImageDownloadedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3910A18A17B12CCD002EC669 /* ImageDownloadedView.m */; };
 		3910A19717B135A4002EC669 /* PetNewsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3910A19617B135A4002EC669 /* PetNewsTableView.m */; };
 		3910A19A17B135E4002EC669 /* NearbyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3910A19917B135E4002EC669 /* NearbyTableView.m */; };
@@ -196,8 +210,6 @@
 		3929C12917BBCD65002A936A /* ContactDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3929C12817BBCD65002A936A /* ContactDetailHeader.m */; };
 		3929C12C17BBE10B002A936A /* MarketWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3929C12B17BBE10B002A936A /* MarketWebViewController.m */; };
 		392F8D9717B9DC860013735C /* ImageShowFullScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 392F8D9617B9DC860013735C /* ImageShowFullScreenView.m */; };
-		392FBC02183A649700E6B411 /* FansTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 392FBC01183A649700E6B411 /* FansTableView.m */; };
-		392FBC03183A649700E6B411 /* FansTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 392FBC01183A649700E6B411 /* FansTableView.m */; };
 		392FCE3C17D8CA20007AB431 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392FCE3B17D8CA20007AB431 /* QRCodeViewController.m */; };
 		392FCE7B17D8D34B007AB431 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 392FCE7A17D8D34B007AB431 /* libzbar.a */; };
 		3934026A1832652A007CB9A9 /* tab_my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 393402691832652A007CB9A9 /* tab_my@2x.png */; };
@@ -226,7 +238,6 @@
 		39358DD817D78EA400EF5772 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 39358DD317D78EA400EF5772 /* zbar-help.html */; };
 		39358DD917D78EA400EF5772 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 39358DD417D78EA400EF5772 /* zbar-helpicons.png */; };
 		39358DDA17D78EA400EF5772 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 39358DD517D78EA400EF5772 /* zbar-samples.png */; };
-		3937405817C26DB00080D968 /* NearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3937405717C26DB00080D968 /* NearByViewController.m */; };
 		39383FC817C3ACD900C15100 /* PetNewsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39383FC717C3ACD900C15100 /* PetNewsEditViewController.m */; };
 		39383FCC17C3B31F00C15100 /* EditerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39383FCB17C3B31F00C15100 /* EditerView.m */; };
 		39383FCF17C3B7DD00C15100 /* PetNewsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39383FCE17C3B7DD00C15100 /* PetNewsParser.m */; };
@@ -245,8 +256,6 @@
 		393CCB3517AFB1FD00CAB459 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393CCB3417AFB1FD00CAB459 /* CoreText.framework */; };
 		393CCB3717AFB21E00CAB459 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393CCB3617AFB21E00CAB459 /* CoreTelephony.framework */; };
 		393D869617B2A0BD008D910D /* ActivatyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 393D869517B2A0BD008D910D /* ActivatyModel.m */; };
-		393D869917B2A5D2008D910D /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 393D869817B2A5D2008D910D /* ContactTableView.m */; };
-		393D869C17B2A5DE008D910D /* GroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 393D869B17B2A5DE008D910D /* GroupTableView.m */; };
 		393EAA0B17D24CE10022E798 /* WeiboSharedContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 393EAA0A17D24CE10022E798 /* WeiboSharedContentView.m */; };
 		393FF27217B0F4CB00657F72 /* PullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 393FF26F17B0F4CB00657F72 /* PullTableView.m */; };
 		393FF27317B0F4CB00657F72 /* PullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 393FF27117B0F4CB00657F72 /* PullToRefresh.m */; };
@@ -268,7 +277,6 @@
 		39415F2C17C601D800886911 /* UITextView+theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 39415F0117C601D800886911 /* UITextView+theme.m */; };
 		39415F2D17C601D800886911 /* UIView+theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 39415F0317C601D800886911 /* UIView+theme.m */; };
 		39415F2E17C601D800886911 /* libGTGZLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39415F0417C601D800886911 /* libGTGZLibrary.a */; };
-		3946186217C647D20012D695 /* AddFriendSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3946186117C647D20012D695 /* AddFriendSelectViewController.m */; };
 		3946186517C64B690012D695 /* SearchFGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3946186417C64B690012D695 /* SearchFGViewController.m */; };
 		3946186C17C66BB40012D695 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3946186B17C66BB40012D695 /* MessageCell.m */; };
 		3948D42F180AB6C0007AEA8E /* ChoiceBigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3948D42E180AB6C0007AEA8E /* ChoiceBigView.m */; };
@@ -778,8 +786,6 @@
 		39568E1417E89F4900B3F1AA /* ChoiceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C6E417B150A1008E0322 /* ChoiceTableCell.m */; };
 		39568E1517E89F4900B3F1AA /* ChoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C6E717B1542C008E0322 /* ChoiceModel.m */; };
 		39568E1617E89F4900B3F1AA /* ActivatyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 393D869517B2A0BD008D910D /* ActivatyModel.m */; };
-		39568E1717E89F4900B3F1AA /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 393D869817B2A5D2008D910D /* ContactTableView.m */; };
-		39568E1817E89F4900B3F1AA /* GroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 393D869B17B2A5DE008D910D /* GroupTableView.m */; };
 		39568E1917E89F4900B3F1AA /* MarketTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C6EA17B2AE95008E0322 /* MarketTableView.m */; };
 		39568E1A17E89F4900B3F1AA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3907B80717B394550000B695 /* ContactCell.m */; };
 		39568E1B17E89F4900B3F1AA /* GroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3908FA9A17B4EB83002E0C61 /* GroupModel.m */; };
@@ -811,7 +817,6 @@
 		39568E3517E89F4900B3F1AA /* BannerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C74317C4F696008E0322 /* BannerParser.m */; };
 		39568E3617E89F4900B3F1AA /* SignUpParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C74917C4F914008E0322 /* SignUpParser.m */; };
 		39568E3717E89F4900B3F1AA /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C74C17C4FFED008E0322 /* ChangePasswordViewController.m */; };
-		39568E3817E89F4900B3F1AA /* NearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3937405717C26DB00080D968 /* NearByViewController.m */; };
 		39568E3917E89F4900B3F1AA /* ActivatyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154F217C35F03003A72A6 /* ActivatyCell.m */; };
 		39568E3A17E89F4900B3F1AA /* ContactByGropuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154FD17C36C6F003A72A6 /* ContactByGropuViewController.m */; };
 		39568E3B17E89F4900B3F1AA /* PetNewsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39383FC717C3ACD900C15100 /* PetNewsEditViewController.m */; };
@@ -835,7 +840,6 @@
 		39568E4D17E89F4900B3F1AA /* UILabel+theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 39415EFF17C601D800886911 /* UILabel+theme.m */; };
 		39568E4E17E89F4900B3F1AA /* UITextView+theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 39415F0117C601D800886911 /* UITextView+theme.m */; };
 		39568E4F17E89F4900B3F1AA /* UIView+theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 39415F0317C601D800886911 /* UIView+theme.m */; };
-		39568E5017E89F4900B3F1AA /* AddFriendSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3946186117C647D20012D695 /* AddFriendSelectViewController.m */; };
 		39568E5117E89F4900B3F1AA /* SearchFGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3946186417C64B690012D695 /* SearchFGViewController.m */; };
 		39568E5317E89F4900B3F1AA /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3946186B17C66BB40012D695 /* MessageCell.m */; };
 		39568E5417E89F4900B3F1AA /* UserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39298B8617C7065000E215F8 /* UserProfileView.m */; };
@@ -858,7 +862,6 @@
 		39568E6517E89F4900B3F1AA /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A502607417D95FCA006E7504 /* DataCenter.m */; };
 		39568E6617E89F4900B3F1AA /* BannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A502607717D9621C006E7504 /* BannerManager.m */; };
 		39568E6717E89F4900B3F1AA /* NoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5127F3217D9FEA7005A8253 /* NoCell.m */; };
-		39568E6817E89F4900B3F1AA /* ContactByGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8341417DCBE19006A41A3 /* ContactByGroupView.m */; };
 		39568E6917E89F4900B3F1AA /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8341717DCCCA0006A41A3 /* pinyin.m */; };
 		39568E6A17E89F4900B3F1AA /* SelectedFriendInGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E03C5817E2929900DF4113 /* SelectedFriendInGroupViewController.m */; };
 		39568E6B17E89F4900B3F1AA /* ServiceWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F2105A17E743DF000A7921 /* ServiceWebViewController.m */; };
@@ -1089,7 +1092,6 @@
 		A502607817D9621C006E7504 /* BannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A502607717D9621C006E7504 /* BannerManager.m */; };
 		A5127F3317D9FEA7005A8253 /* NoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5127F3217D9FEA7005A8253 /* NoCell.m */; };
 		A5A6310217D5BD88000FA1A3 /* WeiBoSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6310117D5BD88000FA1A3 /* WeiBoSettingViewController.m */; };
-		A5D8341517DCBE19006A41A3 /* ContactByGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8341417DCBE19006A41A3 /* ContactByGroupView.m */; };
 		A5D8341917DCCCA0006A41A3 /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8341717DCCCA0006A41A3 /* pinyin.m */; };
 		A5E03C5917E2929900DF4113 /* SelectedFriendInGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E03C5817E2929900DF4113 /* SelectedFriendInGroupViewController.m */; };
 		CC4FF5B717C9EBE200278148 /* TCBlogUserInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4FF5B617C9EBE200278148 /* TCBlogUserInfoParser.m */; };
@@ -1137,6 +1139,20 @@
 		3908FA9717B4E267002E0C61 /* country.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = country.xml; sourceTree = "<group>"; };
 		3908FA9917B4EB83002E0C61 /* GroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupModel.h; sourceTree = "<group>"; };
 		3908FA9A17B4EB83002E0C61 /* GroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupModel.m; sourceTree = "<group>"; };
+		3909B8D0183CEFAB001169B4 /* ContactByGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactByGroupView.h; sourceTree = "<group>"; };
+		3909B8D1183CEFAB001169B4 /* ContactByGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactByGroupView.m; sourceTree = "<group>"; };
+		3909B8D2183CEFAB001169B4 /* ContactTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableView.h; sourceTree = "<group>"; };
+		3909B8D3183CEFAB001169B4 /* ContactTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableView.m; sourceTree = "<group>"; };
+		3909B8D4183CEFAB001169B4 /* FansTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FansTableView.h; sourceTree = "<group>"; };
+		3909B8D5183CEFAB001169B4 /* FansTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FansTableView.m; sourceTree = "<group>"; };
+		3909B8D6183CEFAB001169B4 /* GroupTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableView.h; sourceTree = "<group>"; };
+		3909B8D7183CEFAB001169B4 /* GroupTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableView.m; sourceTree = "<group>"; };
+		3909B8E0183CEFCE001169B4 /* NearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearByViewController.h; sourceTree = "<group>"; };
+		3909B8E1183CEFCE001169B4 /* NearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearByViewController.m; sourceTree = "<group>"; };
+		3909B8E5183CF3BE001169B4 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
+		3909B8E6183CF3BE001169B4 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
+		3909B8E9183D0182001169B4 /* RightNavContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightNavContactViewController.h; sourceTree = "<group>"; };
+		3909B8EA183D0182001169B4 /* RightNavContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightNavContactViewController.m; sourceTree = "<group>"; };
 		3910A18917B12CCD002EC669 /* ImageDownloadedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadedView.h; sourceTree = "<group>"; };
 		3910A18A17B12CCD002EC669 /* ImageDownloadedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloadedView.m; sourceTree = "<group>"; };
 		3910A19517B135A4002EC669 /* PetNewsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetNewsTableView.h; sourceTree = "<group>"; };
@@ -1375,8 +1391,6 @@
 		3929C12B17BBE10B002A936A /* MarketWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketWebViewController.m; sourceTree = "<group>"; };
 		392F8D9517B9DC860013735C /* ImageShowFullScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageShowFullScreenView.h; sourceTree = "<group>"; };
 		392F8D9617B9DC860013735C /* ImageShowFullScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageShowFullScreenView.m; sourceTree = "<group>"; };
-		392FBC00183A649700E6B411 /* FansTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FansTableView.h; sourceTree = "<group>"; };
-		392FBC01183A649700E6B411 /* FansTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FansTableView.m; sourceTree = "<group>"; };
 		392FCE3A17D8CA20007AB431 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		392FCE3B17D8CA20007AB431 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		392FCE7217D8D232007AB431 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
@@ -1426,8 +1440,6 @@
 		39358DD317D78EA400EF5772 /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
 		39358DD417D78EA400EF5772 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
 		39358DD517D78EA400EF5772 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
-		3937405617C26DB00080D968 /* NearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearByViewController.h; sourceTree = "<group>"; };
-		3937405717C26DB00080D968 /* NearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearByViewController.m; sourceTree = "<group>"; };
 		39383FC617C3ACD900C15100 /* PetNewsEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetNewsEditViewController.h; sourceTree = "<group>"; };
 		39383FC717C3ACD900C15100 /* PetNewsEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetNewsEditViewController.m; sourceTree = "<group>"; };
 		39383FCA17C3B31F00C15100 /* EditerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditerView.h; sourceTree = "<group>"; };
@@ -1457,10 +1469,6 @@
 		393CCB3617AFB21E00CAB459 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		393D869417B2A0BD008D910D /* ActivatyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivatyModel.h; sourceTree = "<group>"; };
 		393D869517B2A0BD008D910D /* ActivatyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivatyModel.m; sourceTree = "<group>"; };
-		393D869717B2A5D2008D910D /* ContactTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableView.h; sourceTree = "<group>"; };
-		393D869817B2A5D2008D910D /* ContactTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableView.m; sourceTree = "<group>"; };
-		393D869A17B2A5DE008D910D /* GroupTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableView.h; sourceTree = "<group>"; };
-		393D869B17B2A5DE008D910D /* GroupTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableView.m; sourceTree = "<group>"; };
 		393EAA0917D24CE10022E798 /* WeiboSharedContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSharedContentView.h; sourceTree = "<group>"; };
 		393EAA0A17D24CE10022E798 /* WeiboSharedContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboSharedContentView.m; sourceTree = "<group>"; };
 		393FF26E17B0F4CB00657F72 /* PullTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullTableView.h; sourceTree = "<group>"; };
@@ -1525,8 +1533,6 @@
 		39415F2517C601D800886911 /* GTGZImageDownloadedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTGZImageDownloadedView.h; sourceTree = "<group>"; };
 		39415F2617C601D800886911 /* GTGZScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTGZScroller.h; sourceTree = "<group>"; };
 		39415F2717C601D800886911 /* GTGZShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTGZShadowView.h; sourceTree = "<group>"; };
-		3946186017C647D20012D695 /* AddFriendSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendSelectViewController.h; sourceTree = "<group>"; };
-		3946186117C647D20012D695 /* AddFriendSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendSelectViewController.m; sourceTree = "<group>"; };
 		3946186317C64B690012D695 /* SearchFGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFGViewController.h; sourceTree = "<group>"; };
 		3946186417C64B690012D695 /* SearchFGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFGViewController.m; sourceTree = "<group>"; };
 		3946186A17C66BB40012D695 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -1857,8 +1863,6 @@
 		A5127F3217D9FEA7005A8253 /* NoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoCell.m; sourceTree = "<group>"; };
 		A5A6310017D5BD88000FA1A3 /* WeiBoSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiBoSettingViewController.h; sourceTree = "<group>"; };
 		A5A6310117D5BD88000FA1A3 /* WeiBoSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiBoSettingViewController.m; sourceTree = "<group>"; };
-		A5D8341317DCBE18006A41A3 /* ContactByGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactByGroupView.h; sourceTree = "<group>"; };
-		A5D8341417DCBE19006A41A3 /* ContactByGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactByGroupView.m; sourceTree = "<group>"; };
 		A5D8341717DCCCA0006A41A3 /* pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pinyin.m; sourceTree = "<group>"; };
 		A5D8341817DCCCA0006A41A3 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		A5E03C5717E2929900DF4113 /* SelectedFriendInGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedFriendInGroupViewController.h; sourceTree = "<group>"; };
@@ -1959,6 +1963,30 @@
 				3908FA9717B4E267002E0C61 /* country.xml */,
 			);
 			path = xml;
+			sourceTree = "<group>";
+		};
+		3909B8CF183CEFAB001169B4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				3909B8D0183CEFAB001169B4 /* ContactByGroupView.h */,
+				3909B8D1183CEFAB001169B4 /* ContactByGroupView.m */,
+				3909B8D2183CEFAB001169B4 /* ContactTableView.h */,
+				3909B8D3183CEFAB001169B4 /* ContactTableView.m */,
+				3909B8D4183CEFAB001169B4 /* FansTableView.h */,
+				3909B8D5183CEFAB001169B4 /* FansTableView.m */,
+				3909B8D6183CEFAB001169B4 /* GroupTableView.h */,
+				3909B8D7183CEFAB001169B4 /* GroupTableView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3909B8E4183CEFEE001169B4 /* group */ = {
+			isa = PBXGroup;
+			children = (
+				3909B8E5183CF3BE001169B4 /* CreateGroupViewController.h */,
+				3909B8E6183CF3BE001169B4 /* CreateGroupViewController.m */,
+			);
+			path = group;
 			sourceTree = "<group>";
 		};
 		3910A18817B12CA3002EC669 /* downloading */ = {
@@ -2506,27 +2534,19 @@
 		3927DD3E17AC036A00791945 /* contacts */ = {
 			isa = PBXGroup;
 			children = (
+				3909B8E4183CEFEE001169B4 /* group */,
+				3909B8CF183CEFAB001169B4 /* view */,
 				395C452A17B8B15300F0DD99 /* contactDetail */,
 				3926FDB117ACFAEA00618142 /* ContactViewController.h */,
 				3926FDB217ACFAEA00618142 /* ContactViewController.m */,
-				393D869717B2A5D2008D910D /* ContactTableView.h */,
-				393D869817B2A5D2008D910D /* ContactTableView.m */,
-				393D869A17B2A5DE008D910D /* GroupTableView.h */,
-				393D869B17B2A5DE008D910D /* GroupTableView.m */,
-				3937405617C26DB00080D968 /* NearByViewController.h */,
-				3937405717C26DB00080D968 /* NearByViewController.m */,
 				398154FC17C36C6F003A72A6 /* ContactByGropuViewController.h */,
 				398154FD17C36C6F003A72A6 /* ContactByGropuViewController.m */,
-				3946186017C647D20012D695 /* AddFriendSelectViewController.h */,
-				3946186117C647D20012D695 /* AddFriendSelectViewController.m */,
+				3909B8E9183D0182001169B4 /* RightNavContactViewController.h */,
+				3909B8EA183D0182001169B4 /* RightNavContactViewController.m */,
 				3946186317C64B690012D695 /* SearchFGViewController.h */,
 				3946186417C64B690012D695 /* SearchFGViewController.m */,
-				A5D8341317DCBE18006A41A3 /* ContactByGroupView.h */,
-				A5D8341417DCBE19006A41A3 /* ContactByGroupView.m */,
 				A5E03C5717E2929900DF4113 /* SelectedFriendInGroupViewController.h */,
 				A5E03C5817E2929900DF4113 /* SelectedFriendInGroupViewController.m */,
-				392FBC00183A649700E6B411 /* FansTableView.h */,
-				392FBC01183A649700E6B411 /* FansTableView.m */,
 			);
 			path = contacts;
 			sourceTree = "<group>";
@@ -2547,6 +2567,8 @@
 				395C452817B8B0D800F0DD99 /* petnewsDetail */,
 				393955D317ACB600007299A2 /* PetNewsViewController.h */,
 				393955D417ACB600007299A2 /* PetNewsViewController.m */,
+				3909B8E0183CEFCE001169B4 /* NearByViewController.h */,
+				3909B8E1183CEFCE001169B4 /* NearByViewController.m */,
 				3910A19517B135A4002EC669 /* PetNewsTableView.h */,
 				3910A19617B135A4002EC669 /* PetNewsTableView.m */,
 				3910A19817B135E4002EC669 /* NearbyTableView.h */,
@@ -4420,12 +4442,14 @@
 				3927DD5D17AC036A00791945 /* ThreadTask.m in Sources */,
 				3927DD5E17AC036A00791945 /* LoginViewController.m in Sources */,
 				3927DD5F17AC036A00791945 /* SignUpViewController.m in Sources */,
+				3909B8DE183CEFAB001169B4 /* GroupTableView.m in Sources */,
 				3948D42F180AB6C0007AEA8E /* ChoiceBigView.m in Sources */,
 				3927DD6017AC036A00791945 /* BaseViewController.m in Sources */,
 				3927DD6117AC036A00791945 /* RootViewController.m in Sources */,
 				3927DD6217AC036A00791945 /* SearchViewController.m in Sources */,
 				3927DD6317AC036A00791945 /* SettingInfoMainViewController.m in Sources */,
 				3927DD6417AC036A00791945 /* XmlParser.m in Sources */,
+				3909B8D8183CEFAB001169B4 /* ContactByGroupView.m in Sources */,
 				393955D217ACB585007299A2 /* HomeViewController.m in Sources */,
 				393955D517ACB600007299A2 /* PetNewsViewController.m in Sources */,
 				393955D917ACB651007299A2 /* PetNewsNavigationController.m in Sources */,
@@ -4439,6 +4463,7 @@
 				3910A18B17B12CCD002EC669 /* ImageDownloadedView.m in Sources */,
 				3910A19717B135A4002EC669 /* PetNewsTableView.m in Sources */,
 				3910A19A17B135E4002EC669 /* NearbyTableView.m in Sources */,
+				3909B8EB183D0182001169B4 /* RightNavContactViewController.m in Sources */,
 				3910A19D17B1365E002EC669 /* DailyPicksTableView.m in Sources */,
 				3910A1A017B13679002EC669 /* ActivityTableView.m in Sources */,
 				3910A1A317B140D2002EC669 /* PetNewsModel.m in Sources */,
@@ -4476,14 +4501,14 @@
 				3910A2CB17B15A8B002EC669 /* SFHFKeychainUtils.m in Sources */,
 				3910A2CC17B15A8B002EC669 /* AuthorizeDelegate.m in Sources */,
 				3910A2CD17B15A8B002EC669 /* NSObject+WBUtil.m in Sources */,
+				3909B8DA183CEFAB001169B4 /* ContactTableView.m in Sources */,
 				3910A2CE17B15A8B002EC669 /* TCWBAuthorizeViewController.m in Sources */,
 				3910A2CF17B15A8B002EC669 /* TCWBEngine.m in Sources */,
 				3910A2D017B15A8B002EC669 /* TCWBRequest.m in Sources */,
+				3909B8E2183CEFCE001169B4 /* NearByViewController.m in Sources */,
 				33A9C6E517B150A1008E0322 /* ChoiceTableCell.m in Sources */,
 				33A9C6E817B1542C008E0322 /* ChoiceModel.m in Sources */,
 				393D869617B2A0BD008D910D /* ActivatyModel.m in Sources */,
-				393D869917B2A5D2008D910D /* ContactTableView.m in Sources */,
-				393D869C17B2A5DE008D910D /* GroupTableView.m in Sources */,
 				33A9C6EB17B2AE95008E0322 /* MarketTableView.m in Sources */,
 				3907B80817B394550000B695 /* ContactCell.m in Sources */,
 				3908FA9B17B4EB83002E0C61 /* GroupModel.m in Sources */,
@@ -4507,11 +4532,12 @@
 				3929C12C17BBE10B002A936A /* MarketWebViewController.m in Sources */,
 				3920215217BD16D70047E040 /* NavContentViewController.m in Sources */,
 				3920215617BD1B470047E040 /* PersonDynamicViewController.m in Sources */,
+				3909B8E7183CF3BE001169B4 /* CreateGroupViewController.m in Sources */,
 				3920215917BD20010047E040 /* MyPetNewsTableView.m in Sources */,
 				3934028318326C6E007CB9A9 /* LikeView.m in Sources */,
 				3920215C17BD20150047E040 /* MyJoinActivatyTableView.m in Sources */,
 				3920215F17BD20230047E040 /* MyFaviorActivatyTableView.m in Sources */,
-				392FBC02183A649700E6B411 /* FansTableView.m in Sources */,
+				3909B8DC183CEFAB001169B4 /* FansTableView.m in Sources */,
 				3920216217BD20300047E040 /* MyMessageTableView.m in Sources */,
 				33A9C6F617BD0FE8008E0322 /* CheckBoxView.m in Sources */,
 				33A9C73E17C4EAB0008E0322 /* GroupInfoParser.m in Sources */,
@@ -4519,7 +4545,6 @@
 				33A9C74417C4F697008E0322 /* BannerParser.m in Sources */,
 				33A9C74A17C4F915008E0322 /* SignUpParser.m in Sources */,
 				33A9C74D17C4FFEE008E0322 /* ChangePasswordViewController.m in Sources */,
-				3937405817C26DB00080D968 /* NearByViewController.m in Sources */,
 				398154F317C35F03003A72A6 /* ActivatyCell.m in Sources */,
 				398154FE17C36C6F003A72A6 /* ContactByGropuViewController.m in Sources */,
 				39383FC817C3ACD900C15100 /* PetNewsEditViewController.m in Sources */,
@@ -4544,7 +4569,6 @@
 				39415F2B17C601D800886911 /* UILabel+theme.m in Sources */,
 				39415F2C17C601D800886911 /* UITextView+theme.m in Sources */,
 				39415F2D17C601D800886911 /* UIView+theme.m in Sources */,
-				3946186217C647D20012D695 /* AddFriendSelectViewController.m in Sources */,
 				3946186517C64B690012D695 /* SearchFGViewController.m in Sources */,
 				3946186C17C66BB40012D695 /* MessageCell.m in Sources */,
 				39298B8717C7065000E215F8 /* UserProfileView.m in Sources */,
@@ -4569,7 +4593,6 @@
 				A502607517D95FCA006E7504 /* DataCenter.m in Sources */,
 				A502607817D9621C006E7504 /* BannerManager.m in Sources */,
 				A5127F3317D9FEA7005A8253 /* NoCell.m in Sources */,
-				A5D8341517DCBE19006A41A3 /* ContactByGroupView.m in Sources */,
 				A5D8341917DCCCA0006A41A3 /* pinyin.m in Sources */,
 				A5E03C5917E2929900DF4113 /* SelectedFriendInGroupViewController.m in Sources */,
 				39F2105B17E743DF000A7921 /* ServiceWebViewController.m in Sources */,
@@ -4591,12 +4614,14 @@
 				39568DD817E89F4900B3F1AA /* ThreadTask.m in Sources */,
 				39568DD917E89F4900B3F1AA /* LoginViewController.m in Sources */,
 				39568DDA17E89F4900B3F1AA /* SignUpViewController.m in Sources */,
+				3909B8DF183CEFAB001169B4 /* GroupTableView.m in Sources */,
 				3948D430180AB6C0007AEA8E /* ChoiceBigView.m in Sources */,
 				39568DDB17E89F4900B3F1AA /* BaseViewController.m in Sources */,
 				39568DDC17E89F4900B3F1AA /* RootViewController.m in Sources */,
 				39568DDD17E89F4900B3F1AA /* SearchViewController.m in Sources */,
 				39568DDE17E89F4900B3F1AA /* SettingInfoMainViewController.m in Sources */,
 				39568DDF17E89F4900B3F1AA /* XmlParser.m in Sources */,
+				3909B8D9183CEFAB001169B4 /* ContactByGroupView.m in Sources */,
 				39568DE017E89F4900B3F1AA /* HomeViewController.m in Sources */,
 				39568DE117E89F4900B3F1AA /* PetNewsViewController.m in Sources */,
 				39568DE217E89F4900B3F1AA /* PetNewsNavigationController.m in Sources */,
@@ -4610,6 +4635,7 @@
 				39568DEB17E89F4900B3F1AA /* ImageDownloadedView.m in Sources */,
 				39568DEC17E89F4900B3F1AA /* PetNewsTableView.m in Sources */,
 				39568DED17E89F4900B3F1AA /* NearbyTableView.m in Sources */,
+				3909B8EC183D0182001169B4 /* RightNavContactViewController.m in Sources */,
 				39568DEE17E89F4900B3F1AA /* DailyPicksTableView.m in Sources */,
 				39568DEF17E89F4900B3F1AA /* ActivityTableView.m in Sources */,
 				39568DF017E89F4900B3F1AA /* PetNewsModel.m in Sources */,
@@ -4647,14 +4673,14 @@
 				39568E0E17E89F4900B3F1AA /* SFHFKeychainUtils.m in Sources */,
 				39568E0F17E89F4900B3F1AA /* AuthorizeDelegate.m in Sources */,
 				39568E1017E89F4900B3F1AA /* NSObject+WBUtil.m in Sources */,
+				3909B8DB183CEFAB001169B4 /* ContactTableView.m in Sources */,
 				39568E1117E89F4900B3F1AA /* TCWBAuthorizeViewController.m in Sources */,
 				39568E1217E89F4900B3F1AA /* TCWBEngine.m in Sources */,
 				39568E1317E89F4900B3F1AA /* TCWBRequest.m in Sources */,
+				3909B8E3183CEFCE001169B4 /* NearByViewController.m in Sources */,
 				39568E1417E89F4900B3F1AA /* ChoiceTableCell.m in Sources */,
 				39568E1517E89F4900B3F1AA /* ChoiceModel.m in Sources */,
 				39568E1617E89F4900B3F1AA /* ActivatyModel.m in Sources */,
-				39568E1717E89F4900B3F1AA /* ContactTableView.m in Sources */,
-				39568E1817E89F4900B3F1AA /* GroupTableView.m in Sources */,
 				39568E1917E89F4900B3F1AA /* MarketTableView.m in Sources */,
 				39568E1A17E89F4900B3F1AA /* ContactCell.m in Sources */,
 				39568E1B17E89F4900B3F1AA /* GroupModel.m in Sources */,
@@ -4678,11 +4704,12 @@
 				39568E2B17E89F4900B3F1AA /* MarketWebViewController.m in Sources */,
 				39568E2C17E89F4900B3F1AA /* NavContentViewController.m in Sources */,
 				39568E2D17E89F4900B3F1AA /* PersonDynamicViewController.m in Sources */,
+				3909B8E8183CF3BE001169B4 /* CreateGroupViewController.m in Sources */,
 				39568E2E17E89F4900B3F1AA /* MyPetNewsTableView.m in Sources */,
 				3934028418326C6E007CB9A9 /* LikeView.m in Sources */,
 				39568E2F17E89F4900B3F1AA /* MyJoinActivatyTableView.m in Sources */,
 				39568E3017E89F4900B3F1AA /* MyFaviorActivatyTableView.m in Sources */,
-				392FBC03183A649700E6B411 /* FansTableView.m in Sources */,
+				3909B8DD183CEFAB001169B4 /* FansTableView.m in Sources */,
 				39568E3117E89F4900B3F1AA /* MyMessageTableView.m in Sources */,
 				39568E3217E89F4900B3F1AA /* CheckBoxView.m in Sources */,
 				39568E3317E89F4900B3F1AA /* GroupInfoParser.m in Sources */,
@@ -4690,7 +4717,6 @@
 				39568E3517E89F4900B3F1AA /* BannerParser.m in Sources */,
 				39568E3617E89F4900B3F1AA /* SignUpParser.m in Sources */,
 				39568E3717E89F4900B3F1AA /* ChangePasswordViewController.m in Sources */,
-				39568E3817E89F4900B3F1AA /* NearByViewController.m in Sources */,
 				39568E3917E89F4900B3F1AA /* ActivatyCell.m in Sources */,
 				39568E3A17E89F4900B3F1AA /* ContactByGropuViewController.m in Sources */,
 				39568E3B17E89F4900B3F1AA /* PetNewsEditViewController.m in Sources */,
@@ -4715,7 +4741,6 @@
 				39568E4D17E89F4900B3F1AA /* UILabel+theme.m in Sources */,
 				39568E4E17E89F4900B3F1AA /* UITextView+theme.m in Sources */,
 				39568E4F17E89F4900B3F1AA /* UIView+theme.m in Sources */,
-				39568E5017E89F4900B3F1AA /* AddFriendSelectViewController.m in Sources */,
 				39568E5117E89F4900B3F1AA /* SearchFGViewController.m in Sources */,
 				39568E5317E89F4900B3F1AA /* MessageCell.m in Sources */,
 				39568E5417E89F4900B3F1AA /* UserProfileView.m in Sources */,
@@ -4740,7 +4765,6 @@
 				39568E6517E89F4900B3F1AA /* DataCenter.m in Sources */,
 				39568E6617E89F4900B3F1AA /* BannerManager.m in Sources */,
 				39568E6717E89F4900B3F1AA /* NoCell.m in Sources */,
-				39568E6817E89F4900B3F1AA /* ContactByGroupView.m in Sources */,
 				39568E6917E89F4900B3F1AA /* pinyin.m in Sources */,
 				39568E6A17E89F4900B3F1AA /* SelectedFriendInGroupViewController.m in Sources */,
 				39568E6B17E89F4900B3F1AA /* ServiceWebViewController.m in Sources */,

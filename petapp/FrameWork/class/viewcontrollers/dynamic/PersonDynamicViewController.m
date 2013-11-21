@@ -19,7 +19,7 @@
 #import "MyMessageTableView.h"
 #import "PetNewsEditViewController.h"
 #import "PetNewsNavigationController.h"
-#import "AddFriendSelectViewController.h"
+#import "RightNavContactViewController.h"
 
 @interface PersonDynamicViewController ()<HeadTabViewDelegte>
 -(void)initTabBar;
@@ -119,7 +119,7 @@
 }
 
 -(void)profileDidAddFriend:(UserProfileView *)profileView{
-    AddFriendSelectViewController* controller=[[AddFriendSelectViewController alloc] init];
+    RightNavContactViewController* controller=[[RightNavContactViewController alloc] init];
     
     [self.navigationController pushViewController:controller animated:YES];
     

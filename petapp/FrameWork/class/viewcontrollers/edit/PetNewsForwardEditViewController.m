@@ -22,7 +22,9 @@
 #import "DataCenter.h"
 #import "Utils.h"
 #import "PetNewsModel.h"
-@interface PetNewsForwardEditViewController ()<EditerViewDelegate>
+#import "WeiboAddViewController.h"
+#import "PetNewsNavigationController.h"
+@interface PetNewsForwardEditViewController ()<EditerViewDelegate,WeiboAddViewControllerDelegate>
 
 
 -(void)goBack;
@@ -252,7 +254,23 @@
 #pragma mark editer delegate
 
 -(void)editerClick:(EditerView *)editerView click:(int)index{
-    
+    if(index==2){
+        WeiboAddViewController* controller=[[WeiboAddViewController alloc] init];
+        controller.delegate=self;
+        PetNewsNavigationController* navController=[[PetNewsNavigationController alloc] initWithRootViewController:controller];
+        [controller release];
+        
+        [self presentModalViewController:navController animated:YES];
+        [navController release];
+
+    }
 }
+
+#pragma mark weiboaddviewcontroller delegate
+
+-(void)weiboAddViewController:(WeiboAddViewController *)viewController nickname:(NSString *)nickname{
+    textView.text=[textView.text stringByReplacingCharactersInRange:textView.selectedRange withString:[NSString stringWithFormat:@" %@ ",nickname]];
+}
+
 
 @end
