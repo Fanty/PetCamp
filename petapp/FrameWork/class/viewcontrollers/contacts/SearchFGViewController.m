@@ -250,6 +250,9 @@
             if(![task status]){
                 [AlertUtils showAlert:[task errorMessage] view:self.view];
             }
+            else{
+                [AlertUtils showAlert:lang(@"noFinddata") view:self.view];
+            }
         }
         else{
             pageOffset=temp_pageOffset;
