@@ -124,7 +124,9 @@
 #pragma mark method
 
 -(void)backClick{
-    
+    if([self.delegate respondsToSelector:@selector(weiboAddViewControllerCancel:)])
+        [self.delegate weiboAddViewControllerCancel:self];
+
     [self dismissModalViewControllerAnimated:YES];
 }
 

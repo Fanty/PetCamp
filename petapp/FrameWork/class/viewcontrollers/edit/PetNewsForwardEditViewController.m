@@ -272,5 +272,10 @@
     textView.text=[textView.text stringByReplacingCharactersInRange:textView.selectedRange withString:[NSString stringWithFormat:@" %@ ",nickname]];
 }
 
+-(void)weiboAddViewControllerCancel:(WeiboAddViewController *)viewController{
+    textView.text=[textView.text stringByReplacingCharactersInRange:textView.selectedRange withString:@"@"];
+    
+}
+
 
 @end

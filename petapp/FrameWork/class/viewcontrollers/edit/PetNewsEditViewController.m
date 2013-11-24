@@ -23,7 +23,7 @@
 #import "PetNewsNavigationController.h"
 #import "WeiboAddViewController.h"
 #import "Utils.h"
-@interface PetNewsEditViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,EditerViewDelegate,UIPopoverControllerDelegate,WeiboAddViewControllerDelegate>
+@interface PetNewsEditViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,EditerViewDelegate,UIPopoverControllerDelegate,WeiboAddViewControllerDelegate,UITextViewDelegate>
 
 @property(nonatomic,retain) NSString* content;
 
@@ -78,7 +78,7 @@
     [imageDownloaded release];
     
     textView=[[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageDownloaded.frame)+5.0f,10.0f, self.view.frame.size.width-CGRectGetMaxX(imageDownloaded.frame)-10.0f, 180.0f)];
-    
+    textView.delegate=self;
     textView.returnKeyType = UIReturnKeyDefault; //just as an example
     textView.font = [UIFont systemFontOfSize:([Utils isIPad]?25.0f:18.0f)];
     textView.backgroundColor = [UIColor clearColor];
@@ -304,6 +304,11 @@
     textView.text=[textView.text stringByReplacingCharactersInRange:textView.selectedRange withString:[NSString stringWithFormat:@" %@ ",nickname]];
 }
 
+-(void)weiboAddViewControllerCancel:(WeiboAddViewController *)viewController{
+    textView.text=[textView.text stringByReplacingCharactersInRange:textView.selectedRange withString:@"@"];
+
+}
+
 #pragma mark editer delegate
 
 -(void)editerClick:(EditerView *)editerView click:(int)index{
@@ -427,6 +432,23 @@
         [picker dismissModalViewControllerAnimated:YES];
     }
     
+}
+
+#pragma mark textview delegate
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if([text isEqualToString:@"@"]){
+        WeiboAddViewController* controller=[[WeiboAddViewController alloc] init];
+        controller.delegate=self;
+        PetNewsNavigationController* navController=[[PetNewsNavigationController alloc] initWithRootViewController:controller];
+        [controller release];
+        
+        [self presentModalViewController:navController animated:YES];
+        [navController release];
+
+        return NO;
+    }
+    return YES;
 }
 
 

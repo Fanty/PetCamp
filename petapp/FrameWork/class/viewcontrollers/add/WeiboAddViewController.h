@@ -13,6 +13,8 @@
 @protocol WeiboAddViewControllerDelegate <NSObject>
 -(void)weiboAddViewController:(WeiboAddViewController*)viewController nickname:(NSString*)nickname;
 
+-(void)weiboAddViewControllerCancel:(WeiboAddViewController *)viewController;
+
 @end
 
 @interface WeiboAddViewController : BaseViewController{
