@@ -63,9 +63,6 @@
     list=nil;
     [petUser release];
     petUser=nil;
-    
-    [bgView release];
-    bgView=nil;
     [profileView release];
     profileView=nil;
 
@@ -75,7 +72,6 @@
 }
 
 -(void)dealloc{
-    [bgView release];
     [profileView release];
 
     [petUser release];
@@ -118,24 +114,16 @@
 }
 
 -(void)initHeader{
-    if(bgView!=nil)return;
-    bgView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"default_myprofile.png"]];
-    bgView.contentMode=UIViewContentModeTop;
-    bgView.clipsToBounds=YES;
-    CGRect rect=bgView.frame;
-    if(![Utils isIPad])
-        rect.size.height=180.0f;
-    bgView.frame=rect;
+    if(profileView!=nil)return;
+
     
-    profileView=[[UserProfileView alloc] initWithFrame:CGRectMake(0.0f, ([Utils isIPad]?bgView.frame.size.height-120.0f:115.0f), self.view.frame.size.width, 0.0f)];
+    profileView=[[UserProfileView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.0f)];
     profileView.delegate=self;
     [profileView headUrl:petUser.imageHeadUrl];
     [profileView title:petUser.nickname];
     [profileView desc:petUser.person_desc];
     [profileView sex:petUser.sex];
     [profileView isContact:petUser.whetherInContact];
-    [profileView showAddPetNew:NO];
-    [profileView allWhite];
 }
 
 -(void)loadDetailData{
@@ -283,7 +271,6 @@
             [self initHeader];
         }
 
-        [cell addSubview:bgView];
         [cell addSubview:profileView];
         
         return cell;

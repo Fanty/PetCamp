@@ -14,7 +14,6 @@
 @class WriterView;
 @interface ContactDetailViewController : NavContentViewController{
     UIActivityIndicatorView* loadingView;
-    UIImageView*  bgView;
     UserProfileView* profileView;
     PullTableView* tableView;
     AsyncTask* task;

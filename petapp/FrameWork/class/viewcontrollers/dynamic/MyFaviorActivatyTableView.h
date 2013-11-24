@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UserProfileView;
 @interface MyFaviorActivatyTableView : UITableView{
-    UIImageView*  bgView;
-    UserProfileView* profileView;
 
     NSArray* list;
     

@@ -17,27 +17,24 @@
 
 @end
 
-@interface UserProfileView : UIView{
+@interface UserProfileView : UIImageView{
     ImageDownloadedView* headImageView;
     UILabel* titleLabel;
     UILabel* descLabel;
     UIImageView* sexImageView;
     
-    UILabel* lovePet;
-    
-    UIButton* addPetNewButton;
-    UIButton* addFriendButton;
-    BOOL updateNeed;
+    UIButton* button;
 
+    int buttonType;
+    BOOL updateNeed;
 }
 @property(nonatomic,assign) id<UserProfileViewDelegate> delegate;
 -(void)headUrl:(NSString*)headUrl;
 -(void)title:(NSString*)title;
 -(void)desc:(NSString*)desc;
 -(void)sex:(BOOL)sex;
--(void)lovePetString:(NSString*)value;
--(void)showAddFriend:(BOOL)value;
--(void)showAddPetNew:(BOOL)value;
+
+-(void)showAddFriend;
+-(void)showAddPetNew;
 -(void)isContact:(BOOL)value;
--(void)allWhite;
 @end

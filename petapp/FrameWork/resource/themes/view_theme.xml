@@ -39,8 +39,8 @@
     <theme key="contactdetail_tip" textColor="#cccccc" fontName="HelveticaNeue" fontSize="14.0f" />
     <theme key="setting_name" textColor="whiteColor" fontSize="17.0f" />
     <theme key="checkBox_title" textColor="blackColor" fontSize="16" />
-    <theme key="profile_title" textColor="blackColor" fontSize="20.0f" />
-    <theme key="profile_desc" textColor="grayColor" fontSize="13.0f" />
+    <theme key="profile_title" textColor="whiteColor" fontSize="20.0f" />
+    <theme key="profile_desc" textColor="blackColor" fontSize="13.0f" />
     <theme key="activaty_join" textColor="whiteColor" fontSize="11.0f" />
     <theme key="noLael" textColor="grayColor" fontSize="23.0f" />
     <theme key="textinput_title" textColor="#666666" highlightColor="blackColor" fontSize="17.0f" />
@@ -53,4 +53,5 @@
     <theme key="type_title" textColor="blackColor" fontSize="19.0f" />
     <theme key="type_desc" textColor="blackColor" fontSize="15.0f" />
     <theme key="WeiboAdd_title" textColor="blackColor" fontSize="22.0f" />
+    <theme key="profile_tab_number" textColor="blackColor" fontSize="12.0f" />
 </themes>

@@ -1112,6 +1112,24 @@
 		39F8D50B18403BA20098C957 /* UserSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F8D50918403BA20098C957 /* UserSplashView.m */; };
 		39F91ABB1841C421007F0C63 /* GroupMembersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ABA1841C421007F0C63 /* GroupMembersView.m */; };
 		39F91ABC1841C421007F0C63 /* GroupMembersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ABA1841C421007F0C63 /* GroupMembersView.m */; };
+		39F91ABF1841F615007F0C63 /* MyActivatyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ABE1841F615007F0C63 /* MyActivatyViewController.m */; };
+		39F91AC01841F615007F0C63 /* MyActivatyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ABE1841F615007F0C63 /* MyActivatyViewController.m */; };
+		39F91AC31841FD87007F0C63 /* profile_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC11841FD87007F0C63 /* profile_tab.png */; };
+		39F91AC41841FD87007F0C63 /* profile_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC11841FD87007F0C63 /* profile_tab.png */; };
+		39F91AC51841FD87007F0C63 /* profile_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC21841FD87007F0C63 /* profile_tab@2x.png */; };
+		39F91AC61841FD87007F0C63 /* profile_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC21841FD87007F0C63 /* profile_tab@2x.png */; };
+		39F91AC91841FD99007F0C63 /* iPad_profile_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC71841FD99007F0C63 /* iPad_profile_tab.png */; };
+		39F91ACA1841FD99007F0C63 /* iPad_profile_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC71841FD99007F0C63 /* iPad_profile_tab.png */; };
+		39F91ACB1841FD99007F0C63 /* iPad_profile_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC81841FD99007F0C63 /* iPad_profile_tab@2x.png */; };
+		39F91ACC1841FD99007F0C63 /* iPad_profile_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F91AC81841FD99007F0C63 /* iPad_profile_tab@2x.png */; };
+		39F91ACF1841FDB7007F0C63 /* ProfileTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ACE1841FDB7007F0C63 /* ProfileTab.m */; };
+		39F91AD01841FDB7007F0C63 /* ProfileTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ACE1841FDB7007F0C63 /* ProfileTab.m */; };
+		39F91AD3184218B6007F0C63 /* MyListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91AD2184218B6007F0C63 /* MyListsViewController.m */; };
+		39F91AD4184218B6007F0C63 /* MyListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91AD2184218B6007F0C63 /* MyListsViewController.m */; };
+		39F91AD718421948007F0C63 /* EmailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91AD618421948007F0C63 /* EmailTableView.m */; };
+		39F91AD818421948007F0C63 /* EmailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91AD618421948007F0C63 /* EmailTableView.m */; };
+		39F91ADB18421964007F0C63 /* MyContactsPetListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ADA18421964007F0C63 /* MyContactsPetListTableView.m */; };
+		39F91ADC18421964007F0C63 /* MyContactsPetListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ADA18421964007F0C63 /* MyContactsPetListTableView.m */; };
 		A502607517D95FCA006E7504 /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A502607417D95FCA006E7504 /* DataCenter.m */; };
 		A502607817D9621C006E7504 /* BannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A502607717D9621C006E7504 /* BannerManager.m */; };
 		A5127F3317D9FEA7005A8253 /* NoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5127F3217D9FEA7005A8253 /* NoCell.m */; };
@@ -1895,6 +1913,20 @@
 		39F8D50918403BA20098C957 /* UserSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSplashView.m; sourceTree = "<group>"; };
 		39F91AB91841C421007F0C63 /* GroupMembersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMembersView.h; sourceTree = "<group>"; };
 		39F91ABA1841C421007F0C63 /* GroupMembersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMembersView.m; sourceTree = "<group>"; };
+		39F91ABD1841F615007F0C63 /* MyActivatyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivatyViewController.h; sourceTree = "<group>"; };
+		39F91ABE1841F615007F0C63 /* MyActivatyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivatyViewController.m; sourceTree = "<group>"; };
+		39F91AC11841FD87007F0C63 /* profile_tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_tab.png; sourceTree = "<group>"; };
+		39F91AC21841FD87007F0C63 /* profile_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_tab@2x.png"; sourceTree = "<group>"; };
+		39F91AC71841FD99007F0C63 /* iPad_profile_tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_profile_tab.png; sourceTree = "<group>"; };
+		39F91AC81841FD99007F0C63 /* iPad_profile_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_profile_tab@2x.png"; sourceTree = "<group>"; };
+		39F91ACD1841FDB7007F0C63 /* ProfileTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTab.h; sourceTree = "<group>"; };
+		39F91ACE1841FDB7007F0C63 /* ProfileTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTab.m; sourceTree = "<group>"; };
+		39F91AD1184218B6007F0C63 /* MyListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListsViewController.h; sourceTree = "<group>"; };
+		39F91AD2184218B6007F0C63 /* MyListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListsViewController.m; sourceTree = "<group>"; };
+		39F91AD518421948007F0C63 /* EmailTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailTableView.h; sourceTree = "<group>"; };
+		39F91AD618421948007F0C63 /* EmailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailTableView.m; sourceTree = "<group>"; };
+		39F91AD918421964007F0C63 /* MyContactsPetListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyContactsPetListTableView.h; sourceTree = "<group>"; };
+		39F91ADA18421964007F0C63 /* MyContactsPetListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactsPetListTableView.m; sourceTree = "<group>"; };
 		A502607317D95FCA006E7504 /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
 		A502607417D95FCA006E7504 /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
 		A502607617D9621C006E7504 /* BannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerManager.h; sourceTree = "<group>"; };
@@ -2268,6 +2300,14 @@
 				3920215E17BD20230047E040 /* MyFaviorActivatyTableView.m */,
 				3920216017BD202F0047E040 /* MyMessageTableView.h */,
 				3920216117BD202F0047E040 /* MyMessageTableView.m */,
+				39F91ABD1841F615007F0C63 /* MyActivatyViewController.h */,
+				39F91ABE1841F615007F0C63 /* MyActivatyViewController.m */,
+				39F91AD1184218B6007F0C63 /* MyListsViewController.h */,
+				39F91AD2184218B6007F0C63 /* MyListsViewController.m */,
+				39F91AD518421948007F0C63 /* EmailTableView.h */,
+				39F91AD618421948007F0C63 /* EmailTableView.m */,
+				39F91AD918421964007F0C63 /* MyContactsPetListTableView.h */,
+				39F91ADA18421964007F0C63 /* MyContactsPetListTableView.m */,
 			);
 			path = dynamic;
 			sourceTree = "<group>";
@@ -2714,6 +2754,8 @@
 			children = (
 				39298B8517C7065000E215F8 /* UserProfileView.h */,
 				39298B8617C7065000E215F8 /* UserProfileView.m */,
+				39F91ACD1841FDB7007F0C63 /* ProfileTab.h */,
+				39F91ACE1841FDB7007F0C63 /* ProfileTab.m */,
 			);
 			path = userprofile;
 			sourceTree = "<group>";
@@ -3223,6 +3265,8 @@
 			isa = PBXGroup;
 			children = (
 				395644AA180E1E9D001B1396 /* iPad_tab_contact.png */,
+				39F91AC71841FD99007F0C63 /* iPad_profile_tab.png */,
+				39F91AC81841FD99007F0C63 /* iPad_profile_tab@2x.png */,
 				395644AB180E1E9D001B1396 /* iPad_tab_contact@2x.png */,
 				3920C723181A5389005EDCF1 /* iPad_headtab_bg.png */,
 				391FCED91835217300BDC599 /* iPad_newtip.png */,
@@ -3440,6 +3484,8 @@
 		3956453A180E1E9D001B1396 /* tab */ = {
 			isa = PBXGroup;
 			children = (
+				39F91AC11841FD87007F0C63 /* profile_tab.png */,
+				39F91AC21841FD87007F0C63 /* profile_tab@2x.png */,
 				393402691832652A007CB9A9 /* tab_my@2x.png */,
 				391FCEDF1835218900BDC599 /* newtip.png */,
 				391FCEE01835218900BDC599 /* newtip@2x.png */,
@@ -4023,6 +4069,7 @@
 				39564671180E1E9D001B1396 /* addbutton@2x.png in Resources */,
 				3934026D18326551007CB9A9 /* iPad_tab_my@2x.png in Resources */,
 				395645C7180E1E9D001B1396 /* iPad_header_nav.png in Resources */,
+				39F91AC51841FD87007F0C63 /* profile_tab@2x.png in Resources */,
 				3910A2A517B15A8B002EC669 /* composeupbg.png in Resources */,
 				395645E1180E1E9D001B1396 /* iPad_writer_header@2x.png in Resources */,
 				39564745180E1E9D001B1396 /* express.png in Resources */,
@@ -4078,11 +4125,14 @@
 				39564725180E1E9D001B1396 /* registerbutton@2x.png in Resources */,
 				395646C7180E1E9D001B1396 /* gps_header.png in Resources */,
 				3910A2AC17B15A8B002EC669 /* friendPortrait@2x.png in Resources */,
+				39F91AC91841FD99007F0C63 /* iPad_profile_tab.png in Resources */,
 				395646AB180E1E9D001B1396 /* sex_man.png in Resources */,
+				39F91ACB1841FD99007F0C63 /* iPad_profile_tab@2x.png in Resources */,
 				3934027318326665007CB9A9 /* tab_my.png in Resources */,
 				391FCEE11835218900BDC599 /* newtip.png in Resources */,
 				395645D5180E1E9D001B1396 /* iPad_menu_header@2x.png in Resources */,
 				3910A2AD17B15A8B002EC669 /* netError.png in Resources */,
+				39F91AC31841FD87007F0C63 /* profile_tab.png in Resources */,
 				39564589180E1E9D001B1396 /* iPad_bg.png in Resources */,
 				395646B3180E1E9D001B1396 /* v_line.png in Resources */,
 				3920C71E181A5241005EDCF1 /* ipad_view_theme.xml in Resources */,
@@ -4395,6 +4445,7 @@
 				39564672180E1E9D001B1396 /* addbutton@2x.png in Resources */,
 				3934026E18326551007CB9A9 /* iPad_tab_my@2x.png in Resources */,
 				395645C8180E1E9D001B1396 /* iPad_header_nav.png in Resources */,
+				39F91AC61841FD87007F0C63 /* profile_tab@2x.png in Resources */,
 				39568EC317E89F4900B3F1AA /* composeupbg.png in Resources */,
 				395645E2180E1E9D001B1396 /* iPad_writer_header@2x.png in Resources */,
 				39564746180E1E9D001B1396 /* express.png in Resources */,
@@ -4450,11 +4501,14 @@
 				39564726180E1E9D001B1396 /* registerbutton@2x.png in Resources */,
 				395646C8180E1E9D001B1396 /* gps_header.png in Resources */,
 				39568ECA17E89F4900B3F1AA /* friendPortrait@2x.png in Resources */,
+				39F91ACA1841FD99007F0C63 /* iPad_profile_tab.png in Resources */,
 				395646AC180E1E9D001B1396 /* sex_man.png in Resources */,
+				39F91ACC1841FD99007F0C63 /* iPad_profile_tab@2x.png in Resources */,
 				3934027418326665007CB9A9 /* tab_my.png in Resources */,
 				391FCEE21835218900BDC599 /* newtip.png in Resources */,
 				395645D6180E1E9D001B1396 /* iPad_menu_header@2x.png in Resources */,
 				39568ECB17E89F4900B3F1AA /* netError.png in Resources */,
+				39F91AC41841FD87007F0C63 /* profile_tab.png in Resources */,
 				3956458A180E1E9D001B1396 /* iPad_bg.png in Resources */,
 				395646B4180E1E9D001B1396 /* v_line.png in Resources */,
 				3920C71F181A5241005EDCF1 /* ipad_view_theme.xml in Resources */,
@@ -4580,8 +4634,10 @@
 				3910A1A017B13679002EC669 /* ActivityTableView.m in Sources */,
 				3910A1A317B140D2002EC669 /* PetNewsModel.m in Sources */,
 				3910A1AA17B1567A002EC669 /* PetUser.m in Sources */,
+				39F91AD718421948007F0C63 /* EmailTableView.m in Sources */,
 				3910A27617B15A8B002EC669 /* JSONKit.m in Sources */,
 				3910A27717B15A8B002EC669 /* QQHelper.m in Sources */,
+				39F91ABF1841F615007F0C63 /* MyActivatyViewController.m in Sources */,
 				3906AAAB1838790F00F1C8DF /* PetNewsForwardEditViewController.m in Sources */,
 				3910A27917B15A8B002EC669 /* WeiboAuthentication.m in Sources */,
 				3910A27A17B15A8B002EC669 /* WeiboEngine.m in Sources */,
@@ -4603,8 +4659,10 @@
 				3910A2C117B15A8B002EC669 /* UINoteView.m in Sources */,
 				3910A2C217B15A8B002EC669 /* UITableViewFriendCell.m in Sources */,
 				3910A2C317B15A8B002EC669 /* UIWaitingView.m in Sources */,
+				39F91ADB18421964007F0C63 /* MyContactsPetListTableView.m in Sources */,
 				3910A2C417B15A8B002EC669 /* WordsLeftView.m in Sources */,
 				3910A2C517B15A8B002EC669 /* NSObject+SBJSON.m in Sources */,
+				39F91ACF1841FDB7007F0C63 /* ProfileTab.m in Sources */,
 				3910A2C617B15A8B002EC669 /* NSString+SBJSON.m in Sources */,
 				3910A2C717B15A8B002EC669 /* SBJSON.m in Sources */,
 				39F8D50A18403BA20098C957 /* UserSplashView.m in Sources */,
@@ -4647,6 +4705,7 @@
 				3929C12C17BBE10B002A936A /* MarketWebViewController.m in Sources */,
 				3920215217BD16D70047E040 /* NavContentViewController.m in Sources */,
 				3920215617BD1B470047E040 /* PersonDynamicViewController.m in Sources */,
+				39F91AD3184218B6007F0C63 /* MyListsViewController.m in Sources */,
 				3909B8E7183CF3BE001169B4 /* CreateGroupViewController.m in Sources */,
 				3920215917BD20010047E040 /* MyPetNewsTableView.m in Sources */,
 				3934028318326C6E007CB9A9 /* LikeView.m in Sources */,
@@ -4756,8 +4815,10 @@
 				39568DEF17E89F4900B3F1AA /* ActivityTableView.m in Sources */,
 				39568DF017E89F4900B3F1AA /* PetNewsModel.m in Sources */,
 				39568DF117E89F4900B3F1AA /* PetUser.m in Sources */,
+				39F91AD818421948007F0C63 /* EmailTableView.m in Sources */,
 				39568DF217E89F4900B3F1AA /* JSONKit.m in Sources */,
 				39568DF317E89F4900B3F1AA /* QQHelper.m in Sources */,
+				39F91AC01841F615007F0C63 /* MyActivatyViewController.m in Sources */,
 				3906AAAC1838790F00F1C8DF /* PetNewsForwardEditViewController.m in Sources */,
 				39568DF417E89F4900B3F1AA /* WeiboAuthentication.m in Sources */,
 				39568DF517E89F4900B3F1AA /* WeiboEngine.m in Sources */,
@@ -4779,8 +4840,10 @@
 				39568E0417E89F4900B3F1AA /* UINoteView.m in Sources */,
 				39568E0517E89F4900B3F1AA /* UITableViewFriendCell.m in Sources */,
 				39568E0617E89F4900B3F1AA /* UIWaitingView.m in Sources */,
+				39F91ADC18421964007F0C63 /* MyContactsPetListTableView.m in Sources */,
 				39568E0717E89F4900B3F1AA /* WordsLeftView.m in Sources */,
 				39568E0817E89F4900B3F1AA /* NSObject+SBJSON.m in Sources */,
+				39F91AD01841FDB7007F0C63 /* ProfileTab.m in Sources */,
 				39568E0917E89F4900B3F1AA /* NSString+SBJSON.m in Sources */,
 				39568E0A17E89F4900B3F1AA /* SBJSON.m in Sources */,
 				39F8D50B18403BA20098C957 /* UserSplashView.m in Sources */,
@@ -4823,6 +4886,7 @@
 				39568E2B17E89F4900B3F1AA /* MarketWebViewController.m in Sources */,
 				39568E2C17E89F4900B3F1AA /* NavContentViewController.m in Sources */,
 				39568E2D17E89F4900B3F1AA /* PersonDynamicViewController.m in Sources */,
+				39F91AD4184218B6007F0C63 /* MyListsViewController.m in Sources */,
 				3909B8E8183CF3BE001169B4 /* CreateGroupViewController.m in Sources */,
 				39568E2E17E89F4900B3F1AA /* MyPetNewsTableView.m in Sources */,
 				3934028418326C6E007CB9A9 /* LikeView.m in Sources */,

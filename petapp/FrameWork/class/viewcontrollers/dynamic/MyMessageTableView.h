@@ -10,12 +10,7 @@
 #import "PullTableView.h"
 
 @class AsyncTask;
-@class UserProfileView;
-
 @interface MyMessageTableView : PullTableView{
-    UIImageView*  bgView;
-    UserProfileView* profileView;
-
     NSMutableArray* list;
     AsyncTask* task;
     int pageOffset;

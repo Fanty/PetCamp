@@ -12,10 +12,11 @@
 
 @class AsyncTask;
 @class UserProfileView;
+@class ProfileTab;
 @interface MyPetNewsTableView : PullTableView{
     
-    UIImageView*  bgView;
     UserProfileView* profileView;
+    ProfileTab* profileTab;
 
     NSMutableArray* list;
     AsyncTask* task;
@@ -26,6 +27,8 @@
 @property(assign,nonatomic) UIViewController* parentViewController;
 
 -(void)clear;
+
+
 
 @end
 

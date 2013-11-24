@@ -44,17 +44,15 @@
     [profileView title:user.nickname];
     [profileView desc:user.person_desc];
     [profileView sex:user.sex];
-    [profileView showAddFriend:NO];
-    [profileView showAddPetNew:NO];
     
     if([DataCenter sharedInstance].user.petType==PetUserPetTypeCat){
-        [profileView lovePetString:lang(@"love_cat")];
+//        [profileView lovePetString:lang(@"love_cat")];
     }
     else if([DataCenter sharedInstance].user.petType==PetUserPetTypeDog){
-        [profileView lovePetString:lang(@"love_dog")];
+//        [profileView lovePetString:lang(@"love_dog")];
     }
     else if([DataCenter sharedInstance].user.petType==PetUserPetTypeOther){
-        [profileView lovePetString:lang(@"love_other")];
+//        [profileView lovePetString:lang(@"love_other")];
     }
     
     [self.view addSubview:profileView];

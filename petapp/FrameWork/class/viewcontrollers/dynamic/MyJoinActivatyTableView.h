@@ -10,13 +10,8 @@
 #import "PullTableView.h"
 
 @class AsyncTask;
-@class UserProfileView;
-
 @interface MyJoinActivatyTableView : PullTableView{
     
-    UIImageView*  bgView;
-    UserProfileView* profileView;
-
     NSMutableArray* list;
     AsyncTask* task;
     

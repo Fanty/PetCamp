@@ -12,18 +12,20 @@
 #import "PetCell.h"
 #import "PetNewsModel.h"
 #import "PetUser.h"
+#import "ProfileTab.h"
 #import "AppDelegate.h"
 #import "PetNewsAndActivatyManager.h"
 #import "AlertUtils.h"
 #import "PetNewsEditViewController.h"
 #import "PetNewsDetailViewController.h"
 #import "PetNewsNavigationController.h"
+#import "MyListsViewController.h"
 #import "GTGZThemeManager.h"
 #import "UserProfileView.h"
 #import "DataCenter.h"
 #import "Utils.h"
 
-@interface MyPetNewsTableView()<UITableViewDataSource,UITableViewDelegate,UserProfileViewDelegate>
+@interface MyPetNewsTableView()<UITableViewDataSource,UITableViewDelegate,UserProfileViewDelegate,ProfileTabDelegate>
 -(void)initHeader;
 -(void)loadData:(BOOL)loadMore;
 -(void)retryButtonClick;
@@ -54,8 +56,8 @@
 }
 
 -(void)dealloc{
-    [bgView release];
     [profileView release];
+    [profileTab release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [list release];
     [task cancel];
@@ -96,7 +98,7 @@
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if([indexPath row]==0){
         [self initHeader];
-        return CGRectGetMaxY(profileView.frame);
+        return CGRectGetMaxY(profileTab.frame);
     }
     else{
         return [PetCell height];
@@ -111,8 +113,18 @@
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
         }
         [self initHeader];
-        [cell addSubview:bgView];
+        
+        [profileView headUrl:[DataCenter sharedInstance].user.imageHeadUrl];
+        [profileView title:[DataCenter sharedInstance].user.nickname];
+        [profileView desc:[DataCenter sharedInstance].user.person_desc];
+        [profileView sex:[DataCenter sharedInstance].user.sex];
+        [profileView showAddPetNew];
+        
+        
+        [profileTab petNumber:0 friendNumber:0 fansNumber:0 addNumber:0 messageNumber:0];
+
         [cell addSubview:profileView];
+        [cell addSubview:profileTab];
         return cell;
     }
     else{
@@ -163,29 +175,33 @@
     
 }
 
+#pragma mark profiletab delegate
+
+-(void)profileTab:(ProfileTab *)profileTab click:(int)clickIndex{
+    if(clickIndex>0){
+        MyListsViewController* controller=[[MyListsViewController alloc] init];
+        controller.showIndex=clickIndex;
+        [self.parentViewController.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
 
 #pragma mark method
 
 -(void)initHeader{
-    if(bgView!=nil)return;
-    bgView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"default_myprofile.png"]];
-    bgView.contentMode=UIViewContentModeTop;
-    bgView.clipsToBounds=YES;
-    CGRect rect=bgView.frame;
-    if(![Utils isIPad])
-        rect.size.height=180.0f;
-    bgView.frame=rect;
+    if(profileView!=nil)return;
+
     
-    profileView=[[UserProfileView alloc] initWithFrame:CGRectMake(0.0f, ([Utils isIPad]?bgView.frame.size.height-120.0f:115.0f), self.frame.size.width, 0.0f)];
+    profileView=[[UserProfileView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width, 0.0f)];
     profileView.delegate=self;
-    [profileView headUrl:[DataCenter sharedInstance].user.imageHeadUrl];
-    [profileView title:[DataCenter sharedInstance].user.nickname];
-    [profileView desc:[DataCenter sharedInstance].user.person_desc];
-    [profileView sex:[DataCenter sharedInstance].user.pet_sex];
-    [profileView showAddFriend:NO];
     
- //   if([Utils isIPad])
-        [profileView allWhite];
+    profileTab=[[ProfileTab alloc] init];
+    profileTab.delegate=self;
+    
+    CGRect rect=profileTab.frame;
+    rect.origin.y=CGRectGetMaxY(profileView.frame);
+    profileTab.frame=rect;
 
 }
 

@@ -67,13 +67,13 @@
     [profileView sex:[DataCenter sharedInstance].user.pet_sex];
     
     if([DataCenter sharedInstance].user.petType==PetUserPetTypeCat){
-        [profileView lovePetString:lang(@"love_cat")];
+//        [profileView lovePetString:lang(@"love_cat")];
     }
     else if([DataCenter sharedInstance].user.petType==PetUserPetTypeDog){
-        [profileView lovePetString:lang(@"love_dog")];
+//        [profileView lovePetString:lang(@"love_dog")];
     }
     else if([DataCenter sharedInstance].user.petType==PetUserPetTypeOther){
-        [profileView lovePetString:lang(@"love_other")];
+//        [profileView lovePetString:lang(@"love_other")];
     }
 
 }
@@ -87,8 +87,6 @@
 -(void)initProfile{
     if(profileView!=nil)return;
     profileView=[[UserProfileView alloc] initWithFrame:CGRectMake(0.0f, ([Utils isIPad]?30.0f:0.0f), self.view.frame.size.width, 0.0f)];
-    [profileView showAddFriend:NO];
-    [profileView showAddPetNew:NO];
     [self.view addSubview:profileView];
     [profileView release];
 

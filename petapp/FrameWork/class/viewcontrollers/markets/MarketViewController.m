@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         self.title=lang(@"market");
+        [self backNavBar];
         // Custom initialization
     }
     return self;

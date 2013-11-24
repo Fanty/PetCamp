@@ -18,7 +18,6 @@
 #import "AlertUtils.h"
 
 #import "GTGZThemeManager.h"
-#import "UserProfileView.h"
 #import "DataCenter.h"
 
 #import "PetNewsEditViewController.h"
@@ -26,9 +25,8 @@
 #import "ContactDetailViewController.h"
 #import "Utils.h"
 
-@interface MyMessageTableView()<UITableViewDataSource,UITableViewDelegate,UserProfileViewDelegate>
+@interface MyMessageTableView()<UITableViewDataSource,UITableViewDelegate>
 
--(void)initHeader;
 -(void)loadData:(BOOL)loadMore;
 
 @end
@@ -52,8 +50,6 @@
 }
 
 -(void)dealloc{
-    [profileView release];
-    [bgView release];
     [list release];
     [task cancel];
     [super dealloc];
@@ -87,38 +83,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [list count]+1;
+    return [list count];
 }
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([indexPath row]==0){
-        [self initHeader];
-        return CGRectGetMaxY(profileView.frame);
-    }
-    else{
-        return [MessageCell height];
-    }
+    return [MessageCell height];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([indexPath row]==0){
-        UITableViewCell* cell=[_tableView dequeueReusableCellWithIdentifier:@"first_cell"];
-        if(cell==nil){
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"first_cell"] autorelease];
-            cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        }
-        [self initHeader];
-        [cell addSubview:bgView];
-        [cell addSubview:profileView];
-        return cell;
-    }
-    else{
-        MessageCell *cell = (MessageCell*)[_tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    MessageCell *cell = (MessageCell*)[_tableView dequeueReusableCellWithIdentifier:@"cell"];
         if(cell == nil){
             cell = [[[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
         }
         
-        MessageModel* model=[list objectAtIndex:[indexPath row]-1];
+        MessageModel* model=[list objectAtIndex:[indexPath row]];
         [cell headUrl:model.friendUser.imageHeadUrl];
         [cell title:model.friendUser.nickname];
         [cell content:model.content];
@@ -126,64 +105,22 @@
         
         
         return cell;
-    }
-
 }
 
 
 -(void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if([indexPath row]>0){
-        MessageModel* model=[list objectAtIndex:[indexPath row]-1];
+        MessageModel* model=[list objectAtIndex:[indexPath row]];
 
         ContactDetailViewController* controller=[[ContactDetailViewController alloc] init];
         controller.title=model.friendUser.nickname;
         controller.uid=model.friendUser.uid;
         [self.parentViewController.navigationController pushViewController:controller animated:YES];
         [controller release];
-
-    }
 }
 
-
-#pragma mark  userprofile delegate
-
--(void)profileDidSendPetNews:(UserProfileView *)profileView{
-    PetNewsEditViewController* controller=[[PetNewsEditViewController alloc] init];
-    PetNewsNavigationController* navController=[[PetNewsNavigationController alloc] initWithRootViewController:controller];
-    [controller release];
-    [[AppDelegate appDelegate].rootViewController presentModalViewController:navController animated:YES];
-    
-    [navController release];
-    
-}
 
 #pragma mark method
-
--(void)initHeader{
-    if(bgView!=nil)return;
-    bgView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"default_myprofile.png"]];
-    bgView.contentMode=UIViewContentModeTop;
-    bgView.clipsToBounds=YES;
-    CGRect rect=bgView.frame;
-    if(![Utils isIPad])
-        rect.size.height=180.0f;
-    bgView.frame=rect;
-    
-    profileView=[[UserProfileView alloc] initWithFrame:CGRectMake(0.0f, ([Utils isIPad]?bgView.frame.size.height-120.0f:115.0f), self.frame.size.width, 0.0f)];
-    profileView.delegate=self;
-    [profileView headUrl:[DataCenter sharedInstance].user.imageHeadUrl];
-    [profileView title:[DataCenter sharedInstance].user.nickname];
-    [profileView desc:[DataCenter sharedInstance].user.person_desc];
-    [profileView sex:[DataCenter sharedInstance].user.pet_sex];
-    [profileView showAddFriend:NO];
-    [profileView showAddPetNew:NO];
-
-  //  if([Utils isIPad])
-        [profileView allWhite];
-
-}
-
 -(void)clear{
     [task cancel];
     task=nil;

@@ -8,19 +8,11 @@
 
 #import "NavContentViewController.h"
 @class ImageDownloadedView;
-@class HeadTabView;
 @class MyPetNewsTableView;
-@class MyJoinActivatyTableView;
-@class MyFaviorActivatyTableView;
-@class MyMessageTableView;
 @interface PersonDynamicViewController : NavContentViewController{
-    HeadTabView* headTab;
 
     MyPetNewsTableView* myPetNewsTableView;
-    MyJoinActivatyTableView* myJoinActivatyTableView;
-    MyFaviorActivatyTableView* myFaviorActivatyTableView;
-    MyMessageTableView* myMessageTableView;
-
+    
 }
 
 @end

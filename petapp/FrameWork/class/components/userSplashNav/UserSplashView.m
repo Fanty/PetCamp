@@ -57,6 +57,17 @@
         if([self.touchDelegate respondsToSelector:@selector(didSplashEnd:)])
             [self.touchDelegate didSplashEnd:self];
     }
+    else{
+        self.userInteractionEnabled=NO;
+        [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [self setContentOffset:CGPointMake(self.frame.size.width, 0.0f)];
+        
+        } completion:^(BOOL finish){
+    
+            self.userInteractionEnabled=YES;
+            showEnd=YES;
+        }];
+    }
 }
 
 #pragma mark scrollview delegate
