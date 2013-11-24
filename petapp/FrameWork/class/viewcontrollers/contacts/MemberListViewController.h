@@ -10,10 +10,11 @@
 
 @class ContactByGroupView;
 @class AsyncTask;
-@interface ContactByGropuViewController : NavContentViewController{
+@interface MemberListViewController : NavContentViewController{
     ContactByGroupView* contactTableView;
     AsyncTask* task;
 }
+@property(nonatomic,assign) BOOL showJoinGroupButton;
 @property(nonatomic,retain) NSString* groupId;
 @property(nonatomic,retain) NSString* uid;
 @end

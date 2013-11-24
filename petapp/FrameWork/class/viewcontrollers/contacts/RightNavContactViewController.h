@@ -7,9 +7,5 @@
 //
 
 #import "NavContentViewController.h"
-@class AsyncTask;
-@interface RightNavContactViewController : NavContentViewController{
-    AsyncTask* task;
-}
-
+@interface RightNavContactViewController : NavContentViewController
 @end

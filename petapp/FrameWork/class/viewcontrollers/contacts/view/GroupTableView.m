@@ -10,7 +10,7 @@
 #import "ContactGroupCell.h"
 #import "PetUser.h"
 #import "GroupModel.h"
-#import "ContactByGropuViewController.h"
+#import "ChatMainViewController.h"
 #import "AppDelegate.h"
 #import "ContactGroupManager.h"
 #import "DataCenter.h"
@@ -35,10 +35,10 @@
         self.separatorStyle=UITableViewCellSeparatorStyleNone;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationUpdate) name:FriendUpdateNotification object:nil];
+        showList=[[NSMutableArray alloc] initWithCapacity:2];
 
         [self search:nil];
         
-        showList=[[NSMutableArray alloc] initWithCapacity:2];
     }
     return self;
 }
@@ -129,9 +129,8 @@
     else{
         GroupModel* model=[showList objectAtIndex:[indexPath row]];
         
-        ContactByGropuViewController* controller=[[ContactByGropuViewController alloc] init];
-        controller.groupId=model.groupId;
-        controller.uid=model.petUser.uid;
+        ChatMainViewController* controller=[[ChatMainViewController alloc] init];
+        controller.groupModel=model;
         controller.title=model.groupName;
         [parentViewController.navigationController pushViewController:controller animated:YES];
         [controller release];

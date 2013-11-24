@@ -16,6 +16,7 @@
 #import "AlertUtils.h"
 #import "ZBarReaderViewController.h"
 #import "ContactDetailViewController.h"
+#import "CreateGroupViewController.h"
 #import "Utils.h"
 
 
@@ -56,16 +57,9 @@
 }
 
 -(void)dealloc{
-    [task cancel];
     [super dealloc];
 }
 
-
-#pragma mark method
-
--(BOOL)canBackNav{
-    return (task==nil);
-}
 
 #pragma mark table delegate
 
@@ -134,12 +128,10 @@
         [self scanQRCode];
     }
     else if([indexPath section]==2){
+        CreateGroupViewController* controller=[[CreateGroupViewController alloc] init];
         
-        UIAlertView* alert=[[UIAlertView alloc] initWithTitle:lang(@"pls_inputgroup") message:nil delegate:self cancelButtonTitle:lang(@"cancel") otherButtonTitles:lang(@"confirm"), nil];
-        alert.alertViewStyle=UIAlertViewStylePlainTextInput;
-        [alert show];
-        [alert release];
-
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
 }
 
@@ -393,28 +385,5 @@
 
 }
 
-
-
-#pragma mark alertview delegate
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==1){
-        UITextField* textField = [alertView textFieldAtIndex:0];
-        NSString* groupName=[GTGZUtils trim:textField.text];
-        if([groupName length]>0){
-            [task cancel];
-            MBProgressHUD* hud=[AlertUtils showLoading:lang(@"loadmore_loading") view:self.view];
-            [hud show:YES];
-            task=[[AppDelegate appDelegate].contactGroupManager createGroup:groupName];
-            [task setFinishBlock:^{
-                [hud hide:NO];
-                if(![task status]){
-                    [AlertUtils showAlert:[task errorMessage] view:self.view];
-                }
-                task=nil;
-            }];
-        }
-    }
-}
 
 @end

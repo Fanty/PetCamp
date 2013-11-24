@@ -12,4 +12,5 @@
 
 +(MBProgressHUD*)showAlert:(NSString*)message view:(UIView*)view;
 +(MBProgressHUD*)showLoading:(NSString*)message view:(UIView*)view;
++(UIAlertView*)showStandAlert:(NSString*)message;
 @end

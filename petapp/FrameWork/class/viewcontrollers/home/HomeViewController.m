@@ -18,10 +18,11 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "PersonDynamicViewController.h"
+#import "UserSplashView.h"
 
 #define CHECK_LOGIN_TAG   333
 
-@interface HomeViewController ()<UITabBarControllerDelegate,LoginViewControllerDelegate>
+@interface HomeViewController ()<UITabBarControllerDelegate,LoginViewControllerDelegate,UserSplashViewDelegate>
 
 @end
 
@@ -50,6 +51,17 @@
     
     //self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
 
+    
+    UserSplashView* splashView=[[UserSplashView alloc] initWithFrame:self.view.bounds];
+    splashView.touchDelegate=self;
+    [self.view addSubview:splashView];
+    [splashView release];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -175,6 +187,18 @@
 
 -(void)didLoginFinish:(LoginViewController*)controller{
     self.selectedIndex=newIndex;
+}
+
+#pragma mark splashview delegate
+
+-(void)didSplashEnd:(UserSplashView *)userSplashView{
+    userSplashView.alpha=1.0f;
+    userSplashView.userInteractionEnabled=NO;
+    [UIView animateWithDuration:0.7f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        userSplashView.alpha=0.0f;
+    } completion:^(BOOL finish){
+        [userSplashView removeFromSuperview];
+    }];
 }
 
 @end

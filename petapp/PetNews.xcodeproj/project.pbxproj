@@ -205,6 +205,10 @@
 		3927DD6317AC036A00791945 /* SettingInfoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3927DD4917AC036A00791945 /* SettingInfoMainViewController.m */; };
 		3927DD6417AC036A00791945 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3927DD4C17AC036A00791945 /* XmlParser.m */; };
 		392910B817CCFD9B00818EC2 /* AlertUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 392910B717CCFD9B00818EC2 /* AlertUtils.m */; };
+		392932BF183F39C000237EC3 /* ChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392932BE183F39C000237EC3 /* ChatMainViewController.m */; };
+		392932C0183F39C000237EC3 /* ChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392932BE183F39C000237EC3 /* ChatMainViewController.m */; };
+		392932C3183F3B6800237EC3 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392932C2183F3B6800237EC3 /* GroupDetailViewController.m */; };
+		392932C4183F3B6800237EC3 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392932C2183F3B6800237EC3 /* GroupDetailViewController.m */; };
 		39298B8717C7065000E215F8 /* UserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39298B8617C7065000E215F8 /* UserProfileView.m */; };
 		3929C12617BBCD27002A936A /* ContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3929C12517BBCD27002A936A /* ContactDetailViewController.m */; };
 		3929C12917BBCD65002A936A /* ContactDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3929C12817BBCD65002A936A /* ContactDetailHeader.m */; };
@@ -818,7 +822,7 @@
 		39568E3617E89F4900B3F1AA /* SignUpParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C74917C4F914008E0322 /* SignUpParser.m */; };
 		39568E3717E89F4900B3F1AA /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A9C74C17C4FFED008E0322 /* ChangePasswordViewController.m */; };
 		39568E3917E89F4900B3F1AA /* ActivatyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154F217C35F03003A72A6 /* ActivatyCell.m */; };
-		39568E3A17E89F4900B3F1AA /* ContactByGropuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154FD17C36C6F003A72A6 /* ContactByGropuViewController.m */; };
+		39568E3A17E89F4900B3F1AA /* MemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154FD17C36C6F003A72A6 /* MemberListViewController.m */; };
 		39568E3B17E89F4900B3F1AA /* PetNewsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39383FC717C3ACD900C15100 /* PetNewsEditViewController.m */; };
 		39568E3C17E89F4900B3F1AA /* EditerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39383FCB17C3B31F00C15100 /* EditerView.m */; };
 		39568E3D17E89F4900B3F1AA /* PetNewsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39383FCE17C3B7DD00C15100 /* PetNewsParser.m */; };
@@ -974,7 +978,7 @@
 		3972DC2417BB935600942B8D /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3972DC2317BB935600942B8D /* ActivityDetailViewController.m */; };
 		3972DC2717BB937700942B8D /* ActivityDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3972DC2617BB937700942B8D /* ActivityDetailHeader.m */; };
 		398154F317C35F03003A72A6 /* ActivatyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154F217C35F03003A72A6 /* ActivatyCell.m */; };
-		398154FE17C36C6F003A72A6 /* ContactByGropuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154FD17C36C6F003A72A6 /* ContactByGropuViewController.m */; };
+		398154FE17C36C6F003A72A6 /* MemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398154FD17C36C6F003A72A6 /* MemberListViewController.m */; };
 		399520D1182158CB00B2B8BD /* headtab_bg_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 399520CE182158CB00B2B8BD /* headtab_bg_white.png */; };
 		399520D2182158CB00B2B8BD /* headtab_bg_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 399520CE182158CB00B2B8BD /* headtab_bg_white.png */; };
 		399520D3182158CB00B2B8BD /* tab_on_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 399520CF182158CB00B2B8BD /* tab_on_white.png */; };
@@ -1088,6 +1092,26 @@
 		39E5AAED183BB6C900937FB3 /* WeiboAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AAEB183BB6C900937FB3 /* WeiboAddViewController.m */; };
 		39E9AFD917CBA35C009E4A19 /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E9AFD817CBA35C009E4A19 /* HTTPRequest.m */; };
 		39F2105B17E743DF000A7921 /* ServiceWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F2105A17E743DF000A7921 /* ServiceWebViewController.m */; };
+		39F8D4ED18403B410098C957 /* iPad_splash_nav1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4E918403B410098C957 /* iPad_splash_nav1.png */; };
+		39F8D4EE18403B410098C957 /* iPad_splash_nav1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4E918403B410098C957 /* iPad_splash_nav1.png */; };
+		39F8D4EF18403B410098C957 /* iPad_splash_nav1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4EA18403B410098C957 /* iPad_splash_nav1@2x.png */; };
+		39F8D4F018403B410098C957 /* iPad_splash_nav1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4EA18403B410098C957 /* iPad_splash_nav1@2x.png */; };
+		39F8D4F118403B410098C957 /* iPad_splash_nav2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4EB18403B410098C957 /* iPad_splash_nav2.png */; };
+		39F8D4F218403B410098C957 /* iPad_splash_nav2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4EB18403B410098C957 /* iPad_splash_nav2.png */; };
+		39F8D4F318403B410098C957 /* iPad_splash_nav2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4EC18403B410098C957 /* iPad_splash_nav2@2x.png */; };
+		39F8D4F418403B410098C957 /* iPad_splash_nav2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4EC18403B410098C957 /* iPad_splash_nav2@2x.png */; };
+		39F8D4FA18403B4B0098C957 /* splash_nav1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F618403B4B0098C957 /* splash_nav1.png */; };
+		39F8D4FB18403B4B0098C957 /* splash_nav1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F618403B4B0098C957 /* splash_nav1.png */; };
+		39F8D4FC18403B4B0098C957 /* splash_nav1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F718403B4B0098C957 /* splash_nav1@2x.png */; };
+		39F8D4FD18403B4B0098C957 /* splash_nav1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F718403B4B0098C957 /* splash_nav1@2x.png */; };
+		39F8D4FE18403B4B0098C957 /* splash_nav2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F818403B4B0098C957 /* splash_nav2.png */; };
+		39F8D4FF18403B4B0098C957 /* splash_nav2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F818403B4B0098C957 /* splash_nav2.png */; };
+		39F8D50018403B4B0098C957 /* splash_nav2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F918403B4B0098C957 /* splash_nav2@2x.png */; };
+		39F8D50118403B4B0098C957 /* splash_nav2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4F918403B4B0098C957 /* splash_nav2@2x.png */; };
+		39F8D50A18403BA20098C957 /* UserSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F8D50918403BA20098C957 /* UserSplashView.m */; };
+		39F8D50B18403BA20098C957 /* UserSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F8D50918403BA20098C957 /* UserSplashView.m */; };
+		39F91ABB1841C421007F0C63 /* GroupMembersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ABA1841C421007F0C63 /* GroupMembersView.m */; };
+		39F91ABC1841C421007F0C63 /* GroupMembersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F91ABA1841C421007F0C63 /* GroupMembersView.m */; };
 		A502607517D95FCA006E7504 /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A502607417D95FCA006E7504 /* DataCenter.m */; };
 		A502607817D9621C006E7504 /* BannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A502607717D9621C006E7504 /* BannerManager.m */; };
 		A5127F3317D9FEA7005A8253 /* NoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5127F3217D9FEA7005A8253 /* NoCell.m */; };
@@ -1381,6 +1405,10 @@
 		3927DD4D17AC036A00791945 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		392910B617CCFD9B00818EC2 /* AlertUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtils.h; sourceTree = "<group>"; };
 		392910B717CCFD9B00818EC2 /* AlertUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtils.m; sourceTree = "<group>"; };
+		392932BD183F39C000237EC3 /* ChatMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMainViewController.h; sourceTree = "<group>"; };
+		392932BE183F39C000237EC3 /* ChatMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMainViewController.m; sourceTree = "<group>"; };
+		392932C1183F3B6800237EC3 /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
+		392932C2183F3B6800237EC3 /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
 		39298B8517C7065000E215F8 /* UserProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileView.h; sourceTree = "<group>"; };
 		39298B8617C7065000E215F8 /* UserProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileView.m; sourceTree = "<group>"; };
 		3929C12417BBCD27002A936A /* ContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailViewController.h; sourceTree = "<group>"; };
@@ -1787,8 +1815,8 @@
 		3972DC2617BB937700942B8D /* ActivityDetailHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailHeader.m; sourceTree = "<group>"; };
 		398154F117C35F03003A72A6 /* ActivatyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivatyCell.h; sourceTree = "<group>"; };
 		398154F217C35F03003A72A6 /* ActivatyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivatyCell.m; sourceTree = "<group>"; };
-		398154FC17C36C6F003A72A6 /* ContactByGropuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactByGropuViewController.h; sourceTree = "<group>"; };
-		398154FD17C36C6F003A72A6 /* ContactByGropuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactByGropuViewController.m; sourceTree = "<group>"; };
+		398154FC17C36C6F003A72A6 /* MemberListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberListViewController.h; sourceTree = "<group>"; };
+		398154FD17C36C6F003A72A6 /* MemberListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListViewController.m; sourceTree = "<group>"; };
 		399520CE182158CB00B2B8BD /* headtab_bg_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headtab_bg_white.png; sourceTree = "<group>"; };
 		399520CF182158CB00B2B8BD /* tab_on_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_on_white.png; sourceTree = "<group>"; };
 		399520D0182158CB00B2B8BD /* tab_on_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_on_white@2x.png"; sourceTree = "<group>"; };
@@ -1855,6 +1883,18 @@
 		39E9AFD817CBA35C009E4A19 /* HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
 		39F2105917E743DF000A7921 /* ServiceWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceWebViewController.h; sourceTree = "<group>"; };
 		39F2105A17E743DF000A7921 /* ServiceWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceWebViewController.m; sourceTree = "<group>"; };
+		39F8D4E918403B410098C957 /* iPad_splash_nav1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_splash_nav1.png; sourceTree = "<group>"; };
+		39F8D4EA18403B410098C957 /* iPad_splash_nav1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_splash_nav1@2x.png"; sourceTree = "<group>"; };
+		39F8D4EB18403B410098C957 /* iPad_splash_nav2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_splash_nav2.png; sourceTree = "<group>"; };
+		39F8D4EC18403B410098C957 /* iPad_splash_nav2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_splash_nav2@2x.png"; sourceTree = "<group>"; };
+		39F8D4F618403B4B0098C957 /* splash_nav1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_nav1.png; sourceTree = "<group>"; };
+		39F8D4F718403B4B0098C957 /* splash_nav1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_nav1@2x.png"; sourceTree = "<group>"; };
+		39F8D4F818403B4B0098C957 /* splash_nav2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_nav2.png; sourceTree = "<group>"; };
+		39F8D4F918403B4B0098C957 /* splash_nav2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_nav2@2x.png"; sourceTree = "<group>"; };
+		39F8D50818403BA20098C957 /* UserSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSplashView.h; sourceTree = "<group>"; };
+		39F8D50918403BA20098C957 /* UserSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSplashView.m; sourceTree = "<group>"; };
+		39F91AB91841C421007F0C63 /* GroupMembersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMembersView.h; sourceTree = "<group>"; };
+		39F91ABA1841C421007F0C63 /* GroupMembersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMembersView.m; sourceTree = "<group>"; };
 		A502607317D95FCA006E7504 /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
 		A502607417D95FCA006E7504 /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
 		A502607617D9621C006E7504 /* BannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerManager.h; sourceTree = "<group>"; };
@@ -1985,6 +2025,8 @@
 			children = (
 				3909B8E5183CF3BE001169B4 /* CreateGroupViewController.h */,
 				3909B8E6183CF3BE001169B4 /* CreateGroupViewController.m */,
+				392932C1183F3B6800237EC3 /* GroupDetailViewController.h */,
+				392932C2183F3B6800237EC3 /* GroupDetailViewController.m */,
 			);
 			path = group;
 			sourceTree = "<group>";
@@ -2400,6 +2442,8 @@
 		3927DCEF17AC036A00791945 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				39F91AB81841C3DB007F0C63 /* groupMembers */,
+				39F8D50718403B860098C957 /* userSplashNav */,
 				3906AAA41838735600F1C8DF /* forwarView */,
 				39E050DC17EFC2D400BCF7F8 /* imageViewer */,
 				39BBF3CE17D2D30100F2CB07 /* textInputView */,
@@ -2534,13 +2578,14 @@
 		3927DD3E17AC036A00791945 /* contacts */ = {
 			isa = PBXGroup;
 			children = (
+				392932BB183F382300237EC3 /* talk */,
 				3909B8E4183CEFEE001169B4 /* group */,
 				3909B8CF183CEFAB001169B4 /* view */,
 				395C452A17B8B15300F0DD99 /* contactDetail */,
 				3926FDB117ACFAEA00618142 /* ContactViewController.h */,
 				3926FDB217ACFAEA00618142 /* ContactViewController.m */,
-				398154FC17C36C6F003A72A6 /* ContactByGropuViewController.h */,
-				398154FD17C36C6F003A72A6 /* ContactByGropuViewController.m */,
+				398154FC17C36C6F003A72A6 /* MemberListViewController.h */,
+				398154FD17C36C6F003A72A6 /* MemberListViewController.m */,
 				3909B8E9183D0182001169B4 /* RightNavContactViewController.h */,
 				3909B8EA183D0182001169B4 /* RightNavContactViewController.m */,
 				3946186317C64B690012D695 /* SearchFGViewController.h */,
@@ -2653,6 +2698,15 @@
 				3906AAB2183907E400F1C8DF /* StoreTypeParser.m */,
 			);
 			path = xmlparser;
+			sourceTree = "<group>";
+		};
+		392932BB183F382300237EC3 /* talk */ = {
+			isa = PBXGroup;
+			children = (
+				392932BD183F39C000237EC3 /* ChatMainViewController.h */,
+				392932BE183F39C000237EC3 /* ChatMainViewController.m */,
+			);
+			path = talk;
 			sourceTree = "<group>";
 		};
 		39298B8417C7042900E215F8 /* userprofile */ = {
@@ -3022,6 +3076,7 @@
 		3956443F180E1E9C001B1396 /* ipad */ = {
 			isa = PBXGroup;
 			children = (
+				39F8D4E818403B410098C957 /* splash */,
 				39A1809B183B6A8D0073F18E /* login */,
 				39564440180E1E9C001B1396 /* button */,
 				39564447180E1E9C001B1396 /* cell */,
@@ -3236,6 +3291,7 @@
 		395644D1180E1E9D001B1396 /* phone */ = {
 			isa = PBXGroup;
 			children = (
+				39F8D4F518403B4B0098C957 /* splash */,
 				39A1806A183B6A810073F18E /* login */,
 				395644D2180E1E9D001B1396 /* button */,
 				395644D9180E1E9D001B1396 /* cell */,
@@ -3603,6 +3659,46 @@
 			path = add;
 			sourceTree = "<group>";
 		};
+		39F8D4E818403B410098C957 /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				39F8D4E918403B410098C957 /* iPad_splash_nav1.png */,
+				39F8D4EA18403B410098C957 /* iPad_splash_nav1@2x.png */,
+				39F8D4EB18403B410098C957 /* iPad_splash_nav2.png */,
+				39F8D4EC18403B410098C957 /* iPad_splash_nav2@2x.png */,
+			);
+			path = splash;
+			sourceTree = "<group>";
+		};
+		39F8D4F518403B4B0098C957 /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				39F8D4F618403B4B0098C957 /* splash_nav1.png */,
+				39F8D4F718403B4B0098C957 /* splash_nav1@2x.png */,
+				39F8D4F818403B4B0098C957 /* splash_nav2.png */,
+				39F8D4F918403B4B0098C957 /* splash_nav2@2x.png */,
+			);
+			path = splash;
+			sourceTree = "<group>";
+		};
+		39F8D50718403B860098C957 /* userSplashNav */ = {
+			isa = PBXGroup;
+			children = (
+				39F8D50818403BA20098C957 /* UserSplashView.h */,
+				39F8D50918403BA20098C957 /* UserSplashView.m */,
+			);
+			path = userSplashNav;
+			sourceTree = "<group>";
+		};
+		39F91AB81841C3DB007F0C63 /* groupMembers */ = {
+			isa = PBXGroup;
+			children = (
+				39F91AB91841C421007F0C63 /* GroupMembersView.h */,
+				39F91ABA1841C421007F0C63 /* GroupMembersView.m */,
+			);
+			path = groupMembers;
+			sourceTree = "<group>";
+		};
 		A502607217D95FBA006E7504 /* dataCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -3745,6 +3841,7 @@
 				3910A28117B15A8B002EC669 /* compose#hover.png in Resources */,
 				3910A28217B15A8B002EC669 /* compose#hover@2x.png in Resources */,
 				395646B9180E1E9D001B1396 /* default_myprofile@2x.png in Resources */,
+				39F8D4EF18403B410098C957 /* iPad_splash_nav1@2x.png in Resources */,
 				3956457D180E1E9D001B1396 /* iPad_contact_header.png in Resources */,
 				3956465D180E1E9D001B1396 /* iPad_btn_cancel@2x.png in Resources */,
 				395645C3180E1E9D001B1396 /* iPad_gps_header.png in Resources */,
@@ -3778,6 +3875,7 @@
 				3956467F180E1E9D001B1396 /* comment.png in Resources */,
 				3956458F180E1E9D001B1396 /* iPad_commenttab@2x.png in Resources */,
 				395645B9180E1E9D001B1396 /* iPad_splash@2x.png in Resources */,
+				39F8D4FE18403B4B0098C957 /* splash_nav2.png in Resources */,
 				395645DF180E1E9D001B1396 /* iPad_writer_header.png in Resources */,
 				39564757180E1E9D001B1396 /* arrow_refresh@2x.png in Resources */,
 				39564687180E1E9D001B1396 /* contact_header.png in Resources */,
@@ -3799,6 +3897,7 @@
 				39564627180E1E9D001B1396 /* iPad_tab_dog.png in Resources */,
 				3956458B180E1E9D001B1396 /* iPad_bg@2x.png in Resources */,
 				395645E5180E1E9D001B1396 /* iPad_product_image_community@2x.png in Resources */,
+				39F8D4FA18403B4B0098C957 /* splash_nav1.png in Resources */,
 				39564761180E1E9D001B1396 /* btn_cancel.png in Resources */,
 				3910A28B17B15A8B002EC669 /* composedingwei.png in Resources */,
 				3910A28C17B15A8B002EC669 /* composedingwei@2x.png in Resources */,
@@ -3867,6 +3966,7 @@
 				395646BF180E1E9D001B1396 /* add_persion_header.png in Resources */,
 				3910A29417B15A8B002EC669 /* composeiconbg@2x.png in Resources */,
 				39564683180E1E9D001B1396 /* commentbg.png in Resources */,
+				39F8D4F318403B410098C957 /* iPad_splash_nav2@2x.png in Resources */,
 				39564653180E1E9D001B1396 /* iPad_icon_show_more.png in Resources */,
 				39564735180E1E9D001B1396 /* tab_market@2x.png in Resources */,
 				3956473B180E1E9D001B1396 /* tab_select.png in Resources */,
@@ -3996,6 +4096,7 @@
 				3910A2B217B15A8B002EC669 /* separatorLine@2x.png in Resources */,
 				391FCEDB1835217300BDC599 /* iPad_newtip.png in Resources */,
 				39A180CA183B6A8D0073F18E /* iPad_login_sinaBlog@2x.png in Resources */,
+				39F8D4FC18403B4B0098C957 /* splash_nav1@2x.png in Resources */,
 				39E11FED1810515300C0A585 /* icon_144.png in Resources */,
 				395645A9180E1E9D001B1396 /* iPad_sex_woman.png in Resources */,
 				39564695180E1E9D001B1396 /* commenttab.png in Resources */,
@@ -4008,6 +4109,7 @@
 				3908FA9817B4E267002E0C61 /* country.xml in Resources */,
 				39415EDC17C5F36F00886911 /* dbs.sqlite in Resources */,
 				39564685180E1E9D001B1396 /* commentbg@2x.png in Resources */,
+				39F8D4F118403B410098C957 /* iPad_splash_nav2.png in Resources */,
 				39A180C2183B6A8D0073F18E /* iPad_login_qq@2x.png in Resources */,
 				39564583180E1E9D001B1396 /* iPad__v_line.png in Resources */,
 				39A18099183B6A810073F18E /* login_sinaBlog@2x.png in Resources */,
@@ -4020,6 +4122,7 @@
 				395645CB180E1E9D001B1396 /* iPad_header_title.png in Resources */,
 				39564645180E1E9D001B1396 /* iPad_photo@2x.png in Resources */,
 				39564571180E1E9D001B1396 /* iPad_collect.png in Resources */,
+				39F8D4ED18403B410098C957 /* iPad_splash_nav1.png in Resources */,
 				39564599180E1E9D001B1396 /* iPad_pet_man.png in Resources */,
 				395645BF180E1E9D001B1396 /* iPad_back_header.png in Resources */,
 				39564749180E1E9D001B1396 /* photo.png in Resources */,
@@ -4052,6 +4155,7 @@
 				39A1808B183B6A810073F18E /* input_psd.png in Resources */,
 				395646DD180E1E9D001B1396 /* right_header@2x.png in Resources */,
 				395646D9180E1E9D001B1396 /* menu_header@2x.png in Resources */,
+				39F8D50018403B4B0098C957 /* splash_nav2@2x.png in Resources */,
 				3934027D18326B00007CB9A9 /* iPad_pet_chat.png in Resources */,
 				39564655180E1E9D001B1396 /* iPad_icon_show_more@2x.png in Resources */,
 				399520D5182158CB00B2B8BD /* tab_on_white@2x.png in Resources */,
@@ -4109,6 +4213,7 @@
 				39568E9F17E89F4900B3F1AA /* compose#hover.png in Resources */,
 				39568EA017E89F4900B3F1AA /* compose#hover@2x.png in Resources */,
 				395646BA180E1E9D001B1396 /* default_myprofile@2x.png in Resources */,
+				39F8D4F018403B410098C957 /* iPad_splash_nav1@2x.png in Resources */,
 				3956457E180E1E9D001B1396 /* iPad_contact_header.png in Resources */,
 				3956465E180E1E9D001B1396 /* iPad_btn_cancel@2x.png in Resources */,
 				395645C4180E1E9D001B1396 /* iPad_gps_header.png in Resources */,
@@ -4142,6 +4247,7 @@
 				39564680180E1E9D001B1396 /* comment.png in Resources */,
 				39564590180E1E9D001B1396 /* iPad_commenttab@2x.png in Resources */,
 				395645BA180E1E9D001B1396 /* iPad_splash@2x.png in Resources */,
+				39F8D4FF18403B4B0098C957 /* splash_nav2.png in Resources */,
 				395645E0180E1E9D001B1396 /* iPad_writer_header.png in Resources */,
 				39564758180E1E9D001B1396 /* arrow_refresh@2x.png in Resources */,
 				39564688180E1E9D001B1396 /* contact_header.png in Resources */,
@@ -4163,6 +4269,7 @@
 				39564628180E1E9D001B1396 /* iPad_tab_dog.png in Resources */,
 				3956458C180E1E9D001B1396 /* iPad_bg@2x.png in Resources */,
 				395645E6180E1E9D001B1396 /* iPad_product_image_community@2x.png in Resources */,
+				39F8D4FB18403B4B0098C957 /* splash_nav1.png in Resources */,
 				39564762180E1E9D001B1396 /* btn_cancel.png in Resources */,
 				39568EA917E89F4900B3F1AA /* composedingwei.png in Resources */,
 				39568EAA17E89F4900B3F1AA /* composedingwei@2x.png in Resources */,
@@ -4231,6 +4338,7 @@
 				395646C0180E1E9D001B1396 /* add_persion_header.png in Resources */,
 				39568EB217E89F4900B3F1AA /* composeiconbg@2x.png in Resources */,
 				39564684180E1E9D001B1396 /* commentbg.png in Resources */,
+				39F8D4F418403B410098C957 /* iPad_splash_nav2@2x.png in Resources */,
 				39564654180E1E9D001B1396 /* iPad_icon_show_more.png in Resources */,
 				39564736180E1E9D001B1396 /* tab_market@2x.png in Resources */,
 				3956473C180E1E9D001B1396 /* tab_select.png in Resources */,
@@ -4360,6 +4468,7 @@
 				39568ED017E89F4900B3F1AA /* separatorLine@2x.png in Resources */,
 				391FCEDC1835217300BDC599 /* iPad_newtip.png in Resources */,
 				39A180CB183B6A8D0073F18E /* iPad_login_sinaBlog@2x.png in Resources */,
+				39F8D4FD18403B4B0098C957 /* splash_nav1@2x.png in Resources */,
 				39E11FEE1810515300C0A585 /* icon_144.png in Resources */,
 				395645AA180E1E9D001B1396 /* iPad_sex_woman.png in Resources */,
 				39564696180E1E9D001B1396 /* commenttab.png in Resources */,
@@ -4372,6 +4481,7 @@
 				39568ED317E89F4900B3F1AA /* country.xml in Resources */,
 				39568F0317E89F4900B3F1AA /* dbs.sqlite in Resources */,
 				39564686180E1E9D001B1396 /* commentbg@2x.png in Resources */,
+				39F8D4F218403B410098C957 /* iPad_splash_nav2.png in Resources */,
 				39A180C3183B6A8D0073F18E /* iPad_login_qq@2x.png in Resources */,
 				39564584180E1E9D001B1396 /* iPad__v_line.png in Resources */,
 				39A1809A183B6A810073F18E /* login_sinaBlog@2x.png in Resources */,
@@ -4384,6 +4494,7 @@
 				395645CC180E1E9D001B1396 /* iPad_header_title.png in Resources */,
 				39564646180E1E9D001B1396 /* iPad_photo@2x.png in Resources */,
 				39564572180E1E9D001B1396 /* iPad_collect.png in Resources */,
+				39F8D4EE18403B410098C957 /* iPad_splash_nav1.png in Resources */,
 				3956459A180E1E9D001B1396 /* iPad_pet_man.png in Resources */,
 				395645C0180E1E9D001B1396 /* iPad_back_header.png in Resources */,
 				3956474A180E1E9D001B1396 /* photo.png in Resources */,
@@ -4416,6 +4527,7 @@
 				39A1808C183B6A810073F18E /* input_psd.png in Resources */,
 				395646DE180E1E9D001B1396 /* right_header@2x.png in Resources */,
 				395646DA180E1E9D001B1396 /* menu_header@2x.png in Resources */,
+				39F8D50118403B4B0098C957 /* splash_nav2@2x.png in Resources */,
 				3934027E18326B00007CB9A9 /* iPad_pet_chat.png in Resources */,
 				39564656180E1E9D001B1396 /* iPad_icon_show_more@2x.png in Resources */,
 				399520D6182158CB00B2B8BD /* tab_on_white@2x.png in Resources */,
@@ -4495,11 +4607,13 @@
 				3910A2C517B15A8B002EC669 /* NSObject+SBJSON.m in Sources */,
 				3910A2C617B15A8B002EC669 /* NSString+SBJSON.m in Sources */,
 				3910A2C717B15A8B002EC669 /* SBJSON.m in Sources */,
+				39F8D50A18403BA20098C957 /* UserSplashView.m in Sources */,
 				3910A2C817B15A8B002EC669 /* SBJsonBase.m in Sources */,
 				3910A2C917B15A8B002EC669 /* SBJsonParser.m in Sources */,
 				3910A2CA17B15A8B002EC669 /* SBJsonWriter.m in Sources */,
 				3910A2CB17B15A8B002EC669 /* SFHFKeychainUtils.m in Sources */,
 				3910A2CC17B15A8B002EC669 /* AuthorizeDelegate.m in Sources */,
+				392932C3183F3B6800237EC3 /* GroupDetailViewController.m in Sources */,
 				3910A2CD17B15A8B002EC669 /* NSObject+WBUtil.m in Sources */,
 				3909B8DA183CEFAB001169B4 /* ContactTableView.m in Sources */,
 				3910A2CE17B15A8B002EC669 /* TCWBAuthorizeViewController.m in Sources */,
@@ -4509,6 +4623,7 @@
 				33A9C6E517B150A1008E0322 /* ChoiceTableCell.m in Sources */,
 				33A9C6E817B1542C008E0322 /* ChoiceModel.m in Sources */,
 				393D869617B2A0BD008D910D /* ActivatyModel.m in Sources */,
+				39F91ABB1841C421007F0C63 /* GroupMembersView.m in Sources */,
 				33A9C6EB17B2AE95008E0322 /* MarketTableView.m in Sources */,
 				3907B80817B394550000B695 /* ContactCell.m in Sources */,
 				3908FA9B17B4EB83002E0C61 /* GroupModel.m in Sources */,
@@ -4546,7 +4661,7 @@
 				33A9C74A17C4F915008E0322 /* SignUpParser.m in Sources */,
 				33A9C74D17C4FFEE008E0322 /* ChangePasswordViewController.m in Sources */,
 				398154F317C35F03003A72A6 /* ActivatyCell.m in Sources */,
-				398154FE17C36C6F003A72A6 /* ContactByGropuViewController.m in Sources */,
+				398154FE17C36C6F003A72A6 /* MemberListViewController.m in Sources */,
 				39383FC817C3ACD900C15100 /* PetNewsEditViewController.m in Sources */,
 				39383FCC17C3B31F00C15100 /* EditerView.m in Sources */,
 				39383FCF17C3B7DD00C15100 /* PetNewsParser.m in Sources */,
@@ -4562,6 +4677,7 @@
 				39415EE617C5F3BE00886911 /* ApiManager.m in Sources */,
 				39415EE917C5F3CA00886911 /* PetNewsAndActivatyManager.m in Sources */,
 				39415EEC17C5F3E000886911 /* ContactGroupManager.m in Sources */,
+				392932BF183F39C000237EC3 /* ChatMainViewController.m in Sources */,
 				39415EEF17C5F41A00886911 /* MarketManager.m in Sources */,
 				39415F2817C601D800886911 /* GDataXMLElement+New.m in Sources */,
 				39415F2917C601D800886911 /* GDataXMLNode+New.m in Sources */,
@@ -4667,11 +4783,13 @@
 				39568E0817E89F4900B3F1AA /* NSObject+SBJSON.m in Sources */,
 				39568E0917E89F4900B3F1AA /* NSString+SBJSON.m in Sources */,
 				39568E0A17E89F4900B3F1AA /* SBJSON.m in Sources */,
+				39F8D50B18403BA20098C957 /* UserSplashView.m in Sources */,
 				39568E0B17E89F4900B3F1AA /* SBJsonBase.m in Sources */,
 				39568E0C17E89F4900B3F1AA /* SBJsonParser.m in Sources */,
 				39568E0D17E89F4900B3F1AA /* SBJsonWriter.m in Sources */,
 				39568E0E17E89F4900B3F1AA /* SFHFKeychainUtils.m in Sources */,
 				39568E0F17E89F4900B3F1AA /* AuthorizeDelegate.m in Sources */,
+				392932C4183F3B6800237EC3 /* GroupDetailViewController.m in Sources */,
 				39568E1017E89F4900B3F1AA /* NSObject+WBUtil.m in Sources */,
 				3909B8DB183CEFAB001169B4 /* ContactTableView.m in Sources */,
 				39568E1117E89F4900B3F1AA /* TCWBAuthorizeViewController.m in Sources */,
@@ -4681,6 +4799,7 @@
 				39568E1417E89F4900B3F1AA /* ChoiceTableCell.m in Sources */,
 				39568E1517E89F4900B3F1AA /* ChoiceModel.m in Sources */,
 				39568E1617E89F4900B3F1AA /* ActivatyModel.m in Sources */,
+				39F91ABC1841C421007F0C63 /* GroupMembersView.m in Sources */,
 				39568E1917E89F4900B3F1AA /* MarketTableView.m in Sources */,
 				39568E1A17E89F4900B3F1AA /* ContactCell.m in Sources */,
 				39568E1B17E89F4900B3F1AA /* GroupModel.m in Sources */,
@@ -4718,7 +4837,7 @@
 				39568E3617E89F4900B3F1AA /* SignUpParser.m in Sources */,
 				39568E3717E89F4900B3F1AA /* ChangePasswordViewController.m in Sources */,
 				39568E3917E89F4900B3F1AA /* ActivatyCell.m in Sources */,
-				39568E3A17E89F4900B3F1AA /* ContactByGropuViewController.m in Sources */,
+				39568E3A17E89F4900B3F1AA /* MemberListViewController.m in Sources */,
 				39568E3B17E89F4900B3F1AA /* PetNewsEditViewController.m in Sources */,
 				39568E3C17E89F4900B3F1AA /* EditerView.m in Sources */,
 				39568E3D17E89F4900B3F1AA /* PetNewsParser.m in Sources */,
@@ -4734,6 +4853,7 @@
 				39568E4617E89F4900B3F1AA /* ApiManager.m in Sources */,
 				39568E4717E89F4900B3F1AA /* PetNewsAndActivatyManager.m in Sources */,
 				39568E4817E89F4900B3F1AA /* ContactGroupManager.m in Sources */,
+				392932C0183F39C000237EC3 /* ChatMainViewController.m in Sources */,
 				39568E4917E89F4900B3F1AA /* MarketManager.m in Sources */,
 				39568E4A17E89F4900B3F1AA /* GDataXMLElement+New.m in Sources */,
 				39568E4B17E89F4900B3F1AA /* GDataXMLNode+New.m in Sources */,

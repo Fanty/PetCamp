@@ -33,4 +33,12 @@
     return hud;
 }
 
++(UIAlertView*)showStandAlert:(NSString*)message{
+    UIAlertView* alert=[[UIAlertView alloc] initWithTitle:message message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+    
+    return alert;
+}
+
 @end

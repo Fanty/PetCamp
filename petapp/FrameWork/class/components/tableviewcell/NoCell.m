@@ -55,7 +55,6 @@
     if(value){
         if(loading==nil){
             loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            loading.tintColor=[UIColor blackColor];
             loading.color=[UIColor blackColor];
             [self addSubview:loading];
             [loading release];

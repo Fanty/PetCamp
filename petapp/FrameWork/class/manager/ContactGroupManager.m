@@ -17,9 +17,12 @@
 #import "GroupInfoParser.h"
 #import "DataCenter.h"
 
+
 @interface ContactGroupManager()
 
 -(AsyncTask*)groupList;
+
+-(void)syncTimer;
 
 @end
 
@@ -30,6 +33,19 @@
 
 
 -(void)sync{
+    [syncTimer invalidate];
+    syncTimer=nil;
+    
+    [friendAsyncTask cancel];
+    friendAsyncTask=nil;
+    
+    [groupAsynTask cancel];
+    groupAsynTask=nil;
+    
+    self.syncingFriend=NO;
+    self.syncingGroup=NO;
+
+    if([[DataCenter sharedInstance].user.token length]<1)return;
     [friendAsyncTask cancel];
     [groupAsynTask cancel];
     
@@ -47,6 +63,9 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:FriendUpdateNotification object:nil];
 
+        
+        [syncTimer invalidate];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:120.0f target:self selector:@selector(syncTimer) userInfo:nil repeats:NO];
     }];
     
     groupAsynTask=[self groupList];
@@ -59,11 +78,19 @@
         groupAsynTask=nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:FriendUpdateNotification object:nil];
 
+        [syncTimer invalidate];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:120.0f target:self selector:@selector(syncTimer) userInfo:nil repeats:NO];
+
     }];
     
 }
 
--(AsyncTask*)createGroup:(NSString*)groupName{
+-(void)syncTimer{
+    [syncTimer invalidate];
+    [self sync];
+}
+
+-(AsyncTask*)createGroup:(NSString*)groupName location:(NSString*)location desc:(NSString*)desc{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
     task.parser=[[[XmlParser alloc] init] autorelease];
     

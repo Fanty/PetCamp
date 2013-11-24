@@ -13,6 +13,8 @@
     
     AsyncTask* friendAsyncTask;
     AsyncTask* groupAsynTask;
+    
+    NSTimer* syncTimer;
 }
 
 
@@ -21,7 +23,7 @@
 
 -(void)sync;
 
--(AsyncTask*)createGroup:(NSString*)groupName;
+-(AsyncTask*)createGroup:(NSString*)groupName location:(NSString*)location desc:(NSString*)desc;
 
 -(AsyncTask*)myBoardList:(int)offset;
 

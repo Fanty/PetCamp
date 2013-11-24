@@ -138,7 +138,7 @@
 "pls_input_weibo"="请输入要绑定的微博帐号";
 "weibo_bind_success"="微博绑定成功";
 "doLikeSame"="你的鼓励好像已给过了，多谢支持";
-"addContactInGroup"="添加关注";
+"addContactInGroup"="添加成员";
 "contactGroupIsSend"="你的请求已经发送";
 "addGroupSuccess"="添加成员成功";
 "confirmToDelete"="确定要删除你所发布的内容吗？";
@@ -152,6 +152,17 @@
 "fans"="粉丝";
 "clickfailed"="未能获取到数据，点击重新加载";
 "groupName"="群名";
-"groupHost"="群主";
+"location"="地点";
 "groupDescription"="群组介绍";
+"plsinputgroupname"="输入群组名";
+"plsinputlocation"="输入地点";
+"plsinputgroupdesc"="输入群组介绍";
+"createGroupSuccess"="你已经成功创建群组,请等待审核通过！";
+"groupDetail"="群资料";
+"groupId"="群组号";
+"groupHost"="群主";
+"createdate"="创建日期";
+"groupMember"="群组成员";
+"Administrator"="管理员";
+
 

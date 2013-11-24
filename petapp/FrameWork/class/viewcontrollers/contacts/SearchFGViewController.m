@@ -16,7 +16,7 @@
 #import "GroupModel.h"
 #import "PetUser.h"
 #import "PullToRefresh.h"
-#import "ContactByGropuViewController.h"
+#import "MemberListViewController.h"
 #import "ContactDetailViewController.h"
 
 @interface SearchFGViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,GTGZTouchScrollerDelegate>
@@ -162,7 +162,7 @@
     if(self.isSearchGroup){
         GroupModel* model=[list objectAtIndex:[indexPath row]];
         
-        ContactByGropuViewController* controller=[[ContactByGropuViewController alloc] init];
+        MemberListViewController* controller=[[MemberListViewController alloc] init];
         controller.groupId=model.groupId;
         controller.uid=model.petUser.uid;
         controller.title=model.groupName;

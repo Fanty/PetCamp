@@ -137,6 +137,7 @@
         //bgViewCarousel.backgroundColor=[GTGZUtils colorConvertFromString:@"#282828"];
     //}
     
+    
     imagesCarousel=[[iCarousel alloc] initWithFrame:CGRectMake(left, left, size-left*2.0f, size-left*2.0f)];
     imagesCarousel.clipsToBounds=YES;
     imagesCarousel.dataSource=self;

@@ -31,7 +31,7 @@
         
         
         loadingView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        
+        loadingView.color=[UIColor blackColor];
         loadingView.frame=CGRectMake(0.0f,0.0f, 16.0f, 16.0f);
         [self addSubview:loadingView];
         [loadingView release];

@@ -41,7 +41,7 @@
     [request setPostValue:content forKey:@"content"];
     [request setPostValue:([images length]>0?images:@"") forKey:@"images"];
     if([scr_post_id length]>0)
-        [request setPostValue:scr_post_id forKey:@"scr_post_id"];
+        [request setPostValue:scr_post_id forKey:@"src_post_id"];
     task.request=request;
     [task start];
 
