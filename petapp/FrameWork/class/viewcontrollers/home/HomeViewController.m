@@ -19,6 +19,7 @@
 #import "LoginViewController.h"
 #import "PersonDynamicViewController.h"
 #import "UserSplashView.h"
+#import "Utils.h"
 
 #define CHECK_LOGIN_TAG   333
 
@@ -51,8 +52,13 @@
     
     //self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bg.png"]];
 
+    rect=self.view.bounds;
+    if([Utils systemVersion]>=7.0f){
+        rect.origin.y=20.0f;
+    }
+
     
-    UserSplashView* splashView=[[UserSplashView alloc] initWithFrame:self.view.bounds];
+    UserSplashView* splashView=[[UserSplashView alloc] initWithFrame:rect];
     splashView.touchDelegate=self;
     [self.view addSubview:splashView];
     [splashView release];

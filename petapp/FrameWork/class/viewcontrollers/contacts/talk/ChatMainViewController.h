@@ -10,7 +10,15 @@
 
 @class GroupModel;
 
-@interface ChatMainViewController : NavContentViewController
+@class ChatPanel;
+@class GTGZTableView;
+
+@interface ChatMainViewController : NavContentViewController{
+    GTGZTableView* tableView;
+    ChatPanel* chatPanel;
+    NSMutableArray*  messageArray;
+    
+}
 
 @property(nonatomic,retain) GroupModel* groupModel;
 
