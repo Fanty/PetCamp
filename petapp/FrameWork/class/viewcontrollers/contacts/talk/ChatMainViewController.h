@@ -16,7 +16,7 @@
 @interface ChatMainViewController : NavContentViewController{
     GTGZTableView* tableView;
     ChatPanel* chatPanel;
-    NSMutableArray*  messageArray;
+    NSMutableArray*  chatArray;
     
 }
 

@@ -11,6 +11,11 @@
 #import "ChatPanel.h"
 #import "GTGZScroller.h"
 #import "GTGZThemeManager.h"
+#import "ChatCell.h"
+#import "ChatImageCell.h"
+#import "ChatModel.h"
+#import "PetUser.h"
+#import "DataCenter.h"
 @interface ChatMainViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIActionSheetDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ChatPanelDelegate>
 
 -(void)groupDetail;
@@ -25,6 +30,9 @@
     if(self){
         [self backNavBar];
         [self rightNavBarWithTitle:lang(@"groupDetail") target:self action:@selector(groupDetail)];
+        
+        chatArray=[[NSMutableArray alloc] initWithCapacity:3];
+
     }
     return self;
 }
@@ -32,6 +40,105 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"chat_bg.png"]];
+    
+    
+    ChatModel* model=[[ChatModel alloc] init];
+    
+    model.cid=@"1";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"1";
+    model.petUser.nickname=@"i am abc";
+    model.content=@" a";
+    model.createtime=[NSDate date];
+    [chatArray addObject:model];
+    [model release];
+    
+    
+    model=[[ChatModel alloc] init];
+    model.cid=@"2";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"10";
+    model.petUser.nickname=@"new pet";
+    model.content=@"asdf";
+    model.createtime=[NSDate date];
+    [chatArray addObject:model];
+    [model release];
+    
+    
+    model=[[ChatModel alloc] init];
+    model.cid=@"3";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"3";
+    model.petUser.nickname=@"Now ok";
+    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
+    model.createtime=[NSDate date];
+    [chatArray addObject:model];
+    [model release];
+    
+    
+    model=[[ChatModel alloc] init];
+    model.cid=@"4";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"10";
+    model.petUser.nickname=@"Now ok";
+    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
+    model.createtime=[NSDate date];
+    [chatArray addObject:model];
+    [model release];
+    
+    
+    
+    
+    
+    
+    model=[[ChatModel alloc] init];
+    
+    model.cid=@"1";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"1";
+    model.petUser.nickname=@"i am abc";
+    model.content=@" a";
+    model.createtime=[NSDate date];
+    model.isImage=YES;
+    [chatArray addObject:model];
+    [model release];
+    
+    
+    model=[[ChatModel alloc] init];
+    model.cid=@"2";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"10";
+    model.petUser.nickname=@"new pet";
+    model.content=@"asdf";
+    model.createtime=[NSDate date];
+    model.isImage=YES;
+    [chatArray addObject:model];
+    [model release];
+    
+    
+    model=[[ChatModel alloc] init];
+    model.cid=@"3";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"3";
+    model.petUser.nickname=@"Now ok";
+    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
+    model.createtime=[NSDate date];
+    model.isImage=YES;
+    [chatArray addObject:model];
+    [model release];
+    
+    
+    model=[[ChatModel alloc] init];
+    model.cid=@"4";
+    model.petUser=[[[PetUser alloc] init] autorelease];
+    model.petUser.uid=@"10";
+    model.petUser.nickname=@"Now ok";
+    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
+    model.createtime=[NSDate date];
+    model.isImage=YES;
+    [chatArray addObject:model];
+    [model release];
+
     
     chatPanel=[[ChatPanel alloc] init];
     chatPanel.delegate=self;
@@ -108,16 +215,46 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [messageArray count];
+    return [chatArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 0.0f;
+    ChatModel* model=[chatArray objectAtIndex:[indexPath row]];
+    if(model.isImage){
+        return [ChatImageCell cellHeight];
+    }
+    else{
+        return [ChatCell cellHeight:model.content];
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    
+    ChatModel* model=[chatArray objectAtIndex:[indexPath row]];
+
+    NSString* myId=[DataCenter sharedInstance].user.uid;
+    if(!model.isImage){
+        ChatCell* cell=(ChatCell*)[_tableView dequeueReusableCellWithIdentifier:@"chat_cell"];
+        if(cell==nil){
+            cell=[[ChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"chat_cell"];
+            
+            
+        }
+        [cell headerUrl:model.petUser.imageHeadUrl name:model.petUser.nickname content:model.content bubbleType:([myId isEqualToString:model.petUser.uid]?BubbleTypeMine:BubbleTypeSomeoneElse)];
+        return cell;
+    }
+    else{
+        ChatImageCell* cell=(ChatImageCell*)[_tableView dequeueReusableCellWithIdentifier:@"image_cell"];
+        if(cell==nil){
+            cell=[[ChatImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"image_cell"];
+            
+            
+        }
+        [cell headerUrl:model.petUser.imageHeadUrl name:model.petUser.nickname contentUrl:model.content bubbleType:([myId isEqualToString:model.petUser.uid]?BubbleTypeMine:BubbleTypeSomeoneElse)];
+        return cell;
+
+    }
 }
 
 
@@ -131,7 +268,7 @@
 
 -(void)chatPanelKeyworkShow:(int)height{
     CGRect rect= tableView.frame;
-    rect.size.height=self.view.frame.size.height-CGRectGetMinY(chatPanel.frame);
+    rect.size.height=CGRectGetMinY(chatPanel.frame);
     tableView.frame=rect;
 }
 

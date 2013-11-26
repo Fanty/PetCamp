@@ -54,5 +54,7 @@
     <theme key="type_desc" textColor="blackColor" fontSize="17.0f" />
     <theme key="WeiboAdd_title" textColor="blackColor" fontSize="22.0f" />
     <theme key="profile_tab_number" textColor="blackColor" fontSize="12.0f" />
+    <theme key="chatcell_name" textColor="blackColor" fontSize="14.0f"  />
+    <theme key="chatcell_content" fontName="Helvetica" textColor="blackColor" fontSize="13.0f"  />
 
 </themes>
