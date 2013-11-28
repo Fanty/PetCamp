@@ -346,6 +346,7 @@
             [AlertUtils showAlert:[task errorMessage] view:self.view];
         }
         else{
+            [[AppDelegate appDelegate].contactGroupManager sync];
             [AlertUtils showAlert:lang(@"addfriendSuccess") view:self.view];
             petUser.whetherInContact=YES;
             

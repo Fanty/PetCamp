@@ -16,6 +16,7 @@
 
 @property(nonatomic,retain) NSArray* friendList;
 @property(nonatomic,retain) NSArray* groupList;
+@property(nonatomic,retain) NSArray* fansList;
 
 @property(nonatomic,assign) float latitude;
 @property(nonatomic,assign) float longitude;

@@ -232,15 +232,6 @@
         
         if([task result]==nil){
             [self releaseLoadMoreFooter];
-            
-            noButton=[UIButton buttonWithType:UIButtonTypeCustom];
-            noButton.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
-            noButton.titleLabel.textAlignment=NSTextAlignmentCenter;
-            [noButton addTarget:self action:@selector(retryButtonClick) forControlEvents:UIControlEventTouchUpInside];
-            noButton.frame=CGRectMake(0.0f, ([Utils isIPad]?100.0f:40.0f), self.frame.size.width, self.frame.size.height);
-            [self addSubview:noButton];
-            [noButton theme:@"noLael"];
-            [noButton setTitle:lang(@"error_http_dropdown") forState:UIControlStateNormal];
         }
         else{
             
@@ -262,17 +253,6 @@
                 [self createLoadMoreFooter];
             }
             [self reloadData];
-            
-            if([list count]<1){
-                noButton=[UIButton buttonWithType:UIButtonTypeCustom];
-                noButton.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
-                noButton.titleLabel.textAlignment=NSTextAlignmentCenter;
-                [noButton addTarget:self action:@selector(noButtonClick) forControlEvents:UIControlEventTouchUpInside];
-                noButton.frame=CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height);
-                [self addSubview:noButton];
-                [noButton theme:@"noLael"];
-                [noButton setTitle:lang(@"noMyPetNews") forState:UIControlStateNormal];
-            }
         }
         task=nil;
     }];

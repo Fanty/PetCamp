@@ -37,8 +37,6 @@
 		3909B8D9183CEFAB001169B4 /* ContactByGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D1183CEFAB001169B4 /* ContactByGroupView.m */; };
 		3909B8DA183CEFAB001169B4 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D3183CEFAB001169B4 /* ContactTableView.m */; };
 		3909B8DB183CEFAB001169B4 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D3183CEFAB001169B4 /* ContactTableView.m */; };
-		3909B8DC183CEFAB001169B4 /* FansTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D5183CEFAB001169B4 /* FansTableView.m */; };
-		3909B8DD183CEFAB001169B4 /* FansTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D5183CEFAB001169B4 /* FansTableView.m */; };
 		3909B8DE183CEFAB001169B4 /* GroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D7183CEFAB001169B4 /* GroupTableView.m */; };
 		3909B8DF183CEFAB001169B4 /* GroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8D7183CEFAB001169B4 /* GroupTableView.m */; };
 		3909B8E2183CEFCE001169B4 /* NearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3909B8E1183CEFCE001169B4 /* NearByViewController.m */; };
@@ -1237,8 +1235,6 @@
 		3909B8D1183CEFAB001169B4 /* ContactByGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactByGroupView.m; sourceTree = "<group>"; };
 		3909B8D2183CEFAB001169B4 /* ContactTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableView.h; sourceTree = "<group>"; };
 		3909B8D3183CEFAB001169B4 /* ContactTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableView.m; sourceTree = "<group>"; };
-		3909B8D4183CEFAB001169B4 /* FansTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FansTableView.h; sourceTree = "<group>"; };
-		3909B8D5183CEFAB001169B4 /* FansTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FansTableView.m; sourceTree = "<group>"; };
 		3909B8D6183CEFAB001169B4 /* GroupTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableView.h; sourceTree = "<group>"; };
 		3909B8D7183CEFAB001169B4 /* GroupTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableView.m; sourceTree = "<group>"; };
 		3909B8E0183CEFCE001169B4 /* NearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearByViewController.h; sourceTree = "<group>"; };
@@ -2126,8 +2122,6 @@
 				3909B8D1183CEFAB001169B4 /* ContactByGroupView.m */,
 				3909B8D2183CEFAB001169B4 /* ContactTableView.h */,
 				3909B8D3183CEFAB001169B4 /* ContactTableView.m */,
-				3909B8D4183CEFAB001169B4 /* FansTableView.h */,
-				3909B8D5183CEFAB001169B4 /* FansTableView.m */,
 				3909B8D6183CEFAB001169B4 /* GroupTableView.h */,
 				3909B8D7183CEFAB001169B4 /* GroupTableView.m */,
 			);
@@ -4893,7 +4887,6 @@
 				3934028318326C6E007CB9A9 /* LikeView.m in Sources */,
 				3920215C17BD20150047E040 /* MyJoinActivatyTableView.m in Sources */,
 				3920215F17BD20230047E040 /* MyFaviorActivatyTableView.m in Sources */,
-				3909B8DC183CEFAB001169B4 /* FansTableView.m in Sources */,
 				3920216217BD20300047E040 /* MyMessageTableView.m in Sources */,
 				33A9C6F617BD0FE8008E0322 /* CheckBoxView.m in Sources */,
 				33A9C73E17C4EAB0008E0322 /* GroupInfoParser.m in Sources */,
@@ -5078,7 +5071,6 @@
 				3934028418326C6E007CB9A9 /* LikeView.m in Sources */,
 				39568E2F17E89F4900B3F1AA /* MyJoinActivatyTableView.m in Sources */,
 				39568E3017E89F4900B3F1AA /* MyFaviorActivatyTableView.m in Sources */,
-				3909B8DD183CEFAB001169B4 /* FansTableView.m in Sources */,
 				39568E3117E89F4900B3F1AA /* MyMessageTableView.m in Sources */,
 				39568E3217E89F4900B3F1AA /* CheckBoxView.m in Sources */,
 				39568E3317E89F4900B3F1AA /* GroupInfoParser.m in Sources */,

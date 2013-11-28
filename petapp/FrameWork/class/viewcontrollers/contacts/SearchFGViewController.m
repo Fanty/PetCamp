@@ -22,7 +22,6 @@
 @interface SearchFGViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,GTGZTouchScrollerDelegate>
 -(void)initSearchBar;
 -(void)initTableView;
--(void)filterBlick;
 -(void)loadData:(BOOL)loadMore;
 @end
 
@@ -80,23 +79,6 @@
     tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
     [tableView release];
-}
-
--(void)filterBlick{
-    
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [searchBar setShowsCancelButton:NO animated:YES];
-    [searchBar resignFirstResponder];
-    
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        
-        fliterBg.alpha=0.0f;
-    } completion:^(BOOL finish){
-        [fliterBg removeFromSuperview];
-        fliterBg=nil;
-        [searchBar resignFirstResponder];
-        
-    }];
 }
 
 
@@ -185,32 +167,17 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)_searchBar{
     //  [searchBar setShowsCancelButton:YES animated:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [searchBar setShowsCancelButton:YES animated:YES];
-    if(fliterBg==nil){
-        fliterBg=[UIButton buttonWithType:UIButtonTypeCustom];
-        [fliterBg addTarget:self action:@selector(filterBlick) forControlEvents:UIControlEventTouchUpInside];
-        fliterBg.backgroundColor=[UIColor blackColor];
-        fliterBg.frame=CGRectMake(0.0f, CGRectGetMaxY(searchBar.frame), self.view.frame.size.width, self.view.frame.size.height);
-        [self.view addSubview:fliterBg];
-    }
-    fliterBg.alpha=0.0f;
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        
-        fliterBg.alpha=0.6f;
-    } completion:^(BOOL finish){
-    }];
-    
     return YES;
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar{
-    [self filterBlick];
-    [self loadData:NO];    
+    [self loadData:NO];
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar{
-    [self filterBlick];
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
 }
 
 

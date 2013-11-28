@@ -11,7 +11,6 @@
 @class AsyncTask;
 @interface SearchFGViewController : NavContentViewController{
     UISearchBar* searchBar;
-    UIButton* fliterBg;
 
     PullTableView* tableView;
     

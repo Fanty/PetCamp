@@ -11,7 +11,6 @@
 #import "HeadTabView.h"
 #import "ContactTableView.h"
 #import "GroupTableView.h"
-#import "FansTableView.h"
 #import "PetNewsEditViewController.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
@@ -88,7 +87,7 @@
     }
     if(tab==1 && fansTableView.hidden){
         searchBar.text=nil;
-        [fansTableView search:@""];
+        [fansTableView searchText:@""];
     }
     if(tab==2 && groupTableView.hidden){
         searchBar.text=nil;
@@ -100,7 +99,7 @@
     fansTableView.hidden=YES;
     if(tab==0){
         if(contactTableView==nil){
-            contactTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(headTab.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(headTab.frame)) style:UITableViewStylePlain];
+            contactTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(headTab.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(headTab.frame)) widthFans:NO];
             contactTableView.parentViewController=self;
             [self.view addSubview:contactTableView];
             [contactTableView release];
@@ -109,7 +108,7 @@
     }
     else if(tab==1){
         if(fansTableView==nil){
-            fansTableView=[[FansTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(headTab.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(headTab.frame)) style:UITableViewStylePlain];
+            fansTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(headTab.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(headTab.frame)) widthFans:YES];
             fansTableView.parentViewController=self;
             [self.view addSubview:fansTableView];
             [fansTableView release];
@@ -148,7 +147,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [contactTableView searchText:searchText];
-    [fansTableView search:searchText];
+    [fansTableView searchText:searchText];
     [groupTableView search:searchText];
 }
 
@@ -163,7 +162,7 @@
     [searchBar resignFirstResponder];
     
     [contactTableView searchText:nil];
-    [fansTableView search:nil];
+    [fansTableView searchText:nil];
     [groupTableView search:nil];
 
 }

@@ -58,45 +58,51 @@
                     model.createdate=[_element dateValueFromNSTimeInterval];
                 }
                 else if([[_element name] isEqualToString:@"src_post"]){
-                    PetNewsModel* scr_post=[[PetNewsModel alloc] init];
-                    model.scr_post=scr_post;
-                    
                     NSArray* _elements=[_element children];
-                    for(GDataXMLElement* __element in _elements){
-                        if([[__element name] isEqualToString:@"id"]){
-                            scr_post.pid=[__element stringValue];
-                        }
-                        else if([[__element name] isEqualToString:@"uid"]){
-                            scr_post.petUser.uid=[__element stringValue];
-                        }
-                        else if([[__element name] isEqualToString:@"nickname"]){
-                            scr_post.petUser.nickname=[__element stringValue];
-                        }
-                        else if([[__element name] isEqualToString:@"user_image"]){
-                            scr_post.petUser.imageHeadUrl=[__element stringValue];
-                        }
-                        else if([[__element name] isEqualToString:@"content"]){
-                            scr_post.desc=[__element stringValue];
-                        }
-                        else if([[__element name] isEqualToString:@"images"]){
-                            NSString* urls=[__element stringValue];
-                            if([urls length]>3)
-                                scr_post.imageUrls=[urls componentsSeparatedByString:@","];
-                        }
+                    if([_elements count]>3){
+                        PetNewsModel* scr_post=[[PetNewsModel alloc] init];
+                        PetUser* petUser=[[PetUser alloc] init];
+                        scr_post.petUser=petUser;
+                        [petUser release];
+                        model.scr_post=scr_post;
                         
-                        
-                        else if([[__element name] isEqualToString:@"like_count"]){
-                            scr_post.laudCount=[__element intValue];
-                        }
-                        else if([[__element name] isEqualToString:@"comment_count"]){
-                            scr_post.command_count=[__element intValue];
+                        for(GDataXMLElement* __element in _elements){
+                            if([[__element name] isEqualToString:@"id"]){
+                                scr_post.pid=[__element stringValue];
+                            }
+                            else if([[__element name] isEqualToString:@"uid"]){
+                                scr_post.petUser.uid=[__element stringValue];
+                            }
+                            else if([[__element name] isEqualToString:@"nickname"]){
+                                scr_post.petUser.nickname=[__element stringValue];
+                            }
+                            else if([[__element name] isEqualToString:@"user_image"]){
+                                scr_post.petUser.imageHeadUrl=[__element stringValue];
+                            }
+                            else if([[__element name] isEqualToString:@"content"]){
+                                scr_post.desc=[__element stringValue];
+                            }
+                            else if([[__element name] isEqualToString:@"images"]){
+                                NSString* urls=[__element stringValue];
+                                if([urls length]>3)
+                                    scr_post.imageUrls=[urls componentsSeparatedByString:@","];
+                            }
                             
+                            
+                            else if([[__element name] isEqualToString:@"like_count"]){
+                                scr_post.laudCount=[__element intValue];
+                            }
+                            else if([[__element name] isEqualToString:@"comment_count"]){
+                                scr_post.command_count=[__element intValue];
+                                
+                            }
+                            else if([[__element name] isEqualToString:@"createdate"]){
+                                scr_post.createdate=[__element dateValueFromNSTimeInterval];
+                            }
                         }
-                        else if([[__element name] isEqualToString:@"createdate"]){
-                            scr_post.createdate=[__element dateValueFromNSTimeInterval];
-                        }
+                        [scr_post release];
                     }
-                    [scr_post release];
+                    
                 }
             }
             

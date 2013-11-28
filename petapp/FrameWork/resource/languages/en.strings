@@ -146,7 +146,7 @@
 "searchResult"="搜索结果";
 "my"="我";
 "forward"="转发";
-"forward_content"="转自%@ %@";
+"forward_content"="转自@%@ %@";
 "type"="分类";
 "fans"="粉丝";
 "clickfailed"="未能获取到数据，点击重新加载";

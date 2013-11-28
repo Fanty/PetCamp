@@ -10,14 +10,13 @@
 @class HeadTabView;
 @class ContactTableView;
 @class GroupTableView;
-@class FansTableView;
 @interface ContactViewController : NavContentViewController{
     UISearchBar* searchBar;
     
     HeadTabView* headTab;
     
     ContactTableView* contactTableView;
-    FansTableView* fansTableView;
+    ContactTableView* fansTableView;
     GroupTableView* groupTableView;
 }
 

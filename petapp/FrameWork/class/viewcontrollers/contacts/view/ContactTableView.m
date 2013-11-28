@@ -42,10 +42,12 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 
 @synthesize parentViewController;
 @synthesize contactDelegate;
+@synthesize isFans;
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
-    self=[super initWithFrame:frame style:style];
+- (id)initWithFrame:(CGRect)frame widthFans:(BOOL)fans{
+    self=[super initWithFrame:frame style:UITableViewStylePlain];
     if(self){
+        isFans=fans;
         self.dataSource=self;
         self.delegate=self;
         self.backgroundColor=[UIColor clearColor];
@@ -55,10 +57,12 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNotification) name:FriendUpdateNotification object:nil];
         
         [self loadData];
-
+        
     }
     return self;
 }
+
+
 
 -(void)dealloc{
     [searchText release];
@@ -111,7 +115,8 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([[DataCenter sharedInstance].friendList count]<1){
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
+    if([list count]<1){
         return 44.0f;
     }
     else{
@@ -120,7 +125,9 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 }
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([[DataCenter sharedInstance].friendList count]<1){
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
+
+    if([list count]<1){
         NoCell *cell = (NoCell*)[_tableView dequeueReusableCellWithIdentifier:@"nocell"];
         if(cell == nil){
             cell = [[[NoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nocell"] autorelease];
@@ -155,7 +162,9 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 
 -(void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if([[DataCenter sharedInstance].friendList count]<1){
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
+
+    if([list count]<1){
         if(![AppDelegate appDelegate].contactGroupManager.syncingFriend){
             NoCell *cell=(NoCell *)[_tableView cellForRowAtIndexPath:indexPath];
             [cell showLoading:YES];
@@ -200,7 +209,7 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 
 -(void)loadData{
 
-    NSArray* list=[DataCenter sharedInstance].friendList;
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
     [dicts removeAllObjects];
     [sortedKeys release];
     sortedKeys=nil;

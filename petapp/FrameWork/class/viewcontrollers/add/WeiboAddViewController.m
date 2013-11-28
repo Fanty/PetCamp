@@ -60,7 +60,7 @@
     [self.view addSubview:adButton];
     [adLabel release];
     
-    contactTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(adButton.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adButton.frame)) style:UITableViewStylePlain];
+    contactTableView=[[ContactTableView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(adButton.frame), self.view.frame.size.width, self.view.frame.size.height-CGRectGetMaxY(adButton.frame)) widthFans:NO];
     contactTableView.contactDelegate=self;
     [self.view addSubview:contactTableView];
     [contactTableView release];

@@ -57,6 +57,12 @@
         [self addSubview:fansNumberView];
         [self addSubview:addNumberView];
         [self addSubview:messageNumberView];
+        
+        [petNumberView release];
+        [friendNumberView release];
+        [fansNumberView release];
+        [addNumberView release];
+        [messageNumberView release];
 
     }
     

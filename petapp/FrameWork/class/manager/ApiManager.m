@@ -154,7 +154,8 @@
 }
 
 +(NSURL*)fansList:(NSString*)token{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/groupList?token=%@",PREFIX,token]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/user/fansList?token=%@",PREFIX,token]];
+    
 }
 
 

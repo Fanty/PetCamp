@@ -13,13 +13,14 @@
     
     AsyncTask* friendAsyncTask;
     AsyncTask* groupAsynTask;
-    
+    AsyncTask* fansAsyncTask;
     NSTimer* syncTimer;
 }
 
 
 @property(nonatomic,assign) BOOL syncingFriend;
 @property(nonatomic,assign) BOOL syncingGroup;
+@property(nonatomic,assign) BOOL syncingFans;
 
 -(void)sync;
 
@@ -37,7 +38,6 @@
 
 -(AsyncTask*)nearUser:(float)longitude latitude:(float)latitude offset:(int)offset;
 
--(AsyncTask*)fansList;
 
 
 -(AsyncTask*)addGroupUser:(NSString*)group_id friend_id:(NSString*)friend_id;

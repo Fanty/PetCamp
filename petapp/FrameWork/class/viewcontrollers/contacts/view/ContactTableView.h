@@ -22,6 +22,9 @@
     NSMutableDictionary* showDicts;
     NSString* searchText;
 }
+
+- (id)initWithFrame:(CGRect)frame widthFans:(BOOL)fans;
+@property(nonatomic,readonly) BOOL isFans;
 @property(assign,nonatomic) UIViewController* parentViewController;
 @property(nonatomic,assign) id<ContactTableViewDelegate> contactDelegate;
 -(void)searchText:(NSString*)value;

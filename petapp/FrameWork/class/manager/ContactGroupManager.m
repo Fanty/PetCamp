@@ -22,6 +22,9 @@
 
 -(AsyncTask*)groupList;
 
+-(AsyncTask*)fansList;
+
+
 -(void)syncTimer;
 
 @end
@@ -30,6 +33,7 @@
 
 @synthesize syncingFriend;
 @synthesize syncingGroup;
+@synthesize syncingFans;
 
 
 -(void)sync{
@@ -42,15 +46,19 @@
     [groupAsynTask cancel];
     groupAsynTask=nil;
     
+    [fansAsyncTask cancel];
+    fansAsyncTask=nil;
+    
     self.syncingFriend=NO;
     self.syncingGroup=NO;
+    self.syncingFans=NO;
 
     if([[DataCenter sharedInstance].user.token length]<1)return;
-    [friendAsyncTask cancel];
-    [groupAsynTask cancel];
+
     
     self.syncingFriend=YES;
     self.syncingGroup=YES;
+    self.syncingFans=YES;
     
     friendAsyncTask=[self friendList:nil];
     [friendAsyncTask setFinishBlock:^{
@@ -65,7 +73,7 @@
 
         
         [syncTimer invalidate];
-        syncTimer=[NSTimer scheduledTimerWithTimeInterval:120.0f target:self selector:@selector(syncTimer) userInfo:nil repeats:NO];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:300.0f target:self selector:@selector(syncTimer) userInfo:nil repeats:NO];
     }];
     
     groupAsynTask=[self groupList];
@@ -79,8 +87,23 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:FriendUpdateNotification object:nil];
 
         [syncTimer invalidate];
-        syncTimer=[NSTimer scheduledTimerWithTimeInterval:120.0f target:self selector:@selector(syncTimer) userInfo:nil repeats:NO];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:300.0f target:self selector:@selector(syncTimer) userInfo:nil repeats:NO];
 
+    }];
+    
+    fansAsyncTask=[self fansList];
+    [fansAsyncTask setFinishBlock:^{
+        self.syncingFans=NO;
+        
+        if(fansAsyncTask.result!=nil){
+            [DataCenter sharedInstance].fansList=fansAsyncTask.result;
+        }
+        fansAsyncTask=nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:FriendUpdateNotification object:nil];
+        
+        [syncTimer invalidate];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:300.0f target:self selector:@selector(syncTimer) userInfo:nil repeats:NO];
+        
     }];
     
 }
