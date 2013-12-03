@@ -18,6 +18,7 @@
 @class MarketManager;
 @class CLLocationManager;
 @class BannerManager;
+@class TalkManager;
 @class AsyncTask;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     CLLocationManager *locationManager;
@@ -30,6 +31,7 @@
 
 @property(nonatomic,readonly) SettingManager* settingManager;
 @property(nonatomic,readonly) AccountManager* accountManager;
+@property(nonatomic,readonly) TalkManager* talkManager;
 @property(nonatomic,readonly) PetNewsAndActivatyManager* petNewsAndActivatyManager;
 @property(nonatomic,readonly) ContactGroupManager* contactGroupManager;
 @property(nonatomic,readonly) MarketManager* marketManager;

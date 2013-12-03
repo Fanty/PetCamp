@@ -21,6 +21,7 @@
 #import "ContactGroupManager.h"
 #import "MarketManager.h"
 #import "BannerManager.h"
+#import "TalkManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "TencentOpenAPI/TencentOAuth.h"
 
@@ -43,6 +44,7 @@
 @synthesize contactGroupManager;
 @synthesize marketManager;
 @synthesize bannerManager;
+@synthesize talkManager;
 
 +(AppDelegate*)appDelegate{
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -52,7 +54,7 @@
 
     [locationManager stopUpdatingLocation];
     [locationManager release];
-    
+    [talkManager release];
     [settingManager release];
     [accountManager release];
     [petNewsAndActivatyManager release];
@@ -196,7 +198,7 @@
     contactGroupManager=[[ContactGroupManager alloc] init];
     marketManager=[[MarketManager alloc] init];
     bannerManager=[[BannerManager alloc] init];
-
+    talkManager=[[TalkManager alloc] init];
 }
 
 -(void)callLoginUpdate{

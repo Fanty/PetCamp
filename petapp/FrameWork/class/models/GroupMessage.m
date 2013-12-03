@@ -1,24 +1,24 @@
 //
-//  ChatModel.m
+//  GroupMessage.m
 //  PetNews
 //
-//  Created by Fanty on 13-11-26.
+//  Created by Fanty on 13-11-28.
 //  Copyright (c) 2013年 fanty. All rights reserved.
 //
 
-#import "ChatModel.h"
+#import "GroupMessage.h"
 
-@implementation ChatModel
+@implementation GroupMessage
 
-@synthesize cid;
-@synthesize petUser;
+@synthesize msgId;
 @synthesize content;
+@synthesize sender;
 @synthesize createtime;
 @synthesize isImage;
 - (void)dealloc{
-    self.cid=nil;
-    self.petUser=nil;
+    self.msgId=nil;
     self.content=nil;
+    self.sender=nil;
     self.createtime=nil;
     [super dealloc];
 }

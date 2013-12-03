@@ -43,12 +43,23 @@
                 else if([[groupElement name] isEqualToString:@"uid"]){
                     userModel.uid = [groupElement stringValue];
                 }
-                else if([[groupElement name] isEqualToString:@"image"]){
+                else if([[groupElement name] isEqualToString:@"image"] ||[[groupElement name] isEqualToString:@"user_image"]){
                     userModel.imageHeadUrl = [groupElement stringValue];
                 }
                 else if([[groupElement name] isEqualToString:@"nickname"]){
                     userModel.nickname = [groupElement stringValue];
                 }
+                else if([[groupElement name] isEqualToString:@"description"]){
+                    groupModel.desc = [groupElement stringValue];
+                }
+                else if([[groupElement name] isEqualToString:@"location"]){
+                    groupModel.location = [groupElement stringValue];
+                }
+                else if([[groupElement name] isEqualToString:@"createtime"]){
+                    groupModel.createtime = [groupElement dateValueFromNSTimeInterval];
+                }
+
+                
             }
             groupModel.petUser = userModel;
             [userModel release];

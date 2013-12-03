@@ -8,7 +8,13 @@
 
 #import "NavContentViewController.h"
 @class GroupModel;
-@interface GroupDetailViewController : NavContentViewController
+@class AsyncTask;
+@interface GroupDetailViewController : NavContentViewController{
+    AsyncTask* task;
+    
+    NSMutableArray* images;
+
+}
 @property(nonatomic,retain) GroupModel* groupModel;
 
 

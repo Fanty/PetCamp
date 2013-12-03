@@ -84,10 +84,21 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
+    if([list count]<1){
+        return 1;
+    }
     return [showDicts count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
+    if([list count]<1){
+        return 1;
+    }
+
+    
     if(sortedKeys==nil)
         return [[[showDicts allValues] objectAtIndex:0] count];
     else{
@@ -96,7 +107,20 @@ NSInteger contactCustomSort(id obj1, id obj2,void* context){
     }
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
+    if([list count]<1){
+        return 0.0f;
+    }
+    return 24.0f;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    NSArray* list=(self.isFans?[DataCenter sharedInstance].fansList:[DataCenter sharedInstance].friendList);
+    if([list count]<1){
+        return nil;
+    }
+
     UIImageView* myView = [[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"contact_header.png"]] autorelease];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 24.0f)];
     titleLabel.textColor=[UIColor whiteColor];

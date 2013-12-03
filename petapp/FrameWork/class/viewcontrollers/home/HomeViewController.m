@@ -100,7 +100,7 @@
     
     
     PersonDynamicViewController* personDynamicViewController=[[PersonDynamicViewController alloc] init];
-    
+    personDynamicViewController.navigationItem.leftBarButtonItem=nil;
     PetNewsNavigationController* myMainNav=[[PetNewsNavigationController alloc] initWithRootViewController:personDynamicViewController];
     myMainNav.view.tag=CHECK_LOGIN_TAG;
     [personDynamicViewController release];

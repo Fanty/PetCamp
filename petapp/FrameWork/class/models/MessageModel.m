@@ -15,8 +15,10 @@
 @synthesize friendUser;
 @synthesize content;
 @synthesize createdate;
+@synthesize target_id;
 
 -(void)dealloc{
+    self.target_id=nil;
     self.friendUser=nil;
     self.content=nil;
     self.createdate=nil;

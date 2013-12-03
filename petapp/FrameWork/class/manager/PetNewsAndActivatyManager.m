@@ -17,6 +17,7 @@
 #import "PathUtils.h"
 #import "ActivatyModel.h"
 #import "PetUser.h"
+#import "MessageParser.h"
 #import "ActivatyParser.h"
 #import "DataCenter.h"
 
@@ -49,9 +50,9 @@
 
 }
 
--(AsyncTask*)myPetNewsList{
+-(AsyncTask*)myPetNewsList:(int)offset{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
-    task.request=[HTTPRequest requestWithURL:[ApiManager myPetNewsList:[DataCenter sharedInstance].user.token]];
+    task.request=[HTTPRequest requestWithURL:[ApiManager myPetNewsList:[DataCenter sharedInstance].user.token offset:offset]];
     task.parser=[[[PetNewsParser alloc] init] autorelease];
     [task start];
 
@@ -216,9 +217,9 @@
     return task;
 }
 
--(AsyncTask*)myJoinActivaty{
+-(AsyncTask*)myJoinActivaty:(int)offset{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
-    task.request=[HTTPRequest requestWithURL:[ApiManager myJoinActivaty:[DataCenter sharedInstance].user.token]];
+    task.request=[HTTPRequest requestWithURL:[ApiManager myJoinActivaty:[DataCenter sharedInstance].user.token offset:offset]];
     task.parser=[[[ActivatyParser alloc] init] autorelease];
     [task start];
 
@@ -260,5 +261,24 @@
     return task;
 }
 
+-(AsyncTask*)emailMessage:(int)offset{
+    AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
+    task.request=[HTTPRequest requestWithURL:[ApiManager emailMessage:[DataCenter sharedInstance].user.token offset:offset]];
+    task.parser=[[[MessageParser alloc] init] autorelease];
+    [task start];
+    return task;
+    
+
+}
+
+
+-(AsyncTask*)summary{
+    AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
+    task.request=[HTTPRequest requestWithURL:[ApiManager summary:[DataCenter sharedInstance].user.token]];
+    task.parser=[[[MessageParser alloc] init] autorelease];
+    [task start];
+    return task;
+
+}
 
 @end

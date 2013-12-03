@@ -12,6 +12,7 @@
 
 @interface MessageModel : NSObject
 
+@property(nonatomic,retain) NSString* target_id;
 @property(nonatomic,retain) PetUser* friendUser;
 @property(nonatomic,retain) NSString* content;
 @property(nonatomic,retain) NSDate* createdate;

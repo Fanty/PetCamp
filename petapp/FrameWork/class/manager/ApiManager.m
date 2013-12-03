@@ -63,8 +63,8 @@
     
 }
 
-+(NSURL*)myPetNewsList:(NSString*)token{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/post/mylist?token=%@",PREFIX,token]];
++(NSURL*)myPetNewsList:(NSString*)token offset:(int)offset{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/post/mylist?token=%@&offset=%d&offsetcount=%d",PREFIX,token,offset,HTTP_PAGE_SIZE]];
     
 }
 
@@ -172,8 +172,8 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/addGroupUsers",PREFIX]];
 }
 
-+(NSURL*)myJoinActivaty:(NSString*)token{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/activity/myJoinActiviyList?token=%@",PREFIX,token]];
++(NSURL*)myJoinActivaty:(NSString*)token  offset:(int)offset{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/activity/myJoinActiviyList?token=%@&offset=%d&offsetcount=%d",PREFIX,token,offset,HTTP_PAGE_SIZE]];
 }
 
 +(NSURL*)updateProfile{
@@ -241,5 +241,27 @@
 
 }
 
++(NSURL*)groupMessageList:(NSString*)group_id{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/messageList?gid=%@&offsetcount=100",PREFIX,group_id]];
+}
+
++(NSURL*)createGroupMessage{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/sendMessage",PREFIX]];
+
+}
+
+
++(NSURL*)emailMessage:(NSString*)token offset:(int)offset{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/user/messageList?token=%@&offset=%d&offsetcount=%d",PREFIX,token,offset,HTTP_PAGE_SIZE]];
+}
+
++(NSURL*)updateGroup{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/petgroup/updateGroup",PREFIX]];
+
+}
+
++(NSURL*)summary:(NSString*)token{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/user/summary?token=%@",PREFIX,token]];
+}
 
 @end

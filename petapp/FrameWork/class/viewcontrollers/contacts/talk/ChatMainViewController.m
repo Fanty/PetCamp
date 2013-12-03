@@ -13,12 +13,24 @@
 #import "GTGZThemeManager.h"
 #import "ChatCell.h"
 #import "ChatImageCell.h"
-#import "ChatModel.h"
+#import "GroupMessage.h"
 #import "PetUser.h"
 #import "DataCenter.h"
+#import "AsyncTask.h"
+#import "TalkManager.h"
+#import "AppDelegate.h"
+#import "MBProgressHUD.h"
+#import "AlertUtils.h"
+#import "GroupModel.h"
+#import "GTGZUtils.h"
+#import "RootViewController.h"
+
 @interface ChatMainViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIActionSheetDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ChatPanelDelegate>
 
 -(void)groupDetail;
+
+-(void)sync;
+-(void)syncTimeEvent;
 @end
 
 @implementation ChatMainViewController
@@ -39,106 +51,9 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    firstLoad=YES;
     self.view.backgroundColor=[UIColor colorWithPatternImage:[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"chat_bg.png"]];
     
-    
-    ChatModel* model=[[ChatModel alloc] init];
-    
-    model.cid=@"1";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"1";
-    model.petUser.nickname=@"i am abc";
-    model.content=@" a";
-    model.createtime=[NSDate date];
-    [chatArray addObject:model];
-    [model release];
-    
-    
-    model=[[ChatModel alloc] init];
-    model.cid=@"2";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"10";
-    model.petUser.nickname=@"new pet";
-    model.content=@"asdf";
-    model.createtime=[NSDate date];
-    [chatArray addObject:model];
-    [model release];
-    
-    
-    model=[[ChatModel alloc] init];
-    model.cid=@"3";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"3";
-    model.petUser.nickname=@"Now ok";
-    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
-    model.createtime=[NSDate date];
-    [chatArray addObject:model];
-    [model release];
-    
-    
-    model=[[ChatModel alloc] init];
-    model.cid=@"4";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"10";
-    model.petUser.nickname=@"Now ok";
-    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
-    model.createtime=[NSDate date];
-    [chatArray addObject:model];
-    [model release];
-    
-    
-    
-    
-    
-    
-    model=[[ChatModel alloc] init];
-    
-    model.cid=@"1";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"1";
-    model.petUser.nickname=@"i am abc";
-    model.content=@" a";
-    model.createtime=[NSDate date];
-    model.isImage=YES;
-    [chatArray addObject:model];
-    [model release];
-    
-    
-    model=[[ChatModel alloc] init];
-    model.cid=@"2";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"10";
-    model.petUser.nickname=@"new pet";
-    model.content=@"asdf";
-    model.createtime=[NSDate date];
-    model.isImage=YES;
-    [chatArray addObject:model];
-    [model release];
-    
-    
-    model=[[ChatModel alloc] init];
-    model.cid=@"3";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"3";
-    model.petUser.nickname=@"Now ok";
-    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
-    model.createtime=[NSDate date];
-    model.isImage=YES;
-    [chatArray addObject:model];
-    [model release];
-    
-    
-    model=[[ChatModel alloc] init];
-    model.cid=@"4";
-    model.petUser=[[[PetUser alloc] init] autorelease];
-    model.petUser.uid=@"10";
-    model.petUser.nickname=@"Now ok";
-    model.content=@"fsoifsdjfsdoijfsjfio sfojsdoifjios jfiojsfijs iojfsoj foj\nfidjofsijfd sfosdiofjisojfiosjfojsiodf;asdfjoas;ofoijfijow;fjw;ojif;jwf o;iwejfj ;fdslfssof";
-    model.createtime=[NSDate date];
-    model.isImage=YES;
-    [chatArray addObject:model];
-    [model release];
-
     
     chatPanel=[[ChatPanel alloc] init];
     chatPanel.delegate=self;
@@ -165,9 +80,9 @@
     chatPanel.frame=rect;
     [self.view addSubview:chatPanel];
     [chatPanel release];
+
+    [self sync];
     
-    
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning{
@@ -176,11 +91,98 @@
 }
 
 - (void)dealloc{
+    [syncTimer invalidate];
+    syncTimer=nil;
+    [task cancel];
+
     self.groupModel=nil;
     [super dealloc];
 }
 
 #pragma mark method
+
+-(void)setGroupModel:(GroupModel *)value{
+    [groupModel release];
+    if(value==nil){
+        groupModel=nil;
+        return;
+    }
+    groupModel=[[GroupModel alloc] init];
+    groupModel.groupId=value.groupId;
+    groupModel.groupName=value.groupName;
+    groupModel.petUser=value.petUser;
+    groupModel.user_count=value.user_count;
+    groupModel.type=value.type;
+    groupModel.desc=value.desc;
+    groupModel.location=value.location;
+    groupModel.createtime=value.createtime;
+    
+}
+
+
+-(void)sync{
+    [syncTimer invalidate];
+    syncTimer=nil;
+    [task cancel];
+    
+    
+    MBProgressHUD* progressHUD=nil;
+    
+    if(firstLoad){
+        progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
+        
+        [progressHUD show:NO];
+    }
+    
+    task=[[AppDelegate appDelegate].talkManager syncTalk:self.groupModel.groupId];
+    [task setFinishBlock:^{
+        [progressHUD hide:NO];
+        if([task result]!=nil){
+            
+            BOOL _scrollToBottom=NO;
+            if([chatArray count]>0){
+                GroupMessage* msg=[chatArray lastObject];
+                NSArray* list=[task result];
+                if([list count]>0){
+                    GroupMessage* _msg=[list lastObject];
+                    _scrollToBottom=(![msg.msgId isEqualToString:_msg.msgId]);
+                }
+            }
+            [chatArray removeAllObjects];
+            [chatArray addObjectsFromArray:[task result]];
+            [tableView reloadData];
+            if(firstLoad)
+                _scrollToBottom=YES;
+
+            if(_scrollToBottom)
+                [self performSelector:@selector(scrollToBottom) withObject:nil afterDelay:0.05];
+        }
+        else{
+            if([task error]!=nil){
+                UIAlertView* alert=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+            }
+        }
+        firstLoad=NO;
+
+        task=nil;
+        
+        [syncTimer invalidate];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(syncTimeEvent) userInfo:nil repeats:NO];
+    }];
+}
+
+-(void)syncTimeEvent{
+    
+    [self sync];
+}
+
+-(void)scrollToBottom{
+    if([chatArray count]>1)
+        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+}
+
 
 
 -(void)groupDetail{
@@ -219,7 +221,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChatModel* model=[chatArray objectAtIndex:[indexPath row]];
+    GroupMessage* model=[chatArray objectAtIndex:[indexPath row]];
     if(model.isImage){
         return [ChatImageCell cellHeight];
     }
@@ -231,7 +233,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ChatModel* model=[chatArray objectAtIndex:[indexPath row]];
+    GroupMessage* model=[chatArray objectAtIndex:[indexPath row]];
 
     NSString* myId=[DataCenter sharedInstance].user.uid;
     if(!model.isImage){
@@ -241,7 +243,7 @@
             
             
         }
-        [cell headerUrl:model.petUser.imageHeadUrl name:model.petUser.nickname content:model.content bubbleType:([myId isEqualToString:model.petUser.uid]?BubbleTypeMine:BubbleTypeSomeoneElse)];
+        [cell headerUrl:model.sender.imageHeadUrl name:model.sender.nickname content:model.content bubbleType:([myId isEqualToString:model.sender.uid]?BubbleTypeMine:BubbleTypeSomeoneElse)];
         return cell;
     }
     else{
@@ -251,7 +253,7 @@
             
             
         }
-        [cell headerUrl:model.petUser.imageHeadUrl name:model.petUser.nickname contentUrl:model.content bubbleType:([myId isEqualToString:model.petUser.uid]?BubbleTypeMine:BubbleTypeSomeoneElse)];
+        [cell headerUrl:model.sender.imageHeadUrl name:model.sender.nickname contentUrl:model.content bubbleType:([myId isEqualToString:model.sender.uid]?BubbleTypeMine:BubbleTypeSomeoneElse)];
         return cell;
 
     }
@@ -279,20 +281,61 @@
     if([[[[UIDevice currentDevice] model] lowercaseString] rangeOfString:@"ipod"].length>0){
         UIActionSheet* sheet=[[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从手机相片图库中选取" otherButtonTitles:nil, nil];
         sheet.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
-        [sheet showInView:self.view];
+        [sheet showInView:[AppDelegate appDelegate].rootViewController.view];
         [sheet release];
     }
     else{
         UIActionSheet* sheet=[[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从手机相片图库中选取", nil];
         sheet.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
-        [sheet showInView:self.view];
+        [sheet showInView:[AppDelegate appDelegate].rootViewController.view];
         [sheet release];
 
     }
 }
 
--(void)chatPanelDidSend:(ChatPanel*)chatPanel{
+-(void)chatPanelDidSend:(ChatPanel*)_chatPanel{
+    NSString* text=[GTGZUtils trim:_chatPanel.text];
+    if([text length]<1){
+        return;
+    }
+    _chatPanel.text=nil;
+    [_chatPanel resignFirstResponder];
+    [syncTimer invalidate];
+    syncTimer=nil;
+    [task cancel];
+    MBProgressHUD* progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
     
+    [progressHUD show:NO];
+    
+    task=[[AppDelegate appDelegate].talkManager sendChat:self.groupModel.groupId content:text isImage:NO];
+    
+    [task setFinishBlock:^{
+        [progressHUD hide:NO];
+
+        if(![task status]){
+            UIAlertView* alert=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+        }
+        else{
+            GroupMessage* groupMessage=[[GroupMessage alloc] init];
+            groupMessage.msgId=@"-1";
+            groupMessage.content=text;
+            groupMessage.sender=[DataCenter sharedInstance].user;
+            groupMessage.createtime=[NSDate date];
+            groupMessage.isImage=NO;
+
+            [chatArray addObject:groupMessage];
+            [tableView reloadData];
+            
+            [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
+        }
+    
+        task=nil;
+        [self sync];
+    }];
+
 }
 
 

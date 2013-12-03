@@ -22,6 +22,8 @@
     AsyncTask* task;
     
     UIButton* noButton;
+    
+    int offset;
 }
 
 @property(assign,nonatomic) UIViewController* parentViewController;

@@ -18,9 +18,12 @@
 #import "PetNewsEditViewController.h"
 #import "PetNewsNavigationController.h"
 #import "RightNavContactViewController.h"
+#import "AsyncTask.h"
+#import "PetNewsAndActivatyManager.h"
 
 @interface PersonDynamicViewController ()
 -(void)rightClick;
+-(void)updateSummary;
 @end
 
 @implementation PersonDynamicViewController
@@ -58,6 +61,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self updateSummary];
     [myPetNewsTableView reloadData];
 }
 
@@ -69,7 +73,14 @@
     [controller release];
 }
 
-#pragma mark headtab delegate
-
+-(void)updateSummary{
+    [task cancel];
+    task=[[AppDelegate appDelegate].petNewsAndActivatyManager summary];
+    [task setFinishBlock:^{
+        
+        task=nil;
+    
+    }];
+}
 
 @end

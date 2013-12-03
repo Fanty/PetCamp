@@ -14,11 +14,16 @@
 @synthesize petUser;
 @synthesize user_count;
 @synthesize type;
-
+@synthesize location;
+@synthesize desc;
+@synthesize createtime;
 -(void)dealloc{
+    self.desc=nil;
+    self.location=nil;
     self.groupId=nil;
     self.groupName=nil;
     self.petUser=nil;
+    self.createtime=nil;
     [super dealloc];
 }
 

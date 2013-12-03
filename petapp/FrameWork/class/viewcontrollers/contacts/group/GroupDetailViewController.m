@@ -11,12 +11,19 @@
 #import "ImageDownloadedView.h"
 #import "groupModel.h"
 #import "PetUser.h"
-#import "iCarousel.h"
 #import "MemberListViewController.h"
 #import "GroupMembersView.h"
+#import "AppDelegate.h"
+#import "ContactGroupManager.h"
+#import "AsyncTask.h"
+#import "AlertUtils.h"
+#import "MBProgressHUD.h"
+#import "GroupTextViewController.h"
+#import "DataCenter.h"
 
-@interface GroupDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate>
-
+@interface GroupDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIAlertViewDelegate>
+-(void)loadData;
+-(void)updateAction;
 @end
 
 @implementation GroupDetailViewController{
@@ -40,7 +47,6 @@
     if (self) {
         [self backNavBar];
         
-        
         dict=[[NSDictionary dictionaryWithObjectsAndKeys:
                [NSArray arrayWithObjects:lang(@"groupMember"), nil],
                @"groupMember",
@@ -50,24 +56,20 @@
                @"base",
                nil] retain];
         
+        images=[[NSMutableArray alloc] initWithCapacity:2];
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [tableView reloadData];
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
 
-    tableView=[[GTGZTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    tableView.touchDelegate=self;
-    tableView.dataSource=self;
-    tableView.delegate=self;
-    tableView.showsHorizontalScrollIndicator=NO;
-    tableView.showsVerticalScrollIndicator=NO;
-    tableView.backgroundColor=[UIColor grayColor];
-    
-    [self.view addSubview:tableView];
-    [tableView release];
-
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -87,8 +89,86 @@
     [memberView release];
 
     self.groupModel=nil;
+    [images release];
     [dict release];
     [super dealloc];
+}
+
+#pragma mark method
+
+-(BOOL)canBackNav{
+    return (task==nil);
+}
+
+-(void)loadData{
+    MBProgressHUD* progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
+    task=[[AppDelegate appDelegate].contactGroupManager friendList:self.groupModel.groupId];
+    [progressHUD show:NO];
+    [task setFinishBlock:^{
+        [progressHUD hide:NO];
+
+        NSArray* array=(NSArray*)[task result];
+        if([array count]<1){
+            UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:lang(@"connect_error") message:nil delegate:self cancelButtonTitle:lang(@"cancel") otherButtonTitles:lang(@"confim"), nil];
+            [alertView show];
+            [alertView release];
+        }
+        else{
+            [images removeAllObjects];
+            for(PetUser* petUser in array){
+                if([petUser.imageHeadUrl length]>0)
+                    [images addObject:petUser.imageHeadUrl];
+                else
+                    [images addObject:@""];
+            }
+            
+            tableView=[[GTGZTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+            tableView.touchDelegate=self;
+            tableView.dataSource=self;
+            tableView.delegate=self;
+            tableView.showsHorizontalScrollIndicator=NO;
+            tableView.showsVerticalScrollIndicator=NO;
+            tableView.backgroundColor=[UIColor grayColor];
+            
+            [self.view addSubview:tableView];
+            [tableView release];
+
+            if([[DataCenter sharedInstance].user.uid isEqualToString:self.groupModel.petUser.uid])
+                [self rightNavBarWithTitle:lang(@"update") target:self action:@selector(updateAction)];
+
+        }
+        task=nil;
+
+    }];
+
+}
+
+-(void)updateAction{
+    if(task!=nil)return;
+    
+    MBProgressHUD* progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
+    task=[[AppDelegate appDelegate].contactGroupManager updateGroup:self.groupModel.groupId groupname:self.groupModel.groupName description:self.groupModel.desc location:self.groupModel.location];
+    [progressHUD show:NO];
+    [task setFinishBlock:^{
+        [progressHUD hide:NO];
+        
+        if(![task status]){
+            UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:self cancelButtonTitle:lang(@"cancel") otherButtonTitles:lang(@"confim"), nil];
+            [alertView show];
+            [alertView release];
+        }
+        else{
+            UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:lang(@"updateSuccess") message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+            [alertView show];
+            [alertView release];
+            
+
+            [[AppDelegate appDelegate].contactGroupManager sync];
+        }
+        task=nil;
+        
+    }];
+
 }
 
 #pragma mark tableview delegate  datasource
@@ -139,6 +219,7 @@
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"first_host_cell"] autorelease];
                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
             }
+            cell.accessoryType=UITableViewCellAccessoryNone;
             cell.textLabel.text=text;
             
             if(headerImageView==nil){
@@ -178,7 +259,8 @@
             cell.textLabel.text=text;
             cell.detailTextLabel.numberOfLines=0;
             cell.detailTextLabel.textColor=[UIColor blackColor];
-            cell.detailTextLabel.text=@"oifjsdfjfo isdofijdsaoijfoiajfioadsfio aifioadof diosf aiofioads fiodaiofoiasdfoadfosfo;aj foijsafoiofjojfoiajfioa odfiaoijfoijdaso;fjoadfjoafojasjfoai;sdjfiojsafoijsajofaosdfjaoij";
+            cell.detailTextLabel.text=self.groupModel.desc;
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
 
         }
         else{
@@ -189,13 +271,17 @@
             }
             cell.textLabel.text=text;
             cell.detailTextLabel.textColor=[UIColor blackColor];
+            cell.accessoryType=UITableViewCellAccessoryNone;
+
             if([text isEqualToString:lang(@"groupId")]){
                 
-                cell.detailTextLabel.text=groupModel.groupId;
+                cell.detailTextLabel.text=self.groupModel.groupId;
             }
             else if([text isEqualToString:lang(@"location")]){
                 
-                cell.detailTextLabel.text=@"location";
+                cell.detailTextLabel.text=self.groupModel.location;
+                cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+
             }
         }
     }
@@ -208,7 +294,10 @@
         cell.textLabel.text=text;
         cell.detailTextLabel.textColor=[UIColor blackColor];
 
-        cell.detailTextLabel.text=@"时间";
+        NSDateFormatter* formatter=[[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy/MM/HH dd:mm"];
+        cell.detailTextLabel.text=[formatter stringFromDate:self.groupModel.createtime];
+        [formatter release];
         
 
     }
@@ -224,8 +313,7 @@
             memberView=[[GroupMembersView alloc] initWithFrame:CGRectMake(20.0f, 5.0f, tableView.frame.size.width-60.0f, 0.0f)];
             [memberView title:text];
             
-            NSArray* array=@[@"http://www.bai",@"http://www.baiduc.om",@"http://www.baiduc.om",@"http://www.baiduc.om",@"http://www.baiduc.om",@"http://www.baiduc.om",@"http://www.baiduc.om",@"http://www.baiduc.om",@"http://www.baiduc.om",@"http://www.baiduc.om"];
-            [memberView setImages:array];
+            [memberView setImages:images];
         }
         [cell addSubview:memberView];
 
@@ -252,8 +340,39 @@
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
+    else if([key isEqualToString:@"base"]){
+        NSArray* array=[dict objectForKey:key];
+        NSString* text=[array objectAtIndex:[indexPath row]];
+
+        if([text isEqualToString:lang(@"groupDescription")]){
+            GroupTextViewController* controller=[[GroupTextViewController alloc] init];
+            controller.groupModel=self.groupModel;
+            controller.editDesc=YES;
+            controller.title=lang(@"plsinputgroupdesc");
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+        else if([text isEqualToString:lang(@"location")]){
+            GroupTextViewController* controller=[[GroupTextViewController alloc] init];
+            controller.groupModel=self.groupModel;
+            controller.title=lang(@"plsinputlocation");
+
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+
+    }
 }
 
-#pragma mark 
+#pragma mark alertview delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1){
+        [self loadData];
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 @end

@@ -8,7 +8,18 @@
 
 #import "PullTableView.h"
 
-@interface EmailTableView : PullTableView
+
+@class AsyncTask;
+
+@interface EmailTableView : PullTableView{
+    NSMutableArray* list;
+    AsyncTask* task;
+    int pageOffset;
+}
+
+
 @property(assign,nonatomic) UIViewController* parentViewController;
+
+-(void)clear;
 
 @end

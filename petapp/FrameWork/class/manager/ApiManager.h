@@ -28,7 +28,7 @@
 
 +(NSURL*)createPetNews;
 
-+(NSURL*)myPetNewsList:(NSString*)token;
++(NSURL*)myPetNewsList:(NSString*)token offset:(int)offset;
 
 +(NSURL*)petNewsCommentList:(NSString*)pid offset:(int)offset;
 
@@ -74,7 +74,7 @@
 
 +(NSURL*)addGroupUsers;
 
-+(NSURL*)myJoinActivaty:(NSString*)token;
++(NSURL*)myJoinActivaty:(NSString*)token offset:(int)offset;
 
 +(NSURL*)updateProfile;
 
@@ -102,5 +102,15 @@
 
 +(NSURL*)forgetPasswordApi;
 
+
++(NSURL*)groupMessageList:(NSString*)group_id;
+
++(NSURL*)createGroupMessage;
+
++(NSURL*)emailMessage:(NSString*)token offset:(int)offset;
+
++(NSURL*)updateGroup;
+
++(NSURL*)summary:(NSString*)token;
 
 @end

@@ -1,23 +1,24 @@
 //
-//  MessageParser.m
+//  GroupMessageParser.m
 //  PetNews
 //
-//  Created by Grace Lai on 21/8/13.
-//  Copyright (c) 2013 fanty. All rights reserved.
+//  Created by Fanty on 13-11-28.
+//  Copyright (c) 2013年 fanty. All rights reserved.
 //
 
-#import "MessageParser.h"
-#import "MessageModel.h"
+#import "GroupMessageParser.h"
+#import "GroupMessage.h"
 #import "PetUser.h"
 
-@implementation MessageParser
+@implementation GroupMessageParser
 
 - (void)onParse: (GDataXMLElement*) rootElement{
     
     NSArray* array = [rootElement nodesForXPath:@"messages/message" error:nil];
     NSMutableArray* list = [[NSMutableArray alloc] init];
-    for(GDataXMLElement* element in array){
-        MessageModel* msgModel = [[MessageModel alloc] init];
+    for(int i=[array count]-1;i>=0;i--){
+        GDataXMLElement* element=[array objectAtIndex:i];
+        GroupMessage* msgModel = [[GroupMessage alloc] init];
         PetUser* userModel = [[PetUser alloc] init];
         NSArray* infoArray = [element children];
         for(GDataXMLElement* msgElement in infoArray){
@@ -25,36 +26,31 @@
             if([[msgElement name] isEqualToString:@"content"]){
                 msgModel.content = [msgElement stringValue];
             }
-            else if([[msgElement name] isEqualToString:@"target_id"]){
-                msgModel.target_id = [msgElement stringValue];
-            }
             else if([[msgElement name] isEqualToString:@"createtime"]){
-                msgModel.createdate = [msgElement dateValueFromNSTimeInterval];
+                msgModel.createtime = [msgElement dateValueFromNSTimeInterval];
             }
-            else if([[msgElement name] isEqualToString:@"user"]){
+            else if([[msgElement name] isEqualToString:@"id"]){
+                msgModel.msgId = [msgElement stringValue];
+            }
+
+            else if([[msgElement name] isEqualToString:@"sender"]){
                 NSArray* __array=[msgElement children];
                 
                 for(GDataXMLElement* __element in __array){
-                    if([[__element name] isEqualToString:@"uid"]){
+                    if([[__element name] isEqualToString:@"id"]){
                         userModel.uid = [__element stringValue];
                     }
-                    else if([[__element name] isEqualToString:@"nickname"]){
+                    else if([[__element name] isEqualToString:@"name"]){
                         userModel.nickname = [__element stringValue];
                     }
-                    else if([[__element name] isEqualToString:@"sex"]){
-                        userModel.sex = [__element boolValue];
-                    }
-                    else if([[__element name] isEqualToString:@"image"] ||[[__element name] isEqualToString:@"user_image"]){
+                    else if([[__element name] isEqualToString:@"logo_path"]){
                         userModel.imageHeadUrl = [__element stringValue];
                     }
+                    
                 }
             }
-            else if([[msgElement name] isEqualToString:@"createdate"]){ //date
-                msgModel.createdate = [msgElement dateValueFromNSTimeInterval] ;
-            }
-
         }
-        msgModel.friendUser = userModel;
+        msgModel.sender = userModel;
         [userModel release];
         [list addObject:msgModel];
         [msgModel release];
@@ -64,6 +60,10 @@
     [result release];
     result = [list retain];
     [list release];
+    
+    
+    
+    
 }
 
 @end

@@ -119,7 +119,11 @@
     
     FormDataRequest* request=[FormDataRequest requestWithURL:[ApiManager createGroup]];
     [request setPostValue:groupName forKey:@"groupname"];
-    
+    [request setPostValue:desc forKey:@"description"];
+    [request setPostValue:location forKey:@"location"];
+    [request setPostValue:[NSString stringWithFormat:@"%f",[DataCenter sharedInstance].latitude] forKey:@"lat"];
+    [request setPostValue:[NSString stringWithFormat:@"%f",[DataCenter sharedInstance].longitude] forKey:@"lng"];
+
     task.request=request;
     [task start];
     
@@ -273,6 +277,20 @@
     task.parser=[[[ContactParser alloc] init] autorelease];
     
     HTTPRequest* request=[HTTPRequest requestWithURL:[ApiManager searchUser:keyword offset:offset]];
+    task.request=request;
+    [task start];
+    return task;
+
+}
+
+-(AsyncTask*)updateGroup:(NSString*)gid groupname:(NSString*)groupname description:(NSString*)description location:(NSString*)location{
+    AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
+    task.parser=[[[XmlParser alloc] init] autorelease];
+    FormDataRequest* request=[FormDataRequest requestWithURL:[ApiManager updateGroup]];
+    [request setPostValue:gid forKey:@"gid"];
+    [request setPostValue:groupname forKey:@"groupname"];
+    [request setPostValue:description forKey:@"description"];
+    [request setPostValue:location forKey:@"location"];
     task.request=request;
     [task start];
     return task;

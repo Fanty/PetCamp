@@ -22,7 +22,7 @@
     rect.origin.y=0.0f;
     rect.size.height-=(44.0f+44.0f);
     if([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0f){
-        rect.size.height-=20.0f;
+       // rect.size.height-=20.0f;
     }
 
     self.view.frame=rect;

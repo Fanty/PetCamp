@@ -21,5 +21,7 @@ typedef enum _GroupModelType{
 @property(nonatomic,retain) PetUser* petUser;
 @property(nonatomic,assign) int user_count;
 @property(nonatomic,assign) GroupModelType type;
-
+@property(nonatomic,retain) NSString* desc;
+@property(nonatomic,retain) NSString* location;
+@property(nonatomic,retain) NSDate* createtime;
 @end

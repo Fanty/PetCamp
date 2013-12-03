@@ -20,8 +20,6 @@
 #import "GTGZThemeManager.h"
 #import "DataCenter.h"
 
-#import "PetNewsEditViewController.h"
-#import "PetNewsNavigationController.h"
 #import "ContactDetailViewController.h"
 #import "Utils.h"
 

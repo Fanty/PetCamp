@@ -15,7 +15,7 @@
     <theme key="more_theme" textColor="blackColor" fontName="HelveticaNeue-Bold" highlightColor="blackColor" fontSize="14.0f" />
     <theme key="pulltoRefresh_title" textColor="blackColor" fontSize="14.0f" fontBold="1" />
     <theme key="pulltoRefresh_date" textColor="blackColor" fontSize="13.0f"  />
-    <theme key="tabhead_title" textColor="#b4b4b4" fontSize="17.0f" />
+    <theme key="tabhead_title" textColor="blackColor" fontSize="17.0f" />
     <theme key="petcell_title" textColor="blackColor" fontSize="17.0f" />
     <theme key="petcell_desc" textColor="blackColor" fontSize="16.0f" />
     <theme key="petcell_smalltip" textColor="grayColor" fontSize="13.0f" />

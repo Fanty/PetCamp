@@ -12,12 +12,20 @@
 
 @class ChatPanel;
 @class GTGZTableView;
+@class AsyncTask;
 
 @interface ChatMainViewController : NavContentViewController{
     GTGZTableView* tableView;
     ChatPanel* chatPanel;
     NSMutableArray*  chatArray;
+ 
+    AsyncTask* task;
     
+    NSTimer* syncTimer;
+    
+    BOOL firstLoad;
+    
+    GroupModel* groupModel;
 }
 
 @property(nonatomic,retain) GroupModel* groupModel;

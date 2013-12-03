@@ -225,7 +225,13 @@
     [noButton removeFromSuperview];
     noButton=nil;
 
-    task=[[AppDelegate appDelegate].petNewsAndActivatyManager myPetNewsList];
+    int tempOffset=offset;
+    if(loadMore)
+        tempOffset++;
+    else
+        tempOffset=0;
+    
+    task=[[AppDelegate appDelegate].petNewsAndActivatyManager myPetNewsList:tempOffset];
     [task setFinishBlock:^{
         [self.pullToRefreshView stopAnimating];
         self.loadMoreState=PullTableViewLoadMoreStateNone;
@@ -234,7 +240,7 @@
             [self releaseLoadMoreFooter];
         }
         else{
-            
+            offset=tempOffset;
             NSArray* array=[task result];
             
             if(list==nil){

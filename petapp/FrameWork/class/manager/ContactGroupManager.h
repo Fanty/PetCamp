@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AsyncTask.h"
 
+
+
 @interface ContactGroupManager : NSObject{
     
     AsyncTask* friendAsyncTask;
@@ -49,5 +51,7 @@
 
 -(AsyncTask*)searchUser:(NSString*)keyword offset:(int)offset;
 
+
+-(AsyncTask*)updateGroup:(NSString*)gid groupname:(NSString*)groupname description:(NSString*)description location:(NSString*)location;
 
 @end

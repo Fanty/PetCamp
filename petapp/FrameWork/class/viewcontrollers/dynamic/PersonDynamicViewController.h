@@ -9,10 +9,12 @@
 #import "NavContentViewController.h"
 @class ImageDownloadedView;
 @class MyPetNewsTableView;
+@class AsyncTask;
 @interface PersonDynamicViewController : NavContentViewController{
 
     MyPetNewsTableView* myPetNewsTableView;
     
+    AsyncTask* task;
 }
 
 @end

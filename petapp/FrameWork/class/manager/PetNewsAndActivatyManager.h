@@ -15,7 +15,7 @@
 
 -(AsyncTask*)createPetNews:(NSString*)content images:(NSString*)images src_post_id:(NSString*)scr_post_id;
 
--(AsyncTask*)myPetNewsList;
+-(AsyncTask*)myPetNewsList:(int)offset;
 
 -(AsyncTask*)petNewsCommentList:(NSString*)pid offset:(int)offset;
 
@@ -43,7 +43,7 @@ start_date:(NSDate*)start_date end_date:(NSDate*)end_date join_date:(NSDate*)joi
 -(AsyncTask*)activtyCommentList:(NSString*)aid offset:(int)offset;
 
 
--(AsyncTask*)myJoinActivaty;
+-(AsyncTask*)myJoinActivaty:(int)offset;
 
 -(AsyncTask*)petNewsListByUser:(NSString*)uid offset:(int)offset;
 
@@ -51,5 +51,9 @@ start_date:(NSDate*)start_date end_date:(NSDate*)end_date join_date:(NSDate*)joi
 
 -(AsyncTask*)deleteActivity:(NSString*)aid;
 
+
+-(AsyncTask*)emailMessage:(int)offset;
+
+-(AsyncTask*)summary;
 
 @end

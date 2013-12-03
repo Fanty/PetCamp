@@ -151,7 +151,13 @@
     [noButton removeFromSuperview];
     noButton=nil;
     
-    task=[[AppDelegate appDelegate].petNewsAndActivatyManager myJoinActivaty];
+    int tempOffset=offset;
+    if(loadMore)
+        tempOffset++;
+    else
+        tempOffset=0;
+    
+    task=[[AppDelegate appDelegate].petNewsAndActivatyManager myJoinActivaty:tempOffset];
     [task setFinishBlock:^{
         [self.pullToRefreshView stopAnimating];
         self.loadMoreState=PullTableViewLoadMoreStateNone;
@@ -169,7 +175,7 @@
             [noButton setTitle:lang(@"error_http_dropdown") forState:UIControlStateNormal];
         }
         else{
-            
+            offset=tempOffset;
             NSArray* array=[task result];
             
             if(list==nil){

@@ -27,16 +27,11 @@
     }
     self = [super initWithFrame:frame];
     if (self) {
-        if(![Utils isIPad])
             self.image=[[GTGZThemeManager sharedInstance] imageByTheme:@"headtab_bg_white.png"];
-        else
-            self.image=[[GTGZThemeManager sharedInstance] imageByTheme:@"headtab_bg.png"];
         self.userInteractionEnabled=YES;
         self.clipsToBounds=YES;
-        if(![Utils isIPad])
-            selectedImageView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"tab_on_white.png"]];
-        else
-            selectedImageView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"tab_on.png"]];
+
+        selectedImageView=[[UIImageView alloc] initWithImage:[[GTGZThemeManager sharedInstance] imageByTheme:@"tab_on_white.png"]];
 
         [self addSubview:selectedImageView];
         [selectedImageView release];
