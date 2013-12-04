@@ -24,10 +24,15 @@
 #import "GroupModel.h"
 #import "GTGZUtils.h"
 #import "RootViewController.h"
+#import "SettingManager.h"
 
 @interface ChatMainViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIActionSheetDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ChatPanelDelegate>
 
 -(void)groupDetail;
+
+-(void)sendImage:(UIImage*)image;
+
+-(void)sendText:(NSString*)text isImage:(BOOL)isImage;
 
 -(void)sync;
 -(void)syncTimeEvent;
@@ -195,6 +200,78 @@
 }
 
 
+-(void)sendImage:(UIImage*)image{
+
+    [syncTimer invalidate];
+    syncTimer=nil;
+    [task cancel];
+    MBProgressHUD* progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
+    
+    [progressHUD show:NO];
+
+    image=[GTGZUtils imageWithThumbnail:image size:CGSizeMake(800.0f, 800.0f)];
+    NSData* data=UIImageJPEGRepresentation(image,70);
+    
+    task=[[AppDelegate appDelegate].settingManager fileUpload:data type:@"user"];
+    [task setFinishBlock:^{
+        [progressHUD hide:NO];
+
+        NSString* link=@"";
+        if([task result]!=nil){
+            link=[task result];
+        }
+        task=nil;
+        
+        if([link length]>0){
+            [self sendText:link isImage:YES];
+        }
+        else{
+            UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:lang(@"fileUploadFailed") message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+            [alertView show];
+            [alertView release];
+        }
+    }];
+}
+
+-(void)sendText:(NSString*)text isImage:(BOOL)isImage{
+    [syncTimer invalidate];
+    syncTimer=nil;
+    [task cancel];
+    MBProgressHUD* progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
+    
+    [progressHUD show:NO];
+    
+    task=[[AppDelegate appDelegate].talkManager sendChat:self.groupModel.groupId content:text isImage:isImage];
+    
+    [task setFinishBlock:^{
+        [progressHUD hide:NO];
+        
+        if(![task status]){
+            UIAlertView* alert=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+        }
+        else{
+            GroupMessage* groupMessage=[[GroupMessage alloc] init];
+            groupMessage.msgId=@"-1";
+            groupMessage.content=text;
+            groupMessage.sender=[DataCenter sharedInstance].user;
+            groupMessage.createtime=[NSDate date];
+            groupMessage.isImage=NO;
+            
+            [chatArray addObject:groupMessage];
+            [tableView reloadData];
+            
+            [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            
+        }
+        
+        task=nil;
+        [self sync];
+    }];
+
+}
+
 
 #pragma mark tableview delegate  datasource
 
@@ -300,42 +377,8 @@
     }
     _chatPanel.text=nil;
     [_chatPanel resignFirstResponder];
-    [syncTimer invalidate];
-    syncTimer=nil;
-    [task cancel];
-    MBProgressHUD* progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
     
-    [progressHUD show:NO];
-    
-    task=[[AppDelegate appDelegate].talkManager sendChat:self.groupModel.groupId content:text isImage:NO];
-    
-    [task setFinishBlock:^{
-        [progressHUD hide:NO];
-
-        if(![task status]){
-            UIAlertView* alert=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-        }
-        else{
-            GroupMessage* groupMessage=[[GroupMessage alloc] init];
-            groupMessage.msgId=@"-1";
-            groupMessage.content=text;
-            groupMessage.sender=[DataCenter sharedInstance].user;
-            groupMessage.createtime=[NSDate date];
-            groupMessage.isImage=NO;
-
-            [chatArray addObject:groupMessage];
-            [tableView reloadData];
-            
-            [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
-        }
-    
-        task=nil;
-        [self sync];
-    }];
-
+    [self sendText:text isImage:NO];
 }
 
 
@@ -412,6 +455,8 @@
         if(image!=nil && picker.sourceType==UIImagePickerControllerSourceTypeCamera){
             UIImageWriteToSavedPhotosAlbum(image, nil,nil, nil);
         }
+        
+        [self sendImage:image];
     }
     [picker dismissModalViewControllerAnimated:YES];
 }
