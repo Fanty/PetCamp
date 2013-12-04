@@ -162,9 +162,15 @@
         loadingHud=nil;
         
         if(![task status]){
-            [AlertUtils showAlert:[task errorMessage] view:fgView];
+            UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+            [alertView show];
+            [alertView release];
         }
         else{
+            UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:lang(@"forwardSuccess") message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+            [alertView show];
+            [alertView release];
+
             [[NSNotificationCenter defaultCenter] postNotificationName:UpdatePetNewsListNotification object:nil];
             [self dismissModalViewControllerAnimated:YES];
             

@@ -146,7 +146,16 @@
             
             [cell headUrl:model.petUser.imageHeadUrl];
             [cell nickName:model.petUser.nickname];
-            [cell content:model.desc];
+            if([model.scr_post.desc length]>0){
+                NSString* content=model.desc;
+                if([content length]>0)
+                    content=[content stringByAppendingString:@" "];
+                content=[content stringByAppendingString:[NSString stringWithFormat:lang(@"forward_content"),model.scr_post.petUser.nickname,model.scr_post.desc]];
+                [cell content:content];
+            }
+            else{
+                [cell content:model.desc];
+            }
             [cell createDate:model.createdate];
             [cell like:model.laudCount comment:model.command_count];
             //[cell images:[NSArray arrayWithObjects:model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl, nil]];
