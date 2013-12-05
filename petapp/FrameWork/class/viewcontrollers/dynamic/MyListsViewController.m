@@ -30,7 +30,7 @@
     
     if(self.showIndex<3){
         self.title=(self.showIndex==1?lang(@"activaty"):lang(@"fans"));
-        MyContactsPetListTableView* tableView=[[MyContactsPetListTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        MyContactsPetListTableView* tableView=[[MyContactsPetListTableView alloc] initWithFrame:self.view.bounds widthFans:(self.showIndex!=1)];
         tableView.parentViewController=self;
         [self.view addSubview:tableView];
         [tableView release];

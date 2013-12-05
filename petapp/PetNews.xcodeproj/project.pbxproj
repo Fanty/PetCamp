@@ -1156,6 +1156,8 @@
 		39E5AAE8183BAF0A00937FB3 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E5AAE4183BAF0A00937FB3 /* login_bg.png */; };
 		39E5AAEC183BB6C900937FB3 /* WeiboAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AAEB183BB6C900937FB3 /* WeiboAddViewController.m */; };
 		39E5AAED183BB6C900937FB3 /* WeiboAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AAEB183BB6C900937FB3 /* WeiboAddViewController.m */; };
+		39E6D168184F78F700156310 /* ImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E6D167184F78F700156310 /* ImageScroller.m */; };
+		39E6D169184F78F700156310 /* ImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E6D167184F78F700156310 /* ImageScroller.m */; };
 		39E9AFD917CBA35C009E4A19 /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E9AFD817CBA35C009E4A19 /* HTTPRequest.m */; };
 		39F2105B17E743DF000A7921 /* ServiceWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F2105A17E743DF000A7921 /* ServiceWebViewController.m */; };
 		39F8D4ED18403B410098C957 /* iPad_splash_nav1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F8D4E918403B410098C957 /* iPad_splash_nav1.png */; };
@@ -1999,6 +2001,8 @@
 		39E5AAE4183BAF0A00937FB3 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg.png; sourceTree = "<group>"; };
 		39E5AAEA183BB6C900937FB3 /* WeiboAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboAddViewController.h; sourceTree = "<group>"; };
 		39E5AAEB183BB6C900937FB3 /* WeiboAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboAddViewController.m; sourceTree = "<group>"; };
+		39E6D166184F78F700156310 /* ImageScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScroller.h; sourceTree = "<group>"; };
+		39E6D167184F78F700156310 /* ImageScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScroller.m; sourceTree = "<group>"; };
 		39E9AFD717CBA35C009E4A19 /* HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
 		39E9AFD817CBA35C009E4A19 /* HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
 		39F2105917E743DF000A7921 /* ServiceWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceWebViewController.h; sourceTree = "<group>"; };
@@ -2620,6 +2624,7 @@
 		3927DCEF17AC036A00791945 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				39E6D165184F78F700156310 /* ImageScroller */,
 				39FC56031843864300028C90 /* chatPannel */,
 				39F91AB81841C3DB007F0C63 /* groupMembers */,
 				39F8D50718403B860098C957 /* userSplashNav */,
@@ -3860,6 +3865,15 @@
 			path = add;
 			sourceTree = "<group>";
 		};
+		39E6D165184F78F700156310 /* ImageScroller */ = {
+			isa = PBXGroup;
+			children = (
+				39E6D166184F78F700156310 /* ImageScroller.h */,
+				39E6D167184F78F700156310 /* ImageScroller.m */,
+			);
+			path = ImageScroller;
+			sourceTree = "<group>";
+		};
 		39F8D4E818403B410098C957 /* splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -4899,6 +4913,7 @@
 				3909B8E2183CEFCE001169B4 /* NearByViewController.m in Sources */,
 				33A9C6E517B150A1008E0322 /* ChoiceTableCell.m in Sources */,
 				33A9C6E817B1542C008E0322 /* ChoiceModel.m in Sources */,
+				39E6D168184F78F700156310 /* ImageScroller.m in Sources */,
 				393D869617B2A0BD008D910D /* ActivatyModel.m in Sources */,
 				39F91ABB1841C421007F0C63 /* GroupMembersView.m in Sources */,
 				33A9C6EB17B2AE95008E0322 /* MarketTableView.m in Sources */,
@@ -5086,6 +5101,7 @@
 				3909B8E3183CEFCE001169B4 /* NearByViewController.m in Sources */,
 				39568E1417E89F4900B3F1AA /* ChoiceTableCell.m in Sources */,
 				39568E1517E89F4900B3F1AA /* ChoiceModel.m in Sources */,
+				39E6D169184F78F700156310 /* ImageScroller.m in Sources */,
 				39568E1617E89F4900B3F1AA /* ActivatyModel.m in Sources */,
 				39F91ABC1841C421007F0C63 /* GroupMembersView.m in Sources */,
 				39568E1917E89F4900B3F1AA /* MarketTableView.m in Sources */,

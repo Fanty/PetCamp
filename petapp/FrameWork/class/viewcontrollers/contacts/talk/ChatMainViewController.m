@@ -25,14 +25,15 @@
 #import "GTGZUtils.h"
 #import "RootViewController.h"
 #import "SettingManager.h"
+#import "ImageScroller.h"
 
-@interface ChatMainViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIActionSheetDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ChatPanelDelegate>
+@interface ChatMainViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIActionSheetDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ChatPanelDelegate,ChatImageCellDelegate>
 
 -(void)groupDetail;
 
 -(void)sendImage:(UIImage*)image;
 
--(void)sendText:(NSString*)text isImage:(BOOL)isImage;
+-(void)sendText:(NSString*)text image:(NSString*)image;
 
 -(void)sync;
 -(void)syncTimeEvent;
@@ -105,6 +106,24 @@
 }
 
 #pragma mark method
+
+-(void)clickDidShow:(ChatImageCell*)cell image:(UIImage*)image{
+    UIWindow* window=[AppDelegate appDelegate].window;
+    ImageScroller* imageScroller=[[ImageScroller alloc] initWithFrame:window.bounds];
+    [imageScroller showImage:image];
+    [imageScroller showInView:window];
+    [imageScroller release];
+}
+
+-(void)backClick{
+
+    [syncTimer invalidate];
+    syncTimer=nil;
+    [task cancel];
+    task=nil;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 -(void)setGroupModel:(GroupModel *)value{
     [groupModel release];
@@ -209,7 +228,8 @@
     
     [progressHUD show:NO];
 
-    image=[GTGZUtils imageWithThumbnail:image size:CGSizeMake(800.0f, 800.0f)];
+    if(image.size.width>800 || image.size.height>800)
+        image=[GTGZUtils imageWithThumbnail:image size:CGSizeMake(800.0f, 800.0f)];
     NSData* data=UIImageJPEGRepresentation(image,70);
     
     task=[[AppDelegate appDelegate].settingManager fileUpload:data type:@"user"];
@@ -223,7 +243,7 @@
         task=nil;
         
         if([link length]>0){
-            [self sendText:link isImage:YES];
+            [self sendText:link image:link];
         }
         else{
             UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:lang(@"fileUploadFailed") message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
@@ -233,7 +253,7 @@
     }];
 }
 
--(void)sendText:(NSString*)text isImage:(BOOL)isImage{
+-(void)sendText:(NSString*)text image:(NSString *)image{
     [syncTimer invalidate];
     syncTimer=nil;
     [task cancel];
@@ -241,7 +261,7 @@
     
     [progressHUD show:NO];
     
-    task=[[AppDelegate appDelegate].talkManager sendChat:self.groupModel.groupId content:text isImage:isImage];
+    task=[[AppDelegate appDelegate].talkManager sendChat:self.groupModel.groupId content:text image:image];
     
     [task setFinishBlock:^{
         [progressHUD hide:NO];
@@ -260,6 +280,7 @@
             groupMessage.isImage=NO;
             
             [chatArray addObject:groupMessage];
+            [groupMessage release];
             [tableView reloadData];
             
             [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -316,7 +337,7 @@
     if(!model.isImage){
         ChatCell* cell=(ChatCell*)[_tableView dequeueReusableCellWithIdentifier:@"chat_cell"];
         if(cell==nil){
-            cell=[[ChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"chat_cell"];
+            cell=[[[ChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"chat_cell"] autorelease];
             
             
         }
@@ -327,7 +348,7 @@
         ChatImageCell* cell=(ChatImageCell*)[_tableView dequeueReusableCellWithIdentifier:@"image_cell"];
         if(cell==nil){
             cell=[[ChatImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"image_cell"];
-            
+            cell.delegate=self;
             
         }
         [cell headerUrl:model.sender.imageHeadUrl name:model.sender.nickname contentUrl:model.content bubbleType:([myId isEqualToString:model.sender.uid]?BubbleTypeMine:BubbleTypeSomeoneElse)];
@@ -378,7 +399,7 @@
     _chatPanel.text=nil;
     [_chatPanel resignFirstResponder];
     
-    [self sendText:text isImage:NO];
+    [self sendText:text image:nil];
 }
 
 

@@ -341,24 +341,26 @@
         [controller release];
     }
     else if([key isEqualToString:@"base"]){
-        NSArray* array=[dict objectForKey:key];
-        NSString* text=[array objectAtIndex:[indexPath row]];
-
-        if([text isEqualToString:lang(@"groupDescription")]){
-            GroupTextViewController* controller=[[GroupTextViewController alloc] init];
-            controller.groupModel=self.groupModel;
-            controller.editDesc=YES;
-            controller.title=lang(@"plsinputgroupdesc");
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-        }
-        else if([text isEqualToString:lang(@"location")]){
-            GroupTextViewController* controller=[[GroupTextViewController alloc] init];
-            controller.groupModel=self.groupModel;
-            controller.title=lang(@"plsinputlocation");
-
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
+        if([[DataCenter sharedInstance].user.uid isEqualToString:self.groupModel.petUser.uid]){
+            NSArray* array=[dict objectForKey:key];
+            NSString* text=[array objectAtIndex:[indexPath row]];
+            
+            if([text isEqualToString:lang(@"groupDescription")]){
+                GroupTextViewController* controller=[[GroupTextViewController alloc] init];
+                controller.groupModel=self.groupModel;
+                controller.editDesc=YES;
+                controller.title=lang(@"plsinputgroupdesc");
+                [self.navigationController pushViewController:controller animated:YES];
+                [controller release];
+            }
+            else if([text isEqualToString:lang(@"location")]){
+                GroupTextViewController* controller=[[GroupTextViewController alloc] init];
+                controller.groupModel=self.groupModel;
+                controller.title=lang(@"plsinputlocation");
+                
+                [self.navigationController pushViewController:controller animated:YES];
+                [controller release];
+            }
         }
 
     }

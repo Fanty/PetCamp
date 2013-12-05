@@ -16,18 +16,20 @@
 @implementation TalkManager
 
 -(AsyncTask*)syncTalk:(NSString*)groupId{
-    AsyncTask* task=[[AsyncTask alloc] init];
+    AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
     task.request=[HTTPRequest requestWithURL:[ApiManager groupMessageList:groupId]];
     task.parser=[[[GroupMessageParser alloc] init] autorelease];
     [task start];
     return task;
 }
 
--(AsyncTask*)sendChat:(NSString*)groupId content:(NSString*)content isImage:(BOOL)isImage{
-    AsyncTask* task=[[AsyncTask alloc] init];
+-(AsyncTask*)sendChat:(NSString*)groupId content:(NSString*)content image:(NSString*)image{
+    AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
     FormDataRequest* request=[FormDataRequest requestWithURL:[ApiManager createGroupMessage]];
     [request setPostValue:groupId forKey:@"gid"];
     [request setPostValue:content forKey:@"content"];
+    if([image length]>0)
+        [request setPostValue:image forKey:@"image"];
     task.request=request;
     XmlParser* parser=[[XmlParser alloc] init];
     task.parser=parser;

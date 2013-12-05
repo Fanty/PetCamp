@@ -12,6 +12,8 @@
 #import "Utils.h"
 
 @interface ChatImageCell()
+
+-(void)btnClickImage;
 @end
 
 
@@ -41,10 +43,14 @@
         size=([Utils isIPad]?300.0f:130.0f);
 
         contentImageView=[[ImageDownloadedView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size, size)];
+        contentImageView.thumbnailSize=CGSizeMake(800.0f, 800.0f);
         contentImageView.defaultLoadingfile=@"noPic.png";
         [bubbleView addSubview:contentImageView];
         [contentImageView release];
         
+        clickButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        [clickButton addTarget:self action:@selector(btnClickImage) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:clickButton];
     }
     return self;
 }
@@ -90,6 +96,13 @@
             height=20.0f+75.0f+20.0f;
     }
     return height;
+}
+
+-(void)btnClickImage{
+    if(contentImageView.status==ImageViewDownloadedStatusFinish){
+        if([self.delegate respondsToSelector:@selector(clickDidShow:image:)])
+            [self.delegate clickDidShow:self image:contentImageView.image];
+    }
 }
 
 -(void)layoutSubviews{
@@ -218,6 +231,8 @@
             
         }
     }
+    
+    clickButton.frame=bubbleView.frame;
 }
 
 

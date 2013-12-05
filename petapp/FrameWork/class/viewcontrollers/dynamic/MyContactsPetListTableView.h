@@ -6,9 +6,15 @@
 //  Copyright (c) 2013年 fanty. All rights reserved.
 //
 
-#import "PullTableView.h"
+#import <UIKit/UIKit.h>
 
-@interface MyContactsPetListTableView : PullTableView
+@interface MyContactsPetListTableView : UITableView{
+    BOOL isFans;
+}
+
 @property(assign,nonatomic) UIViewController* parentViewController;
 
+- (id)initWithFrame:(CGRect)frame widthFans:(BOOL)fans;
+
 @end
+

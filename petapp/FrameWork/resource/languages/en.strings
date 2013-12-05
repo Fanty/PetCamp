@@ -168,3 +168,5 @@
 "update"="更新";
 "updateSuccess"="更新成功";
 "forwardSuccess"="转发成功";
+"newpets_content"="最新发布：\n%@";
+"newpets_content_no"="最近未发布任何宠闻";

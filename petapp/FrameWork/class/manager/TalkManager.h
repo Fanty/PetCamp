@@ -14,6 +14,6 @@
 
 -(AsyncTask*)syncTalk:(NSString*)groupId;
 
--(AsyncTask*)sendChat:(NSString*)groupId content:(NSString*)content isImage:(BOOL)isImage;
+-(AsyncTask*)sendChat:(NSString*)groupId content:(NSString*)content image:(NSString*)image;
 
 @end

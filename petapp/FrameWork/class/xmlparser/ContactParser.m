@@ -8,6 +8,7 @@
 
 #import "ContactParser.h"
 #import "PetUser.h"
+#import "PetNewsModel.h"
 @implementation ContactParser
 - (void)onParse: (GDataXMLElement*) rootElement{
     
@@ -73,6 +74,23 @@
                 }
                 else if([[_element name] isEqualToString:@"dictance"]){
                     model.dictance=[_element stringValue];
+                }
+                else if([[_element name] isEqualToString:@"last_post"]){
+                    
+                    NSArray* __array=[_element children];
+                    PetNewsModel* petNewsModel=[[PetNewsModel alloc] init];
+                    for(GDataXMLElement* __element in __array){
+                        if([[__element name] isEqualToString:@"content"]){
+                            petNewsModel.desc=[__element stringValue];
+                        }
+                        else if([[__element name] isEqualToString:@"createtime"]){
+                            petNewsModel.createdate=[__element dateValueFromNSTimeInterval];
+                        }
+                    }
+                    
+                    model.petNewsModel=petNewsModel;
+                    [petNewsModel release];
+
                 }
             }
             

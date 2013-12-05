@@ -14,6 +14,7 @@ typedef  enum _PetUserPetType{
     PetUserPetTypeOther
 }PetUserPetType;
 
+@class PetNewsModel;
 
 @interface PetUser : NSObject
 
@@ -47,6 +48,8 @@ typedef  enum _PetUserPetType{
 @property(nonatomic,retain) NSString* token;
 
 @property(nonatomic,retain) NSString* key;
+
+@property(nonatomic,retain) PetNewsModel* petNewsModel;
 
 -(void)copyPet:(PetUser*)petUser;
 

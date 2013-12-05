@@ -37,6 +37,7 @@
 @synthesize dictance;
 @synthesize token;
 @synthesize key;
+@synthesize petNewsModel;
 -(id)init{
     self=[super init];
     
@@ -70,7 +71,7 @@
     self.dictance=nil;
     self.token=nil;
     self.key=nil;
-        
+    self.petNewsModel=nil;
     [super dealloc];
 }
 

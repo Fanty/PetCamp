@@ -32,7 +32,13 @@
             else if([[msgElement name] isEqualToString:@"id"]){
                 msgModel.msgId = [msgElement stringValue];
             }
-
+            else if([[msgElement name] isEqualToString:@"image"]){
+                NSString* image=[msgElement stringValue];
+                if([image length]>2){
+                    msgModel.content=image;
+                    msgModel.isImage=YES;
+                }
+            }
             else if([[msgElement name] isEqualToString:@"sender"]){
                 NSArray* __array=[msgElement children];
                 
@@ -40,10 +46,10 @@
                     if([[__element name] isEqualToString:@"id"]){
                         userModel.uid = [__element stringValue];
                     }
-                    else if([[__element name] isEqualToString:@"name"]){
+                    else if([[__element name] isEqualToString:@"nickname"]){
                         userModel.nickname = [__element stringValue];
                     }
-                    else if([[__element name] isEqualToString:@"logo_path"]){
+                    else if([[__element name] isEqualToString:@"image"]){
                         userModel.imageHeadUrl = [__element stringValue];
                     }
                     
