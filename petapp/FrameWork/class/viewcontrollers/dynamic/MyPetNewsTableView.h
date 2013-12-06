@@ -30,7 +30,7 @@
 
 -(void)clear;
 
-
+-(void)petNumber:(int)petNumber friendNumber:(int)friendNumber fansNumber:(int)fansNumber addNumber:(int)addnumber messageNumber:(int)messageNumber;
 
 @end
 

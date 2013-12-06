@@ -57,7 +57,7 @@
     [confirmButton setBackgroundImage:img forState:UIControlStateNormal];
     [confirmButton setTitle:lang(@"confirm") forState:UIControlStateNormal];
     [confirmButton addTarget:self action:@selector(btnWeiBoClick) forControlEvents:UIControlEventTouchUpInside];
-    confirmButton.frame=CGRectMake(20.0f, CGRectGetMaxY(textField.frame)+20.0f, self.view.frame.size.width-40.0f, img.size.height - ([Utils isIPad]?30:0));
+    confirmButton.frame=CGRectMake(20.0f, CGRectGetMaxY(textField.frame)+20.0f, self.view.frame.size.width-40.0f, img.size.height*2.0f);
     if([Utils isIPad]){
         [confirmButton.titleLabel setFont:[UIFont systemFontOfSize:35.0f]];
     }

@@ -250,4 +250,8 @@
     
 }
 
+-(void)hideLike{
+    likeView.hidden=YES;
+}
+
 @end

@@ -1038,6 +1038,10 @@
 		395C452D17B8B16A00F0DD99 /* PetNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395C452C17B8B16A00F0DD99 /* PetNewsDetailViewController.m */; };
 		395C453017B8B19B00F0DD99 /* PetNewsDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 395C452F17B8B19B00F0DD99 /* PetNewsDetailHeader.m */; };
 		395C453717B8CAF700F0DD99 /* CommandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395C453617B8CAF700F0DD99 /* CommandCell.m */; };
+		3963EAE31850C73C008682F5 /* SummaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963EAE21850C73C008682F5 /* SummaryModel.m */; };
+		3963EAE41850C73C008682F5 /* SummaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963EAE21850C73C008682F5 /* SummaryModel.m */; };
+		3963EAE71850C78F008682F5 /* SummaryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963EAE61850C78F008682F5 /* SummaryParser.m */; };
+		3963EAE81850C78F008682F5 /* SummaryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963EAE61850C78F008682F5 /* SummaryParser.m */; };
 		3972DC0817BB61AD00942B8D /* ContactGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3972DC0717BB61AC00942B8D /* ContactGroupCell.m */; };
 		3972DC0C17BB77F300942B8D /* ScrollTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3972DC0B17BB77F300942B8D /* ScrollTextView.m */; };
 		3972DC1017BB803B00942B8D /* WriterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3972DC0F17BB803B00942B8D /* WriterView.m */; };
@@ -1925,6 +1929,10 @@
 		395C452F17B8B19B00F0DD99 /* PetNewsDetailHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetNewsDetailHeader.m; sourceTree = "<group>"; };
 		395C453517B8CAF700F0DD99 /* CommandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCell.h; sourceTree = "<group>"; };
 		395C453617B8CAF700F0DD99 /* CommandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCell.m; sourceTree = "<group>"; };
+		3963EAE11850C73C008682F5 /* SummaryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryModel.h; sourceTree = "<group>"; };
+		3963EAE21850C73C008682F5 /* SummaryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryModel.m; sourceTree = "<group>"; };
+		3963EAE51850C78F008682F5 /* SummaryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryParser.h; sourceTree = "<group>"; };
+		3963EAE61850C78F008682F5 /* SummaryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryParser.m; sourceTree = "<group>"; };
 		3972DC0617BB61AC00942B8D /* ContactGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupCell.h; sourceTree = "<group>"; };
 		3972DC0717BB61AC00942B8D /* ContactGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupCell.m; sourceTree = "<group>"; };
 		3972DC0A17BB77F300942B8D /* ScrollTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollTextView.h; sourceTree = "<group>"; };
@@ -2704,6 +2712,8 @@
 				3906AAAE1839072500F1C8DF /* StoreType.m */,
 				392F2E7E18477641007D618D /* GroupMessage.h */,
 				392F2E7F18477641007D618D /* GroupMessage.m */,
+				3963EAE11850C73C008682F5 /* SummaryModel.h */,
+				3963EAE21850C73C008682F5 /* SummaryModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -2884,6 +2894,8 @@
 				3906AAB2183907E400F1C8DF /* StoreTypeParser.m */,
 				392F2E7A18477619007D618D /* GroupMessageParser.h */,
 				392F2E7B18477619007D618D /* GroupMessageParser.m */,
+				3963EAE51850C78F008682F5 /* SummaryParser.h */,
+				3963EAE61850C78F008682F5 /* SummaryParser.m */,
 			);
 			path = xmlparser;
 			sourceTree = "<group>";
@@ -4953,12 +4965,14 @@
 				33A9C74117C4F2AD008E0322 /* MessageParser.m in Sources */,
 				33A9C74417C4F697008E0322 /* BannerParser.m in Sources */,
 				33A9C74A17C4F915008E0322 /* SignUpParser.m in Sources */,
+				3963EAE71850C78F008682F5 /* SummaryParser.m in Sources */,
 				391436881844DA2900107D57 /* ChatImageCell.m in Sources */,
 				33A9C74D17C4FFEE008E0322 /* ChangePasswordViewController.m in Sources */,
 				398154F317C35F03003A72A6 /* ActivatyCell.m in Sources */,
 				398154FE17C36C6F003A72A6 /* MemberListViewController.m in Sources */,
 				39383FC817C3ACD900C15100 /* PetNewsEditViewController.m in Sources */,
 				39383FCC17C3B31F00C15100 /* EditerView.m in Sources */,
+				3963EAE31850C73C008682F5 /* SummaryModel.m in Sources */,
 				39383FCF17C3B7DD00C15100 /* PetNewsParser.m in Sources */,
 				39383FD217C3BBE200C15100 /* CommentParser.m in Sources */,
 				3906AAAF1839072500F1C8DF /* StoreType.m in Sources */,
@@ -5141,12 +5155,14 @@
 				39568E3417E89F4900B3F1AA /* MessageParser.m in Sources */,
 				39568E3517E89F4900B3F1AA /* BannerParser.m in Sources */,
 				39568E3617E89F4900B3F1AA /* SignUpParser.m in Sources */,
+				3963EAE81850C78F008682F5 /* SummaryParser.m in Sources */,
 				391436891844DA2900107D57 /* ChatImageCell.m in Sources */,
 				39568E3717E89F4900B3F1AA /* ChangePasswordViewController.m in Sources */,
 				39568E3917E89F4900B3F1AA /* ActivatyCell.m in Sources */,
 				39568E3A17E89F4900B3F1AA /* MemberListViewController.m in Sources */,
 				39568E3B17E89F4900B3F1AA /* PetNewsEditViewController.m in Sources */,
 				39568E3C17E89F4900B3F1AA /* EditerView.m in Sources */,
+				3963EAE41850C73C008682F5 /* SummaryModel.m in Sources */,
 				39568E3D17E89F4900B3F1AA /* PetNewsParser.m in Sources */,
 				39568E3E17E89F4900B3F1AA /* CommentParser.m in Sources */,
 				3906AAB01839072500F1C8DF /* StoreType.m in Sources */,

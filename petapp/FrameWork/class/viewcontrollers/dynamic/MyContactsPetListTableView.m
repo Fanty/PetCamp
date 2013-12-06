@@ -93,6 +93,8 @@
         else{
             [cell content:lang(@"newpets_content_no")];
         }
+        [cell hideLike];
+        [cell images:model.petNewsModel.imageUrls];
         //[cell images:[NSArray arrayWithObjects:model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl, nil]];
         
         return cell;

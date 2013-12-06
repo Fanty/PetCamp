@@ -10,6 +10,7 @@
 
 @interface GroupMembersView : UIView{
     UILabel* titleLabel;
+    NSMutableArray* imageViews;
     UIScrollView* scrollView;
 }
 

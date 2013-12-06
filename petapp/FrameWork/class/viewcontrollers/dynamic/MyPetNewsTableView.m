@@ -120,9 +120,6 @@
         [profileView sex:[DataCenter sharedInstance].user.sex];
         [profileView showAddPetNew];
         
-        
-        [profileTab petNumber:0 friendNumber:0 fansNumber:0 addNumber:0 messageNumber:0];
-
         [cell addSubview:profileView];
         [cell addSubview:profileTab];
         return cell;
@@ -279,5 +276,10 @@
     [navController release];
 
 }
+
+-(void)petNumber:(int)petNumber friendNumber:(int)friendNumber fansNumber:(int)fansNumber addNumber:(int)addnumber messageNumber:(int)messageNumber{
+    [profileTab petNumber:petNumber friendNumber:friendNumber fansNumber:fansNumber addNumber:addnumber messageNumber:messageNumber];
+}
+
 
 @end

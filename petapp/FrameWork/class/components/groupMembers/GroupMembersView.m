@@ -10,6 +10,8 @@
 
 #import "ImageDownloadedView.h"
 
+#import "Utils.h"
+
 @interface GroupMembersView()<UIScrollViewDelegate>
 
 @end
@@ -22,7 +24,7 @@
     if (self) {
         self.userInteractionEnabled=YES;
         
-        titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 5.0f, frame.size.width, 25.0f)];
+        titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, ([Utils isIPad]?10.0f:5.0f), frame.size.width, ([Utils isIPad]?50.0f:25.0f))];
         titleLabel.numberOfLines=1;
         titleLabel.textColor=[UIColor blackColor];
         titleLabel.numberOfLines=1;
@@ -31,7 +33,7 @@
         [self addSubview:titleLabel];
         [titleLabel release];
 
-        scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 35.0f, frame.size.width, 50.0f)];
+        scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, ([Utils isIPad]?70.0f:35.0f), frame.size.width, ([Utils isIPad]?100.0f:50.0f))];
         scrollView.delegate=self;
         scrollView.showsHorizontalScrollIndicator=NO;
         scrollView.showsVerticalScrollIndicator=NO;
@@ -39,12 +41,19 @@
         
         [scrollView release];
         
+        imageViews=[[NSMutableArray alloc] initWithCapacity:2];
+        
     }
     return self;
 }
 
+- (void)dealloc{
+    [imageViews release];
+    [super dealloc];
+}
+
 +(float)height{
-    return 95.0f;
+    return ([Utils isIPad]?190.0f:95.0f);
 }
 
 -(void)title:(NSString*)title{
@@ -52,13 +61,16 @@
 }
 
 -(void)setImages:(NSArray*)array{
-    float offset=2.0f;
+    [imageViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [imageViews removeAllObjects];
+    float offset=([Utils isIPad]?5.0f:2.0f);
     float left=0.0f;
     float size=scrollView.frame.size.height;
     for(NSString* url in array){
         ImageDownloadedView* imageView=[[ImageDownloadedView alloc] initWithFrame:CGRectMake(left, 0.0f, size, size)];
         [imageView setUrl:url];
         [scrollView addSubview:imageView];
+        [imageViews addObject:imageView];
         [imageView release];
         left+=size+offset;
     }

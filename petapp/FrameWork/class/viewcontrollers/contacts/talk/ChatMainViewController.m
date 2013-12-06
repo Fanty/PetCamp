@@ -178,8 +178,8 @@
             if(firstLoad)
                 _scrollToBottom=YES;
 
-            if(_scrollToBottom)
-                [self performSelector:@selector(scrollToBottom) withObject:nil afterDelay:0.05];
+            if(_scrollToBottom && [chatArray count]>0)
+                [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }
         else{
             if([task error]!=nil){
@@ -204,7 +204,7 @@
 
 -(void)scrollToBottom{
     if([chatArray count]>1)
-        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[chatArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 

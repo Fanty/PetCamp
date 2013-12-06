@@ -20,6 +20,7 @@
 #import "MessageParser.h"
 #import "ActivatyParser.h"
 #import "DataCenter.h"
+#import "SummaryParser.h"
 
 @implementation PetNewsAndActivatyManager
 
@@ -275,7 +276,7 @@
 -(AsyncTask*)summary{
     AsyncTask* task=[[[AsyncTask alloc] init] autorelease];
     task.request=[HTTPRequest requestWithURL:[ApiManager summary:[DataCenter sharedInstance].user.token]];
-    task.parser=[[[MessageParser alloc] init] autorelease];
+    task.parser=[[[SummaryParser alloc] init] autorelease];
     [task start];
     return task;
 

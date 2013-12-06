@@ -23,7 +23,7 @@ static UIImage* __bubbleMineImg=nil;
 +(UIImage*)bubbleSomeoneImg{
     if(__bubbleSomeoneImg==nil){
         UIImage* img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bubbleSomeone.png"];
-        __bubbleSomeoneImg=[img stretchableImageWithLeftCapWidth:img.size.width*0.5f topCapHeight:img.size.height*0.5f];
+        __bubbleSomeoneImg=[[img stretchableImageWithLeftCapWidth:img.size.width*0.5f topCapHeight:img.size.height*0.5f] retain];
     }
     return __bubbleSomeoneImg;
 }
@@ -31,7 +31,7 @@ static UIImage* __bubbleMineImg=nil;
 +(UIImage*)bubbleMineImg{
     if(__bubbleMineImg==nil){
         UIImage* img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"bubbleMine.png"];
-        __bubbleMineImg=[img stretchableImageWithLeftCapWidth:img.size.width*0.5f topCapHeight:img.size.height*0.5f];
+        __bubbleMineImg=[[img stretchableImageWithLeftCapWidth:img.size.width*0.5f topCapHeight:img.size.height*0.5f] retain];
 
     }
     return __bubbleMineImg;

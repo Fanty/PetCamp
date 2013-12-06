@@ -20,6 +20,7 @@
 #import "RightNavContactViewController.h"
 #import "AsyncTask.h"
 #import "PetNewsAndActivatyManager.h"
+#import "SummaryModel.h"
 
 @interface PersonDynamicViewController ()
 -(void)rightClick;
@@ -77,7 +78,11 @@
     [task cancel];
     task=[[AppDelegate appDelegate].petNewsAndActivatyManager summary];
     [task setFinishBlock:^{
-        
+        if([task result]!=nil){
+            SummaryModel* model=[task result];
+            [myPetNewsTableView petNumber:0 friendNumber:model.focus_count fansNumber:model.fans_count addNumber:model.at_count messageNumber:model.board_count];
+
+        }
         task=nil;
     
     }];

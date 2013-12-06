@@ -64,6 +64,7 @@
         [addNumberView release];
         [messageNumberView release];
 
+        [self petNumber:0 friendNumber:0 fansNumber:0 addNumber:0 messageNumber:0];
     }
     
     return self;

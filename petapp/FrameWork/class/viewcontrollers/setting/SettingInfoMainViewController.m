@@ -36,7 +36,7 @@
     if (self) {
         self.title=lang(@"setting");
         // Custom initialization
-        [self backNavBar];
+       // [self backNavBar];
         self.tabBarItem=[[[UITabBarItem alloc] initWithTitle:lang(@"setting") image:[[GTGZThemeManager sharedInstance] imageByTheme:@"tab_setting.png"] tag:0] autorelease];
         
         if([[DataCenter sharedInstance].user.accountType length]<1){

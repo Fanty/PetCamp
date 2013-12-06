@@ -20,10 +20,12 @@
 #import "MBProgressHUD.h"
 #import "GroupTextViewController.h"
 #import "DataCenter.h"
+#import "Utils.h"
 
 @interface GroupDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIAlertViewDelegate>
 -(void)loadData;
 -(void)updateAction;
+-(void)notificationUpdate:(NSNotification*)notification;
 @end
 
 @implementation GroupDetailViewController{
@@ -57,6 +59,9 @@
                nil] retain];
         
         images=[[NSMutableArray alloc] initWithCapacity:2];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationUpdate:) name:GroupUpdateNotification object:nil];
+
     }
     return self;
 }
@@ -143,6 +148,14 @@
 
 }
 
+-(void)notificationUpdate:(NSNotification*)notification{
+    if(notification.object!=nil){
+        [images release];
+        images=[notification.object retain];
+        [memberView setImages:images];
+    }
+}
+
 -(void)updateAction{
     if(task!=nil)return;
     
@@ -194,14 +207,14 @@
     NSArray* array=[dict objectForKey:key];
     NSString* text=[array objectAtIndex:[indexPath row]];
     if([text isEqualToString:lang(@"groupDescription")]){
-        return  120.0f;
+        return  ([Utils isIPad]?200.0f:120.0f);
     }
     else if([key isEqualToString:@"groupMember"]){
         
         return [GroupMembersView height];
     }
     else{
-        return 50.0f;
+        return  ([Utils isIPad]?80.0f:50.0f);
     }
 }
 
@@ -230,7 +243,8 @@
             [cell addSubview:headerImageView];
             
             if(grouHostLabel==nil){
-                grouHostLabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tableView.frame.size.width-100.0f, 0.0f)];
+                float width=([Utils isIPad]?200.0f:100.0f);
+                grouHostLabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tableView.frame.size.width-width, 0.0f)];
                 grouHostLabel.numberOfLines=0;
                 grouHostLabel.textColor=[UIColor blackColor];
                 
@@ -240,14 +254,18 @@
 
             [cell addSubview:grouHostLabel];
             
+            float height=([Utils isIPad]?80.0f:50.0f);
+            float rightoffset=([Utils isIPad]?60.0f:20.0f);
+            float leftoffset=([Utils isIPad]?20.0f:10.0f);
+
             CGRect rect=grouHostLabel.frame;
-            rect.origin.x=tableView.frame.size.width-20.0f-rect.size.width;
-            rect.origin.y=(50.0f-rect.size.height)*0.5f;
+            rect.origin.x=tableView.frame.size.width-rightoffset-rect.size.width;
+            rect.origin.y=(height-rect.size.height)*0.5f;
             grouHostLabel.frame=rect;
             
             rect=headerImageView.frame;
             rect.origin.x=grouHostLabel.frame.origin.x-rect.size.width-5.0f;
-            rect.origin.y=10.0f;
+            rect.origin.y=leftoffset;
             headerImageView.frame=rect;
         }
         else if([text isEqualToString:lang(@"groupDescription")]){
@@ -261,7 +279,7 @@
             cell.detailTextLabel.textColor=[UIColor blackColor];
             cell.detailTextLabel.text=self.groupModel.desc;
             cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-
+            cell.detailTextLabel.clipsToBounds=YES;
         }
         else{
             cell = (UITableViewCell*)[_tableView dequeueReusableCellWithIdentifier:@"first_cell"];
@@ -310,7 +328,8 @@
         }
         
         if(memberView==nil){
-            memberView=[[GroupMembersView alloc] initWithFrame:CGRectMake(20.0f, 5.0f, tableView.frame.size.width-60.0f, 0.0f)];
+            float leftoffset=([Utils isIPad]?60.0f:20.0f);
+            memberView=[[GroupMembersView alloc] initWithFrame:CGRectMake(leftoffset, 5.0f, tableView.frame.size.width-leftoffset*3.0f, 0.0f)];
             [memberView title:text];
             
             [memberView setImages:images];

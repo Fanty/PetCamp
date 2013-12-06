@@ -15,6 +15,7 @@
 #import "GTGZScroller.h"
 #import "ContactGroupManager.h"
 #import "ApiError.h"
+#import "Utils.h"
 
 @interface CreateGroupViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,GTGZTouchScrollerDelegate>
 
@@ -52,7 +53,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-
+    self.view.backgroundColor=[UIColor whiteColor];
     tableView=[[GTGZTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     tableView.touchDelegate=self;
     tableView.dataSource=self;
@@ -139,7 +140,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    cell.backgroundColor=[UIColor clearColor];
+  //  cell.backgroundColor=[UIColor clearColor];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -155,9 +156,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([[array objectAtIndex:[indexPath section]] isEqualToString:lang(@"plsinputgroupdesc")])
-        return 120.0f;
-    return  44.0f;
+    if([[array objectAtIndex:[indexPath section]] isEqualToString:lang(@"plsinputgroupdesc")]){
+        return ([Utils isIPad]?190.0f:120.0f);
+    }
+    else{
+        return  ([Utils isIPad]?88.0f:44.0f);;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -167,10 +171,15 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     
+    float offset=([Utils isIPad]?80.0f:25.0f);
+    float cellHeight=([Utils isIPad]?88.0f:44.0f);
+    float discHeight=([Utils isIPad]?150.0f:80.0f);
+    float topOffset=([Utils isIPad]?20.0f:10.0f);
     if([indexPath section]==0){
         if(nameField==nil){
-            nameField=[[UITextField alloc] initWithFrame:CGRectMake(25.0f, 10.0f, _tableView.frame.size.width-50.0f, 44.0f)];
+            nameField=[[UITextField alloc] initWithFrame:CGRectMake(offset, topOffset, _tableView.frame.size.width-offset*2.0f, cellHeight)];
             nameField.borderStyle=UITextBorderStyleNone;
+            nameField.backgroundColor=[UIColor clearColor];
             nameField.placeholder=lang(@"plsinputgroupname");
             nameField.returnKeyType=UIReturnKeyNext;
             nameField.delegate=self;
@@ -181,8 +190,9 @@
     }
     else if([indexPath section]==1){
         if(locationField==nil){
-            locationField=[[UITextField alloc] initWithFrame:CGRectMake(25.0f, 10.0f, _tableView.frame.size.width-50.0f, 44.0f)];
+            locationField=[[UITextField alloc] initWithFrame:CGRectMake(offset, topOffset, _tableView.frame.size.width-offset*2.0f, cellHeight)];
             locationField.borderStyle=UITextBorderStyleNone;
+            locationField.backgroundColor=[UIColor clearColor];
             locationField.placeholder=lang(@"plsinputlocation");
             locationField.returnKeyType=UIReturnKeyNext;
             locationField.delegate=self;
@@ -193,8 +203,9 @@
     }
     else{
         if(descField==nil){
-            descField=[[UITextView alloc] initWithFrame:CGRectMake(25.0f, 10.0f, _tableView.frame.size.width-50.0f, 80.0f)];
+            descField=[[UITextView alloc] initWithFrame:CGRectMake(offset, topOffset, _tableView.frame.size.width-offset*2.0f, discHeight)];
             descField.delegate=self;
+            descField.backgroundColor=[UIColor clearColor];
             descField.font=[UIFont systemFontOfSize:18.0f];
         }
         [descField removeFromSuperview];

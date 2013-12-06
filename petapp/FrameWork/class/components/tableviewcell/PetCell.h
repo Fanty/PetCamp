@@ -45,6 +45,6 @@
 -(void)content:(NSString*)content;
 -(void)images:(NSArray*)array;
 -(void)like:(int)like comment:(int)comment;
-
+-(void)hideLike;
 +(float)height;
 @end

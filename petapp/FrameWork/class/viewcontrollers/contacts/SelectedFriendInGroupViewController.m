@@ -228,7 +228,24 @@ NSInteger selectedFiendContactCustomSort(id obj1, id obj2,void* context){
         }
         else{
             [AlertUtils showAlert:lang(@"addGroupSuccess") view:self.view];
-            [[NSNotificationCenter defaultCenter] postNotificationName:GroupUpdateNotification object:nil];
+            
+            NSMutableArray* array=[[NSMutableArray alloc] initWithCapacity:2];
+            if([[DataCenter sharedInstance].user.imageHeadUrl length]>0)
+                [array addObject:[DataCenter sharedInstance].user.imageHeadUrl];
+            else
+                [array addObject:@""];
+            [selectedArray enumerateObjectsUsingBlock:^(id obj,NSUInteger index,BOOL* stop){
+                PetUser* user=(PetUser*)obj;
+                if([user.imageHeadUrl length]>0)
+                    [array addObject:user.imageHeadUrl];
+                else
+                    [array addObject:@""];
+            }];
+            
+            
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:GroupUpdateNotification object:array];
+            [array release];
         }
     
         task=nil;

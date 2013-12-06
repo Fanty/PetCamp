@@ -287,7 +287,7 @@ typedef enum{
     rect.origin.x=leftoffset;
     rect.origin.y=CGRectGetMaxY(petSexField.frame)+offset;
     rect.size.width=w;
-    rect.size.height=img.size.height;
+    rect.size.height=img.size.height*2.0f;
     confirmButton.frame=rect;
     
     /*

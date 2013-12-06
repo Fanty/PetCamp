@@ -83,6 +83,12 @@
                         if([[__element name] isEqualToString:@"content"]){
                             petNewsModel.desc=[__element stringValue];
                         }
+                        else if([[__element name] isEqualToString:@"images"]){
+                            NSString* urls=[_element stringValue];
+                            if([urls length]>3)
+                                petNewsModel.imageUrls=[urls componentsSeparatedByString:@","];
+
+                        }
                         else if([[__element name] isEqualToString:@"createtime"]){
                             petNewsModel.createdate=[__element dateValueFromNSTimeInterval];
                         }
