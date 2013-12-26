@@ -81,8 +81,9 @@
         if(cell == nil){
             cell = [[[PetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
             cell.accessoryType=UITableViewCellAccessoryNone;
+            [cell hideHeaderEvent];
+
         }
-        
         [cell headUrl:model.imageHeadUrl];
         [cell nickName:model.nickname];
         if(model.petNewsModel!=nil){
@@ -95,7 +96,6 @@
         }
         [cell hideLike];
         [cell images:model.petNewsModel.imageUrls];
-        //[cell images:[NSArray arrayWithObjects:model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl, nil]];
         
         return cell;
     }

@@ -10,6 +10,8 @@
 
 #import "PathUtils.h"
 
+
+
 static DataCenter* instance=nil;
 
 @implementation DataCenter
@@ -94,4 +96,13 @@ static DataCenter* instance=nil;
 
     [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
+
+-(void)logout{
+    self.user=nil;
+    self.friendList=nil;
+    self.groupList=nil;
+    self.fansList=nil;
+}
+
+
 @end

@@ -15,6 +15,8 @@
     
     UISwitch* onlineSwitch;
     
+    UIButton* logoutButton;
+    
     NSArray* list;
     
     AsyncTask* onlineTask;

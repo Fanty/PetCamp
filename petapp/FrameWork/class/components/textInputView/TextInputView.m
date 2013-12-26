@@ -115,7 +115,7 @@
         rect=textField.frame;
         
         rect.size.height=self.frame.size.height - 2;
-        rect.origin.y=self.frame.size.height-rect.size.height+([Utils isIPad]?8.0f:8.0f);
+        rect.origin.y=self.frame.size.height-rect.size.height+([Utils isIPad]?8.0f:1.0f);
         rect.origin.x=CGRectGetMaxX(titleLabel.frame);
         rect.size.width=self.frame.size.width-rect.origin.x;
         textField.frame=rect;

@@ -13,8 +13,6 @@
 #import "PetNewsModel.h"
 #import "PetUser.h"
 #import "PetNewsDetailViewController.h"
-#import "ImageViewer.h"
-#import "BannerModel.h"
 #import "GTGZThemeManager.h"
 #import "GTGZImageDownloadedView.h"
 #import "PetNewsAndActivatyManager.h"
@@ -31,8 +29,7 @@
 #define   BANNER_HEIGHT   120.0f
 #define   IPAD_BANNER_HEIGHT  326.0f
 
-@interface PetNewsTableView()<UITableViewDataSource,UITableViewDelegate,PetCellDelegate,ImageViewerDelegate>
--(void)initBanner;
+@interface PetNewsTableView()<UITableViewDataSource,UITableViewDelegate,PetCellDelegate>
 -(void)loadData:(BOOL)loadMore;
 -(void)updateNotification;
 @end
@@ -60,8 +57,6 @@
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    [carouselBanner release];
     [list release];
     [task cancel];
     [super dealloc];
@@ -97,7 +92,7 @@
     if([list count]<1 && task==nil)
         return 1;
     else
-        return [list count]+1;
+        return [list count];
 }
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -105,13 +100,8 @@
         return 44.0f;
     }
     else{
-        if([indexPath row]==0){
-            [self initBanner];
-            return carouselBanner.frame.size.height;
-        }
-        else{
-            return [PetCell height];
-        }
+        return [PetCell height];
+    
     }
 }
 
@@ -124,43 +114,31 @@
         return cell;
     }
     else{
-        if([indexPath row]==0){
-            UITableViewCell* cell=[_tableView dequeueReusableCellWithIdentifier:@"firstcell"];
-            if(cell==nil){
-                cell=[[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"firstcell"] autorelease];
-                cell.accessoryType=UITableViewCellAccessoryNone;
-            }
-            [self initBanner];
-            [cell addSubview:carouselBanner];
-            return cell;
+        PetCell *cell = (PetCell*)[_tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if(cell == nil){
+            cell = [[[PetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+            cell.accessoryType=UITableViewCellAccessoryNone;
+        }
+        cell.delegate=self;
+        cell.tag=[indexPath row];
+        PetNewsModel* model=[list objectAtIndex:[indexPath row]];
+        
+        [cell headUrl:model.petUser.imageHeadUrl];
+        [cell nickName:model.petUser.nickname];
+        if([model.scr_post.desc length]>0){
+            NSString* content=model.desc;
+            if([content length]>0)
+                content=[content stringByAppendingString:@" "];
+            content=[content stringByAppendingString:[NSString stringWithFormat:lang(@"forward_content"),model.scr_post.petUser.nickname,model.scr_post.desc]];
+            [cell content:content];
         }
         else{
-            PetCell *cell = (PetCell*)[_tableView dequeueReusableCellWithIdentifier:@"cell"];
-            if(cell == nil){
-                cell = [[[PetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
-                cell.accessoryType=UITableViewCellAccessoryNone;
-            }
-            cell.delegate=self;
-            cell.tag=[indexPath row]-1;
-            PetNewsModel* model=[list objectAtIndex:[indexPath row]-1];
-            
-            [cell headUrl:model.petUser.imageHeadUrl];
-            [cell nickName:model.petUser.nickname];
-            if([model.scr_post.desc length]>0){
-                NSString* content=model.desc;
-                if([content length]>0)
-                    content=[content stringByAppendingString:@" "];
-                content=[content stringByAppendingString:[NSString stringWithFormat:lang(@"forward_content"),model.scr_post.petUser.nickname,model.scr_post.desc]];
-                [cell content:content];
-            }
-            else{
-                [cell content:model.desc];
-            }
-            [cell createDate:model.createdate];
-            [cell like:model.laudCount comment:model.command_count];
-            //[cell images:[NSArray arrayWithObjects:model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl,model.petUser.imageHeadUrl, nil]];
-            return cell;
+            [cell content:model.desc];
         }
+        [cell createDate:model.createdate];
+        [cell like:model.laudCount comment:model.command_count];
+        [cell images:model.imageUrls];
+        return cell;
     }
 }
 
@@ -172,7 +150,7 @@
     else{
         [_tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-        PetNewsModel* model=[list objectAtIndex:[indexPath row]-1];
+        PetNewsModel* model=[list objectAtIndex:[indexPath row]];
         
         PetNewsDetailViewController* controller=[[PetNewsDetailViewController alloc] init];
         controller.pid=model.pid;
@@ -189,22 +167,7 @@
     [parentViewController redirectToContactDetailPage:model.petUser.nickname uid:model.petUser.uid];
 }
 
-#pragma mark imageview delegate
 
--(void)didImageViewerSelected:(ImageViewer*)imageViewer index:(int)index{
-    BannerModel* bannerModel=[imageViewer.list objectAtIndex:index];
-    if([bannerModel.target_id length]>0){
-        PetNewsDetailViewController* controller=[[PetNewsDetailViewController alloc] init];
-        controller.pid=bannerModel.target_id;
-        [self.parentViewController checkIsLoginAndPushTempViewController:controller];
-        [controller release];
-
-        return;
-    }
-    else if([bannerModel.link length]>0){
-        
-    }
-}
 
 #pragma mark method
 
@@ -220,28 +183,6 @@
     [self releasePullToRefresh];
 }
 
--(void)initBanner{
-    if(carouselBanner!=nil)return;
-    
-    float bannerHeight=([Utils isIPad]?IPAD_BANNER_HEIGHT:BANNER_HEIGHT);
-    
-    carouselBanner=[[ImageViewer alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width, [[DataCenter sharedInstance].petNewsBannerList count]>0?bannerHeight:0.0f)];
-    carouselBanner.delegate=self;
-    [carouselBanner setList:[DataCenter sharedInstance].petNewsBannerList];
-}
-
--(void)updateBanner{
-    float bannerHeight=([Utils isIPad]?IPAD_BANNER_HEIGHT:BANNER_HEIGHT);
-
-    [carouselBanner setList:[DataCenter sharedInstance].petNewsBannerList];
-    
-    CGRect rect=carouselBanner.frame;
-    rect.size.height=[[DataCenter sharedInstance].petNewsBannerList count]>0?bannerHeight:0.0f;
-    carouselBanner.frame=rect;
-
-    NSIndexPath* path=[NSIndexPath indexPathForRow:0 inSection:0];
-    [self reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationBottom];
-}
 
 -(void)loadData:(BOOL)loadMore{
     [task cancel];

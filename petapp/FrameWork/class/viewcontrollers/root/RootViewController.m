@@ -161,6 +161,12 @@
 
 }
 
+-(void)reloadHomeController{
+    [homeViewController loadTabBar];
+    
+    homeViewController.selectedIndex=0;
+}
+
 /*
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [searchViewController searchBarResignFirstResponder];

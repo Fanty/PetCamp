@@ -39,4 +39,6 @@
 
 
 -(void)save;
+
+-(void)logout;
 @end

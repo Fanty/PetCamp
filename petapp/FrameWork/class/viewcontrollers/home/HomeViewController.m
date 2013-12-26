@@ -56,12 +56,22 @@
     if([Utils systemVersion]>=7.0f){
         rect.origin.y=20.0f;
     }
-
+    NSString* currentVersion=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];    
+    NSUserDefaults* userDefaults=[NSUserDefaults standardUserDefaults];
     
-    UserSplashView* splashView=[[UserSplashView alloc] initWithFrame:rect];
-    splashView.touchDelegate=self;
-    [self.view addSubview:splashView];
-    [splashView release];
+    NSString* savedVersion=[userDefaults objectForKey:@"savedVersion"];
+    if(![currentVersion isEqualToString:savedVersion]){
+        [userDefaults setObject:currentVersion forKey:@"savedVersion"];
+        [userDefaults synchronize];
+        
+        
+        UserSplashView* splashView=[[UserSplashView alloc] initWithFrame:rect];
+        splashView.touchDelegate=self;
+        [self.view addSubview:splashView];
+        [splashView release];
+        
+    }
+    
 
 }
 

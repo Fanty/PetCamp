@@ -33,6 +33,7 @@
     NSMutableArray* imageViews;
     
     LikeView* likeView;
+    UIButton* headerButton;
     BOOL updateNeed;
 }
 
@@ -47,4 +48,5 @@
 -(void)like:(int)like comment:(int)comment;
 -(void)hideLike;
 +(float)height;
+-(void)hideHeaderEvent;
 @end

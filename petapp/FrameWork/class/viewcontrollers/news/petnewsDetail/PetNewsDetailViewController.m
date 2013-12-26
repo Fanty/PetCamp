@@ -32,7 +32,7 @@
 #import "PetNewsNavigationController.h"
 #import "ForwarDetailView.h"
 
-@interface PetNewsDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,iCarouselDataSource,iCarouselDelegate,WriterViewDelegate,UIActionSheetDelegate,HeadTabViewDelegte,UIAlertViewDelegate>
+@interface PetNewsDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,iCarouselDataSource,iCarouselDelegate,WriterViewDelegate,UIActionSheetDelegate,HeadTabViewDelegte,UIAlertViewDelegate,CommandCellDelegate>
 -(void)initHeader;
 -(void)initLoading;
 -(void)loadDetailData;
@@ -437,9 +437,12 @@
         if(cell == nil){
             cell = [[[CommandCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
 
+            cell.delegate=self;
         }
         
-        CommentModel* model=[commands objectAtIndex:[indexPath row]-1];
+        cell.tag=[indexPath row]-1;
+        
+        CommentModel* model=[commands objectAtIndex:cell.tag];
 
         [cell nickname:model.petUser.nickname headerImageUrl:model.petUser.imageHeadUrl content:model.content date:model.createdate];
         
@@ -450,6 +453,13 @@
 
 -(void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark commandcell delegate
+
+-(void)didCommandCellHeader:(CommandCell*)cell{
+    CommentModel* model=[commands objectAtIndex:cell.tag];
+    [self redirectToContactDetailPage:model.petUser.nickname uid:model.petUser.uid];
 }
 
 #pragma mark carousel  delegate  datasource

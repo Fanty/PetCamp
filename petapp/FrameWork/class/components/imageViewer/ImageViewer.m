@@ -13,8 +13,8 @@
 #import "GTGZThemeManager.h"
 #import "Utils.h"
 #define IMAGE_TAB   335
-#define   BANNER_HEIGHT   120.0f
-#define   IPAD_BANNER_HEIGHT  326.0f
+#define   BANNER_HEIGHT   206.0f
+#define   IPAD_BANNER_HEIGHT  458.0f
 
 @interface ImageViewer()<GTGZHorizalTableViewDataSource>
 -(void)timerEvent;

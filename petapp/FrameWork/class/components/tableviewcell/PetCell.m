@@ -56,10 +56,10 @@
         [self addSubview:headImageView];
         [headImageView release];
         
-        UIButton* button=[UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-        button.frame=headImageView.frame;
-        [self addSubview:button];
+        headerButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        [headerButton addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+        headerButton.frame=headImageView.frame;
+        [self addSubview:headerButton];
         
         nickNameLabel=[[UILabel alloc] initWithFrame:CGRectZero];
         nickNameLabel.numberOfLines=0;
@@ -157,6 +157,10 @@
 -(void)btnClick{
     if([self.delegate respondsToSelector:@selector(petCellDidClickUserHeader:)])
         [self.delegate petCellDidClickUserHeader:self];
+}
+
+-(void)hideHeaderEvent{
+    headerButton.hidden=YES;
 }
 
 -(void)layoutSubviews{

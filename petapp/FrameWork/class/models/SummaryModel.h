@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SummaryModel : NSObject
-
+@property(nonatomic,assign) int post_count;
 @property(nonatomic,assign) int fans_count;
 @property(nonatomic,assign) int focus_count;
 @property(nonatomic,assign) int board_count;

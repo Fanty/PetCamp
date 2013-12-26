@@ -8,12 +8,13 @@
 
 #import "FooterMore.h"
 #import "GTGZThemeManager.h"
+#import "Utils.h"
 @implementation FooterMore
 
 @synthesize themeKey;
 
 - (id)initWithFrame:(CGRect)frame{
-    frame.size.height=45.0f;
+    frame.size.height=([Utils isIPad]?90.0f:45.0f);
     self = [super initWithFrame:frame];
     if (self) {
         self.userInteractionEnabled=YES;
@@ -32,7 +33,8 @@
         
         loadingView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         loadingView.color=[UIColor blackColor];
-        loadingView.frame=CGRectMake(0.0f,0.0f, 16.0f, 16.0f);
+        float size=([Utils isIPad]?32.0f:16.0f);
+        loadingView.frame=CGRectMake(0.0f,0.0f, size, size);
         [self addSubview:loadingView];
         [loadingView release];
         
@@ -52,12 +54,12 @@
     [moreLabel sizeToFit];
     
     if([self loading]){
-        float left=floor((self.bounds.size.width-(loadingView.frame.size.width+10.0f+moreLabel.frame.size.width))*0.5f);
+        float left=floor((self.bounds.size.width-(loadingView.frame.size.width+([Utils isIPad]?20.0f:10.0f)+moreLabel.frame.size.width))*0.5f);
         CGRect rect=loadingView.frame;
         rect.origin.x=left;
         rect.origin.y=(self.bounds.size.height-rect.size.height)*0.5f;
         loadingView.frame=rect;
-        left=CGRectGetMaxX(rect)+10.0f;
+        left=CGRectGetMaxX(rect)+([Utils isIPad]?20.0f:10.0f);
         
         rect=moreLabel.frame;
         rect.origin.x=left;
@@ -66,12 +68,12 @@
 
     }
     else{
-        float left=floor((self.bounds.size.width-(arrowView.frame.size.width+3.0f+moreLabel.frame.size.width))*0.5f);
+        float left=floor((self.bounds.size.width-(arrowView.frame.size.width+([Utils isIPad]?6.0f:3.0f)+moreLabel.frame.size.width))*0.5f);
         CGRect rect=arrowView.frame;
         rect.origin.x=left;
         rect.origin.y=floor((self.bounds.size.height-rect.size.height)*0.5f);
         arrowView.frame=rect;
-        left=CGRectGetMaxX(rect)+3.0f;
+        left=CGRectGetMaxX(rect)+([Utils isIPad]?6.0f:3.0f);
         
         rect=moreLabel.frame;
         rect.origin.x=left;

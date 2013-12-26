@@ -17,6 +17,10 @@
 #define IPAD_OFFSET  50.0f
 #define IPAD_CELL_HEIGHT 160.0f
 
+@interface CommandCell()
+-(void)btnHeaderClick;
+@end
+
 @implementation CommandCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -62,6 +66,11 @@
         [self addSubview:contentLabel];
         [contentLabel release];
         
+        
+        headerClickButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        [headerClickButton addTarget:self action:@selector(btnHeaderClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:headerClickButton];
         
         [nameLabel theme:@"command_name"];
         [contentLabel theme:@"command_content"];
@@ -180,11 +189,18 @@
         rect.size.width=self.frame.size.width-20.0f;
         lineView.frame=rect;
     }
+    
+    headerClickButton.frame=headerImage.frame;
 
 }
 
 +(float)cellHeight{
     return [Utils isIPad]?IPAD_CELL_HEIGHT:CELL_HEIGHT;
+}
+
+-(void)btnHeaderClick{
+    if([self.delegate respondsToSelector:@selector(didCommandCellHeader:)])
+        [self.delegate didCommandCellHeader:self];
 }
 
 @end

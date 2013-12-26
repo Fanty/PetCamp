@@ -9,13 +9,12 @@
 #import "PullTableView.h"
 
 @class AsyncTask;
-@class iCarousel;
 @class ImageViewer;
 
 @class PetNewsViewController;
 
 @interface PetNewsTableView : PullTableView{
-    ImageViewer* carouselBanner;
+//    ImageViewer* carouselBanner;
 
     NSMutableArray* list;
     AsyncTask* task;
@@ -26,5 +25,5 @@
 @property(assign,nonatomic) PetNewsViewController* parentViewController;
 
 -(void)clear;
--(void)updateBanner;
+//-(void)updateBanner;
 @end

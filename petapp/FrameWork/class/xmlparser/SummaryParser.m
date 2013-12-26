@@ -18,6 +18,7 @@
         GDataXMLElement* element=[array objectAtIndex:0];
         
         SummaryModel* model=[[SummaryModel alloc] init];
+        model.post_count=[[[element elementsForName:@"post_count"] objectAtIndex:0] intValue];
         
         model.fans_count=[[[element elementsForName:@"fans_count"] objectAtIndex:0] intValue];
         model.focus_count=[[[element elementsForName:@"focus_count"] objectAtIndex:0] intValue];

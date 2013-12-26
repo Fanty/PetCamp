@@ -198,6 +198,7 @@
     [self.view addSubview:hud];
     [hud release];
     
+    userNameField.text=[DataCenter sharedInstance].user.bind_phone;
     
 #ifdef DEV_VERSION
     userNameField.text=@"13660392546";

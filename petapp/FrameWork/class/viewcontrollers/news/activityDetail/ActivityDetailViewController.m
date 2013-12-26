@@ -28,7 +28,7 @@
 #import "PetNewsAndActivatyManager.h"
 #import "DataCenter.h"
 #import "Utils.h"
-@interface ActivityDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,iCarouselDataSource,iCarouselDelegate,WriterViewDelegate,HeadTabViewDelegte,UIActionSheetDelegate,ActivityDetailHeaderDelegate,UIActionSheetDelegate>
+@interface ActivityDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,iCarouselDataSource,iCarouselDelegate,WriterViewDelegate,HeadTabViewDelegte,UIActionSheetDelegate,ActivityDetailHeaderDelegate,UIActionSheetDelegate,CommandCellDelegate>
 -(void)initLoading;
 -(void)initHeader;
 -(void)menuClick;
@@ -406,10 +406,10 @@
         CommandCell *cell = (CommandCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
         if(cell == nil){
             cell = [[[CommandCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
-            
+            cell.delegate=self;
         }
-        
-        CommentModel* model=[commands objectAtIndex:[indexPath row]-2];
+        cell.tag=[indexPath row]-2;
+        CommentModel* model=[commands objectAtIndex:cell.tag];
         
         [cell nickname:model.petUser.nickname headerImageUrl:model.petUser.imageHeadUrl content:model.content date:model.createdate];
         
@@ -421,6 +421,14 @@
 -(void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+#pragma mark commandcell delegate
+
+-(void)didCommandCellHeader:(CommandCell*)cell{
+    CommentModel* model=[commands objectAtIndex:cell.tag];
+    [self redirectToContactDetailPage:model.petUser.nickname uid:model.petUser.uid];
+}
+
 
 
 #pragma mark  headtabbar delegate

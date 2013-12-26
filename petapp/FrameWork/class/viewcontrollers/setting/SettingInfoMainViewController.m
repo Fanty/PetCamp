@@ -14,7 +14,7 @@
 #import "ChangePasswordViewController.h"
 #import "PersonalInfoViewController.h"
 #import "QRCodeViewController.h"
-
+#import "ContactGroupManager.h"
 #import "PersonDynamicViewController.h"
 #import "WeiBoSettingViewController.h"
 #import "DataCenter.h"
@@ -23,10 +23,12 @@
 #import "AlertUtils.h"
 #import "MBProgressHUD.h"
 #import "ServiceWebViewController.h"
+#import "RootViewController.h"
 #import "Utils.h"
 
-@interface SettingInfoMainViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface SettingInfoMainViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 -(void)switchChange;
+-(void)logoutClick;
 @end
 
 @implementation SettingInfoMainViewController
@@ -40,11 +42,11 @@
         self.tabBarItem=[[[UITabBarItem alloc] initWithTitle:lang(@"setting") image:[[GTGZThemeManager sharedInstance] imageByTheme:@"tab_setting.png"] tag:0] autorelease];
         
         if([[DataCenter sharedInstance].user.accountType length]<1){
-            list=[[NSArray arrayWithObjects:lang(@"person_setting"),lang(@"qrcode_info"),lang(@"password_setting"),lang(@"weibo_bind"),lang(@"online_setting"),lang(@"privacy_info"), nil] retain];
+            list=[[NSArray arrayWithObjects:lang(@"person_setting"),lang(@"qrcode_info"),lang(@"password_setting"),lang(@"weibo_bind"),lang(@"online_setting"),lang(@"privacy_info"),lang(@"logout"), nil] retain];
 
         }
         else{
-            list=[[NSArray arrayWithObjects:lang(@"person_setting"),lang(@"qrcode_info"),lang(@"online_setting"),lang(@"privacy_info"), nil] retain];
+            list=[[NSArray arrayWithObjects:lang(@"person_setting"),lang(@"qrcode_info"),lang(@"online_setting"),lang(@"privacy_info"),lang(@"logout"), nil] retain];
         }
     }
     return self;
@@ -74,6 +76,8 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
+    [logoutButton release];
+    logoutButton=nil;
     [onlineSwitch release];
     onlineSwitch=nil;
     [onlineTask cancel];
@@ -89,6 +93,7 @@
 
 -(void)dealloc{
     [onlineTask cancel];
+    [logoutButton release];
     [onlineSwitch release];
     [list release];
     [super dealloc];
@@ -98,6 +103,14 @@
 
 #pragma mark table delegate
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString* title=[list objectAtIndex:[indexPath section]];
+    
+    if([title isEqualToString:lang(@"logout")]){
+        cell.backgroundColor=[UIColor clearColor];
+        cell.backgroundView=nil;
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return [list count];
@@ -108,10 +121,19 @@
 }
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([Utils isIPad])
-        return 80.0f;
-    else
-        return 44.0f;
+    NSString* title=[list objectAtIndex:[indexPath section]];
+    if([title isEqualToString:lang(@"logout")]){
+        UIImage* img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"registerbutton.png"];
+        
+        return  img.size.height*2.0f;
+    }
+    else{
+        if([Utils isIPad])
+            return 80.0f;
+        else
+            return 44.0f;
+
+    }
 }
 
 
@@ -128,43 +150,79 @@
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString* title=[list objectAtIndex:[indexPath section]];
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    if(cell == nil){
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"] autorelease];
-    }
-    
-    if([title isEqualToString:lang(@"online_setting")]){
-        if(onlineSwitch ==nil){
-            onlineSwitch=[[UISwitch alloc] initWithFrame:CGRectMake(_tableView.frame.size.width-([Utils isIPad]?150:100), (([Utils isIPad]?80.0f:44.0f)-27.0f)*0.5f, 79.0f, 27.0f)];
-            [onlineSwitch addTarget:self action:@selector(switchChange) forControlEvents:UIControlEventValueChanged];
+    if([title isEqualToString:lang(@"logout")]){
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"logout_cell"];
+        if(cell == nil){
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"logout_cell"] autorelease];
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            cell.selectionStyle=UITableViewCellSelectionStyleNone;
         }
-        onlineSwitch.on=(![DataCenter sharedInstance].user.online);
-        [cell addSubview:onlineSwitch];
+        if(logoutButton==nil){
+            UIImage* img=[[GTGZThemeManager sharedInstance] imageResourceByTheme:@"registerbutton.png"];
+            logoutButton=[UIButton buttonWithType:UIButtonTypeCustom];
+            [logoutButton addTarget:self action:@selector(logoutClick) forControlEvents:UIControlEventTouchUpInside];
+            [logoutButton setBackgroundImage:img forState:UIControlStateNormal];
+            [logoutButton setTitle:title forState:UIControlStateNormal];
+            float leftoffset=([Utils isIPad]?30.0f:10.0f);
+            float w=_tableView.frame.size.width-leftoffset*2.0f;
+
+            CGRect rect=logoutButton.frame;
+            rect.size.width=w;
+            rect.size.height=img.size.height*2.0f;
+            rect.origin.x=leftoffset;
+            logoutButton.frame=rect;
+            
+        }
+        [cell addSubview:logoutButton];
+
         
-        cell.accessoryType=UITableViewCellAccessoryNone;
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        
+        return cell;
+
+
     }
     else{
-        [self removeSubView:cell subView:onlineSwitch];
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle=UITableViewCellSelectionStyleGray;
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
         
+        if(cell == nil){
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"] autorelease];
+        }
+        
+        if([title isEqualToString:lang(@"online_setting")]){
+            if(onlineSwitch ==nil){
+                onlineSwitch=[[UISwitch alloc] initWithFrame:CGRectMake(_tableView.frame.size.width-([Utils isIPad]?150:100), (([Utils isIPad]?80.0f:44.0f)-27.0f)*0.5f, 79.0f, 27.0f)];
+                [onlineSwitch addTarget:self action:@selector(switchChange) forControlEvents:UIControlEventValueChanged];
+            }
+            onlineSwitch.on=(![DataCenter sharedInstance].user.online);
+            [cell addSubview:onlineSwitch];
+            
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+            
+        }
+        else{
+            [self removeSubView:cell subView:onlineSwitch];
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle=UITableViewCellSelectionStyleGray;
+            
+            
+        }
+        
+        cell.textLabel.text=title;
+        
+        if([title isEqualToString:lang(@"weibo_bind")]){
+            cell.detailTextLabel.text=[DataCenter sharedInstance].user.bind_weibo;
+        }
+        if([Utils isIPad]){
+            cell.textLabel.font=[UIFont boldSystemFontOfSize:25.0f];
+            cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:25.0f];
+        }
+        
+        return cell;
         
     }
     
-    cell.textLabel.text=title;
     
-    if([title isEqualToString:lang(@"weibo_bind")]){
-        cell.detailTextLabel.text=[DataCenter sharedInstance].user.bind_weibo;
-    }
-    if([Utils isIPad]){
-        cell.textLabel.font=[UIFont boldSystemFontOfSize:25.0f];
-        cell.detailTextLabel.font=[UIFont boldSystemFontOfSize:25.0f];
-    }
-
-    return cell;
 }
 
 -(void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -205,6 +263,20 @@
     
 }
 
+#pragma mark alertview delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1){
+        [DataCenter sharedInstance].user.password=nil;
+        [DataCenter sharedInstance].user.token=nil;;
+        [[AppDelegate appDelegate].accountManager saveAccount:[DataCenter sharedInstance].user];
+        [[DataCenter sharedInstance] logout];
+        
+        [[AppDelegate appDelegate].contactGroupManager cancelAllWorkTask];
+        [[AppDelegate appDelegate].rootViewController reloadHomeController];
+    }
+}
+
 
 -(void)switchChange{
     if(onlineTask==nil){
@@ -221,13 +293,32 @@
             if(![onlineTask status]){
                 [AlertUtils showAlert:[onlineTask errorMessage] view:self.view];
             }
-            else{                
+            else{
+                
                 [nPetUser copyPet:petUser];
+                
+                UIAlertView* alertView=nil;
+                if(petUser.online){
+                    alertView=[[UIAlertView alloc] initWithTitle:lang(@"onlineSetup") message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+                }
+                else{
+                    alertView=[[UIAlertView alloc] initWithTitle:lang(@"offlineSetup") message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+
+                }
+                [alertView show];
+                [alertView release];
+                
             }
             [petUser release];
             onlineTask=nil;
         }];
     }
+}
+
+-(void)logoutClick{
+    UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:lang(@"logouttip") message:nil delegate:self cancelButtonTitle:lang(@"cancel") otherButtonTitles:lang(@"confirm"), nil];
+    [alertView show];
+    [alertView release];
 }
 
 @end

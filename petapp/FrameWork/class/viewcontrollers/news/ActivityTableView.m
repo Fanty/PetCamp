@@ -25,8 +25,8 @@
 #import "ContactDetailViewController.h"
 #import "PetNewsViewController.h"
 #import "Utils.h"
-#define   BANNER_HEIGHT   120.0f
-#define   IPAD_BANNER_HEIGHT  326.0f
+#define   BANNER_HEIGHT   206.0f
+#define   IPAD_BANNER_HEIGHT  458.0f
 
 
 @interface ActivityTableView()<UITableViewDataSource,UITableViewDelegate,ActivatyCellDelegate,ImageViewerDelegate>

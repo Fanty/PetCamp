@@ -313,7 +313,7 @@ typedef enum{
 
     
     pickerBgView=[[UIView alloc] initWithFrame:self.view.bounds];
-    pickerBgView.backgroundColor=[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.6f];
+    pickerBgView.backgroundColor=[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
     pickerBgView.userInteractionEnabled=YES;
     pickerBgView.hidden=YES;
     [self.view addSubview:pickerBgView];

@@ -35,4 +35,6 @@ typedef enum _ShowSearchStatus{
 
 -(void)showFullSearchPage;
 
+-(void)reloadHomeController;
+
 @end

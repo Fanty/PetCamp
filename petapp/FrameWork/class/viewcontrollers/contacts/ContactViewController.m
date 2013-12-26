@@ -54,6 +54,10 @@
     groupTableView=nil;
 }
 
+- (void)dealloc{
+    [super dealloc];
+}
+
 #pragma mark tabbar delegate
 
 -(void)tabDidSelected:(HeadTabView*)tabView index:(int)index{

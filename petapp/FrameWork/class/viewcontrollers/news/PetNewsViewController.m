@@ -190,7 +190,7 @@
 
 -(void)bannerUpdateNotification:(NSNotification*)notify{
     if([notify.object isEqual:@"petnews"]){
-        [petNewsTableView updateBanner];
+
     }
     else if([notify.object isEqual:@"market"]){
         [dailyPicksTableView updateBanner];

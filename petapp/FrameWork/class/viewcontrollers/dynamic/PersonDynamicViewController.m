@@ -59,6 +59,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc{
+    [super dealloc];
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -80,7 +83,7 @@
     [task setFinishBlock:^{
         if([task result]!=nil){
             SummaryModel* model=[task result];
-            [myPetNewsTableView petNumber:0 friendNumber:model.focus_count fansNumber:model.fans_count addNumber:model.at_count messageNumber:model.board_count];
+            [myPetNewsTableView petNumber:model.post_count friendNumber:model.focus_count fansNumber:model.fans_count addNumber:model.at_count messageNumber:model.board_count];
 
         }
         task=nil;

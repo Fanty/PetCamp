@@ -170,3 +170,8 @@
 "forwardSuccess"="转发成功";
 "newpets_content"="最新发布：\n%@";
 "newpets_content_no"="最近未发布任何宠闻";
+"logout"="退出登陆";
+"logouttip"="确定要退出登陆吗？";
+"onlineSetup"="隐身设置已关闭";
+"offlineSetup"="隐身设置已开启";
+

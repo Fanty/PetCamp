@@ -23,8 +23,8 @@
 #import "AlertUtils.h"
 #import "PetNewsViewController.h"
 #import "Utils.h"
-#define   BANNER_HEIGHT   120.0f
-#define   IPAD_BANNER_HEIGHT  326.0f
+#define   BANNER_HEIGHT   206.0f
+#define   IPAD_BANNER_HEIGHT  458.0f
 #define  CELL_TAG   233
 
 @interface DailyPicksTableView()<UITableViewDataSource,UITableViewDelegate,ImageViewerDelegate>

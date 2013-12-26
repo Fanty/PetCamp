@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 @class ImageDownloadedView;
 
+@class CommandCell;
+
+@protocol CommandCellDelegate <NSObject>
+
+-(void)didCommandCellHeader:(CommandCell*)cell;
+
+@end
+
 @interface CommandCell : UITableViewCell{
 
     UIView* bgView;
     ImageDownloadedView* headerImage;
+    UIButton* headerClickButton;
     UILabel* nameLabel;
     UILabel* dateLabel;
     
@@ -22,6 +31,8 @@
     
     BOOL isLayoutUpdate;
 }
+
+@property(nonatomic,assign) id<CommandCellDelegate> delegate;
 
 -(void)nickname:(NSString*)nickname headerImageUrl:(NSString*)headerImageUrl content:(NSString*)content date:(NSDate*)date;
 

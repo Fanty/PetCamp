@@ -54,4 +54,5 @@
 
 -(AsyncTask*)updateGroup:(NSString*)gid groupname:(NSString*)groupname description:(NSString*)description location:(NSString*)location;
 
+-(void)cancelAllWorkTask;
 @end

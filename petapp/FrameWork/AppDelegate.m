@@ -203,7 +203,7 @@
 
 -(void)callLoginUpdate{
     PetUser* user=[DataCenter sharedInstance].user;
-    if(user!=nil){
+    if(( [user.account length]>0 || [user.bind_phone length]>0)&& [user.password length]>0){
         
         float latitude=[DataCenter sharedInstance].latitude;
         float longitude=[DataCenter sharedInstance].longitude;

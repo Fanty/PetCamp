@@ -297,4 +297,18 @@
 
 }
 
+-(void)cancelAllWorkTask{
+    [friendAsyncTask cancel];
+    friendAsyncTask=nil;
+    
+    [groupAsynTask cancel];
+    groupAsynTask=nil;
+    
+    [fansAsyncTask cancel];
+    fansAsyncTask=nil;
+    
+    [syncTimer invalidate];
+    syncTimer=nil;
+}
+
 @end

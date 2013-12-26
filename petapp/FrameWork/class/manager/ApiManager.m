@@ -237,8 +237,7 @@
 }
 
 +(NSURL*)forgetPasswordApi{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@//api/user/sendForgotPasswordMail",PREFIX]];
-
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/public/index.php/web/forgotPassword",PREFIX]];
 }
 
 +(NSURL*)groupMessageList:(NSString*)group_id{
