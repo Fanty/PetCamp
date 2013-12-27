@@ -25,7 +25,6 @@
     
     BOOL firstLoad;
     
-    GroupModel* groupModel;
 }
 
 @property(nonatomic,retain) GroupModel* groupModel;

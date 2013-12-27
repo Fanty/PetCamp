@@ -23,7 +23,7 @@
 #import "Utils.h"
 
 @interface GroupDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIAlertViewDelegate>
--(void)loadData;
+-(void)loadData:(BOOL)onlyReloadImages;
 -(void)updateAction;
 -(void)notificationUpdate:(NSNotification*)notification;
 @end
@@ -44,8 +44,8 @@
 @synthesize groupModel;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init{
+    self = [super init];
     if (self) {
         [self backNavBar];
         
@@ -61,6 +61,8 @@
         images=[[NSMutableArray alloc] initWithCapacity:2];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationUpdate:) name:GroupUpdateNotification object:nil];
+        
+    
 
     }
     return self;
@@ -74,7 +76,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 
-    [self loadData];
+    [self loadData:NO];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -105,7 +107,7 @@
     return (task==nil);
 }
 
--(void)loadData{
+-(void)loadData:(BOOL)onlyReloadImages{
     MBProgressHUD* progressHUD=[AlertUtils showLoading:lang(@"loading") view:self.view];
     task=[[AppDelegate appDelegate].contactGroupManager friendList:self.groupModel.groupId];
     [progressHUD show:NO];
@@ -126,20 +128,24 @@
                 else
                     [images addObject:@""];
             }
-            
-            tableView=[[GTGZTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-            tableView.touchDelegate=self;
-            tableView.dataSource=self;
-            tableView.delegate=self;
-            tableView.showsHorizontalScrollIndicator=NO;
-            tableView.showsVerticalScrollIndicator=NO;
-            tableView.backgroundColor=[UIColor grayColor];
-            
-            [self.view addSubview:tableView];
-            [tableView release];
-
-            if([[DataCenter sharedInstance].user.uid isEqualToString:self.groupModel.petUser.uid])
-                [self rightNavBarWithTitle:lang(@"update") target:self action:@selector(updateAction)];
+            if(!onlyReloadImages){
+                tableView=[[GTGZTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+                tableView.touchDelegate=self;
+                tableView.dataSource=self;
+                tableView.delegate=self;
+                tableView.showsHorizontalScrollIndicator=NO;
+                tableView.showsVerticalScrollIndicator=NO;
+                tableView.backgroundColor=[UIColor grayColor];
+                
+                [self.view addSubview:tableView];
+                [tableView release];
+                
+                if([[DataCenter sharedInstance].user.uid isEqualToString:self.groupModel.petUser.uid])
+                    [self rightNavBarWithTitle:lang(@"update") target:self action:@selector(updateAction)];
+            }
+            else{
+                [memberView setImages:images];
+            }
 
         }
         task=nil;
@@ -153,6 +159,9 @@
         [images release];
         images=[notification.object retain];
         [memberView setImages:images];
+    }
+    else{
+        [self loadData:YES];
     }
 }
 
@@ -355,7 +364,6 @@
         controller.groupId=groupModel.groupId;
         controller.uid=groupModel.petUser.uid;
         controller.title=self.title;
-        controller.showJoinGroupButton=NO;
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
@@ -389,7 +397,7 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==1){
-        [self loadData];
+        [self loadData:NO];
     }
     else{
         [self.navigationController popViewControllerAnimated:YES];

@@ -19,6 +19,8 @@
 #import "AsyncTask.h"
 #import "TalkManager.h"
 #import "AppDelegate.h"
+#import "ContactGroupManager.h"
+#import "ApiError.h"
 #import "MBProgressHUD.h"
 #import "AlertUtils.h"
 #import "GroupModel.h"
@@ -27,7 +29,7 @@
 #import "SettingManager.h"
 #import "ImageScroller.h"
 
-@interface ChatMainViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIActionSheetDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ChatPanelDelegate,ChatImageCellDelegate>
+@interface ChatMainViewController ()<UITableViewDataSource,UITableViewDelegate,GTGZTouchScrollerDelegate,UIActionSheetDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ChatPanelDelegate,ChatImageCellDelegate,UIAlertViewDelegate>
 
 -(void)groupDetail;
 
@@ -232,8 +234,10 @@
         image=[GTGZUtils imageWithThumbnail:image size:CGSizeMake(800.0f, 800.0f)];
     NSData* data=UIImageJPEGRepresentation(image,70);
     
+    self.view.userInteractionEnabled=NO;
     task=[[AppDelegate appDelegate].settingManager fileUpload:data type:@"user"];
     [task setFinishBlock:^{
+        self.view.userInteractionEnabled=YES;
         [progressHUD hide:NO];
 
         NSString* link=@"";
@@ -250,6 +254,9 @@
             [alertView show];
             [alertView release];
         }
+        [syncTimer invalidate];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(syncTimeEvent) userInfo:nil repeats:NO];
+
     }];
 }
 
@@ -262,14 +269,23 @@
     [progressHUD show:NO];
     
     task=[[AppDelegate appDelegate].talkManager sendChat:self.groupModel.groupId content:text image:image];
-    
+    self.view.userInteractionEnabled=NO;
     [task setFinishBlock:^{
         [progressHUD hide:NO];
-        
+        self.view.userInteractionEnabled=YES;
         if(![task status]){
-            UIAlertView* alert=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
+            if([[task error].errorCode isEqualToString:@"GROUP-03"]){
+                UIAlertView* alert=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:self cancelButtonTitle:lang(@"cancel") otherButtonTitles:lang(@"addGroup"), nil];
+                [alert show];
+                [alert release];
+
+            }
+            else{
+                UIAlertView* alert=[[UIAlertView alloc] initWithTitle:[task errorMessage] message:nil delegate:nil cancelButtonTitle:lang(@"confirm") otherButtonTitles:nil, nil];
+                [alert show];
+                [alert release];
+
+            }
         }
         else{
             GroupMessage* groupMessage=[[GroupMessage alloc] init];
@@ -288,7 +304,8 @@
         }
         
         task=nil;
-        [self sync];
+        [syncTimer invalidate];
+        syncTimer=[NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(syncTimeEvent) userInfo:nil repeats:NO];
     }];
 
 }
@@ -485,6 +502,31 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     picker.delegate=nil;
     [picker dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark alertview delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1){
+        [syncTimer invalidate];
+        syncTimer=nil;
+        [task cancel];
+
+        MBProgressHUD* hud=[AlertUtils showLoading:lang(@"loadmore_loading") view:self.view];
+        [hud show:YES];
+        self.view.userInteractionEnabled=NO;
+        task=[[AppDelegate appDelegate].contactGroupManager addGroupUser:self.groupModel.groupId  friend_id:[DataCenter sharedInstance].user.uid];
+        [task setFinishBlock:^{
+            self.view.userInteractionEnabled=YES;
+            [hud hide:NO];
+            task=nil;
+            [AlertUtils showAlert:lang(@"contactGroupIsSend") view:self.view];
+            
+            [self sync];
+
+        }];
+
+    }
 }
 
 

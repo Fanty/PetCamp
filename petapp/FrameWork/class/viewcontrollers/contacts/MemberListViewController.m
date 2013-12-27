@@ -22,13 +22,11 @@
 @end
 
 @implementation MemberListViewController
-@synthesize showJoinGroupButton;
 @synthesize groupId;
 @synthesize uid;
 -(id)init{
     self=[super init];
     if(self){
-        self.showJoinGroupButton=YES;
         [self backNavBar];
         [self rightNavBar:@"menu_header.png" target:self action:@selector(addGroupClick)];
     }
@@ -46,11 +44,7 @@
     [contactTableView release];
 
     [contactTableView loadData];
-    
-    if(!self.showJoinGroupButton && ![[DataCenter sharedInstance].user.uid isEqualToString:self.uid]){
-        self.navigationItem.rightBarButtonItem=nil;
-    }
-
+    isMyGroup=[[DataCenter sharedInstance].user.uid isEqualToString:self.uid];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -73,11 +67,12 @@
     if(task==nil){
         UIActionSheet* sheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
 
-        if(self.showJoinGroupButton){
+        
+        if(!isMyGroup){
             [sheet addButtonWithTitle:lang(@"addGroup")];
             sheet.cancelButtonIndex=1;
         }
-        if([[DataCenter sharedInstance].user.uid isEqualToString:self.uid]){
+        else{
             [sheet addButtonWithTitle:lang(@"addContactInGroup")];
             sheet.cancelButtonIndex++;
         }
@@ -92,9 +87,17 @@
 #pragma mark  actionsheet delegate
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(self.showJoinGroupButton){
-        if(buttonIndex==0){
-            
+    
+    if(buttonIndex==0){
+        if(isMyGroup){
+            SelectedFriendInGroupViewController* controller=[[SelectedFriendInGroupViewController alloc] init];
+            controller.groupId=self.groupId;
+            controller.existsFriends=[contactTableView contacts];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+
+        }
+        else{
             if(task==nil){
                 MBProgressHUD* hud=[AlertUtils showLoading:lang(@"loadmore_loading") view:self.view];
                 [hud show:YES];
@@ -103,26 +106,12 @@
                     [hud hide:NO];
                     task=nil;
                     [contactTableView triggerRefresh];
+                    
                     [AlertUtils showAlert:lang(@"contactGroupIsSend") view:self.view];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:GroupUpdateNotification object:nil];
                 }];
             }
-            
-        }
-        else if(buttonIndex==1 && [[DataCenter sharedInstance].user.uid isEqualToString:self.uid]){
-            SelectedFriendInGroupViewController* controller=[[SelectedFriendInGroupViewController alloc] init];
-            controller.groupId=self.groupId;
-            controller.existsFriends=[contactTableView contacts];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-        }
-    }
-    else{
-        if(buttonIndex==0 ){
-            SelectedFriendInGroupViewController* controller=[[SelectedFriendInGroupViewController alloc] init];
-            controller.groupId=self.groupId;
-            controller.existsFriends=[contactTableView contacts];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
+
         }
     }
     

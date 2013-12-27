@@ -13,8 +13,9 @@
 @interface MemberListViewController : NavContentViewController{
     ContactByGroupView* contactTableView;
     AsyncTask* task;
+    
+    BOOL isMyGroup;
 }
-@property(nonatomic,assign) BOOL showJoinGroupButton;
 @property(nonatomic,retain) NSString* groupId;
 @property(nonatomic,retain) NSString* uid;
 @end
