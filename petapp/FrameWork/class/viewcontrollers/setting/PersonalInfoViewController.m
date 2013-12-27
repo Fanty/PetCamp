@@ -309,7 +309,7 @@ typedef enum{
     [scrollView addSubview:logoView];
     [logoView release];
 
-    scrollView.contentSize=CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(logoView.frame)+30.0f);
+    scrollView.contentSize=CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(logoView.frame)+80.0f);
 
     
     pickerBgView=[[UIView alloc] initWithFrame:self.view.bounds];
@@ -320,7 +320,9 @@ typedef enum{
     [pickerBgView release];
     
     picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, pickerBgView.frame.size.height, pickerBgView.frame.size.width, 216.0)];
-    
+    if([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0f){
+        picker.backgroundColor=[UIColor grayColor];
+    }
     picker.delegate = self;
     picker.dataSource = self;
     picker.showsSelectionIndicator = YES;
@@ -370,10 +372,8 @@ typedef enum{
         rect.origin.y=pickerBgView.frame.size.height-rect.size.height;
         picker.frame=rect;
         
-        rect=self.view.frame;
-        rect.origin.y=0.0f;
-        self.view.frame=rect;
-        
+
+        scrollView.contentOffset=CGPointMake(0.0f, 0.0f);
     } completion:^(BOOL finish){
         
     }];
@@ -571,18 +571,7 @@ typedef enum{
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        CGRect rect=self.view.frame;
-        if([textField.superview isEqual:personDescField]){
-            rect.origin.y=-80.0f;
-        }
-        else{
-            rect.origin.y=0.0f;
-        }
-        self.view.frame=rect;
-    } completion:^(BOOL finish){
-        
-    }];
+    [scrollView setContentOffset:CGPointMake(0.0f, ([textField.superview isEqual:personDescField]?80.0f:0.0f)) animated:YES];
     
     return YES;
 }
@@ -600,14 +589,7 @@ typedef enum{
     }
     else{
         [textField resignFirstResponder];
-        
-        [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-            CGRect rect=self.view.frame;
-            rect.origin.y=0.0f;
-            self.view.frame=rect;
-        } completion:^(BOOL finish){
-            
-        }];
+        [scrollView setContentOffset:CGPointZero animated:YES];
     }
     return YES;
     
@@ -862,13 +844,8 @@ typedef enum{
     [nicknameField resignFirstResponder];
     [emailField resignFirstResponder];
     [personDescField resignFirstResponder];
-    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        CGRect rect=self.view.frame;
-        rect.origin.y=0.0f;
-        self.view.frame=rect;
-    } completion:^(BOOL finish){
-        
-    }];
+    [scrollView setContentOffset:CGPointZero animated:YES];
+    
     
     
     [self hidePicker];
